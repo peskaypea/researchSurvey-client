@@ -1,0 +1,20 @@
+.nav {
+    display:flex;
+    width: 100vw;
+    height: 75px;
+    background: linear-gradient(.25turn,rgb(71, 147, 201), rgb(13, 68, 147));  ;
+    align-items: center;
+}
+
+.logo {
+    height: 100%;
+    padding: 5px;
+}
+.img{
+    height:100%;
+    padding: 10px;
+}
+h1{
+    color:white;
+    font-size: 25px;
+}
