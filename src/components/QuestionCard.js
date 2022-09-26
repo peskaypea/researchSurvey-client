@@ -5,7 +5,7 @@ function QuestionCard(props) {
   const [index, setIndex] = useState(0);
   const [time, setTime] = useState(Date.now());
   const [res, setRes] = useState({});
-  const getShortAnswerRes = props.getShortAnswerResponse;
+
   const submitAnswers = props.submit;
   const nextQuestion = (e) => {
     e.preventDefault();
@@ -18,8 +18,8 @@ function QuestionCard(props) {
   };
   const getTime = () => {
     let duration = Date.now() - time;
-    props.getReponseTime(duration);
     setTime(Date.now());
+    return duration;
   };
 
   useEffect(() => {
@@ -33,10 +33,12 @@ function QuestionCard(props) {
       ...res,
       [e.target.name]: e.target.value,
     };
-    console.log(obj);
+    //for some reason res always has 1 character less than obj
     setRes((response) => {
       return obj;
     });
+
+    props.getInfo(e, index, obj);
   };
 
   return (
@@ -58,11 +60,11 @@ function QuestionCard(props) {
                   <div>
                     <input
                       className="form-check-input"
-                      name="form-check-input"
+                      name="userType"
                       id={"radio-btn-" + index}
                       type="radio"
                       value={option}
-                      onClick={props.getMCResponse}
+                      onClick={props.getInfo}
                     />
                     <label className="form-check-label" htmlFor={option}>
                       &nbsp; {option}
@@ -72,15 +74,18 @@ function QuestionCard(props) {
                 );
               })}
               <br />
-              <button
-                onClick={(e) => {
-                  getTime();
-                  nextQuestion(e);
-                }}
-                className="btn btn-primary"
-              >
-                Next
-              </button>
+              <div className="d-flex justify-content-end">
+                <button
+                  onClick={(e) => {
+                    let duration = getTime();
+                    props.getTime(index, duration);
+                    nextQuestion(e);
+                  }}
+                  className="btn btn-primary"
+                >
+                  Next
+                </button>
+              </div>
             </form>
           )}
           {/* ----------------------------------------------------------------- */}
@@ -98,15 +103,18 @@ function QuestionCard(props) {
                 <br />
                 <img src={questions[index].imgURL} alt="" />
               </div>
-              <button
-                onClick={(e) => {
-                  getTime();
-                  nextQuestion(e);
-                }}
-                className="btn btn-primary"
-              >
-                Next
-              </button>
+              <div className="d-flex  justify-content-end ">
+                <button
+                  onClick={(e) => {
+                    let duration = getTime();
+                    props.getTime(index, duration);
+                    nextQuestion(e);
+                  }}
+                  className="btn btn-primary"
+                >
+                  Next
+                </button>
+              </div>
             </form>
           )}
           {/* -----------------------------------------------------------------------*/}
@@ -141,7 +149,7 @@ function QuestionCard(props) {
                           name={img}
                           cols={55}
                           rows={3}
-                          onChange={getValue}
+                          onChange={(e) => getValue(e)}
                           value={res[img] || ""}
                         ></textarea>
                       </div>
@@ -150,30 +158,34 @@ function QuestionCard(props) {
                 );
               })}
               {index < 25 ? (
-                <button
-                  onClick={(e) => {
-                    getTime();
-                    getShortAnswerRes(res);
-                    setRes({});
-                    nextQuestion(e);
-                  }}
-                  className="btn btn-primary"
-                >
-                  Next
-                </button>
+                <div className="d-flex  justify-content-end">
+                  <button
+                    onClick={(e) => {
+                      let duration = getTime();
+                      props.getTime(index, duration);
+                      setRes({});
+                      nextQuestion(e);
+                    }}
+                    className="btn btn-primary text-end"
+                  >
+                    Next
+                  </button>
+                </div>
               ) : (
-                <button
-                  onClick={(e) => {
-                    getTime();
-                    getShortAnswerRes(res);
-                    setRes({});
-                    submitAnswers();
-                    nextQuestion(e);
-                  }}
-                  className="btn btn-primary"
-                >
-                  Submit
-                </button>
+                <div className="d-flex justify-content-end">
+                  <button
+                    onClick={(e) => {
+                      let duration = getTime();
+                      props.getTime(index, duration);
+                      setRes({});
+                      submitAnswers();
+                      nextQuestion(e);
+                    }}
+                    className="btn btn-primary text-end"
+                  >
+                    Submit
+                  </button>
+                </div>
               )}
             </form>
           )}

@@ -4,7 +4,9 @@ body{
 .App {
   text-align: center;
 }
-
+.main-container{
+  width:100vw
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

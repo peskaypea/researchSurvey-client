@@ -31,9 +31,11 @@ function UserInfoForm(props) {
           onChange={setUserData}
         />
         <br />
-        <a href="/survey" className="btn btn-primary">
-          Next
-        </a>
+        <div className="d-flex justify-content-end">
+          <a href="/survey" className="btn btn-primary">
+            Next
+          </a>
+        </div>
       </form>
     </div>
   );

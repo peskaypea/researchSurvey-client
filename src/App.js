@@ -21,14 +21,51 @@ function App() {
             surveyId: "6324d547c2e9d1cde20183d0",
             surveyName: "Basic Logo-syllabic Chinese Character",
             response: [],
-            time: [],
           },
         ],
       }
     );
   });
 
-  //Change user object when input value changes
+  const collectUserReponse = (e, index, res) => {
+    const newObj = userData;
+    console.log(res);
+    if (!res) {
+      const newData = {
+        [e.target.name]: [e.target.value],
+        time: 0,
+      };
+      newObj.surveyTaken[0].response.push(newData);
+    } else {
+      newObj.surveyTaken[0].response[index] = res;
+    }
+    setUserData((user) => {
+      return {
+        ...user,
+        ...newObj,
+      };
+    });
+    console.log(userData);
+  };
+
+  const collectTime = (index, time) => {
+    const newObj = userData;
+
+    const timeInSeconds = time / 1000;
+    newObj.surveyTaken[0].response[index] = {
+      ...newObj.surveyTaken[0].response[index],
+      time: timeInSeconds,
+    };
+
+    setUserData((user) => {
+      return {
+        ...user,
+        ...newObj,
+      };
+    });
+    console.log(userData);
+  };
+  // Change user object when input value changes
   const handleUserInfoChange = (e) => {
     const newData = {
       [e.target.name]: e.target.value,
@@ -45,47 +82,31 @@ function App() {
     });
   };
 
-  const handleMCQuestionReponse = (e) => {
-    const newObj = userData;
-    const newData = e.target.value;
+  // const handleMCQuestionReponse = (e) => {
+  //   const newObj = userData;
+  //   const newData = e.target.value;
 
-    newObj.surveyTaken[0].response.push(newData);
-    setUserData((user) => {
-      return {
-        ...user,
-        ...newObj,
-      };
-    });
-    console.log(newData);
-  };
+  //   newObj.surveyTaken[0].response.push(newData);
+  //   setUserData((user) => {
+  //     return {
+  //       ...user,
+  //       ...newObj,
+  //     };
+  //   });
+  //   console.log(newData);
+  // };
 
-  const handleTimeCollection = (time) => {
-    const newObj = userData;
-    const timeTaken = time / 1000;
-    newObj.surveyTaken[0].time.push(timeTaken);
-    setUserData((user) => {
-      return {
-        ...user,
-        ...newObj,
-      };
-    });
-  };
-
-  const handleShortAnswerResponse = (res) => {
-    const responses = Object.entries(res);
-    const userAnswers = responses.map((response) => {
-      return response.join(" : ");
-    });
-    const newObj = userData;
-    newObj.surveyTaken[0].response.push(userAnswers.toString());
-
-    setUserData((user) => {
-      return {
-        ...user,
-        ...newObj,
-      };
-    });
-  };
+  // const handleTimeCollection = (time) => {
+  //   const newObj = userData;
+  //   const timeTaken = time / 1000;
+  //   newObj.surveyTaken[0].time.push(timeTaken);
+  //   setUserData((user) => {
+  //     return {
+  //       ...user,
+  //       ...newObj,
+  //     };
+  //   });
+  // };
 
   const { data, loading } = useFetch(
     "http://localhost:5000/surveys/6324d547c2e9d1cde20183d0"
@@ -106,12 +127,8 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
-
   return (
-    <div>
+    <div className="main-container">
       <Nav />
 
       {loading ? (
@@ -126,7 +143,11 @@ function App() {
             <Route
               path="/getstarted"
               element={
-                <UserInfoForm user={userData} setUser={handleUserInfoChange} />
+                <UserInfoForm
+                  user={userData}
+                  setUser={handleUserInfoChange}
+                  // getInfo={collectUserReponse}
+                />
               }
             />
             <Route
@@ -135,10 +156,12 @@ function App() {
                 <QuestionCard
                   user={userData}
                   survey={data}
-                  getMCResponse={handleMCQuestionReponse}
-                  getReponseTime={handleTimeCollection}
-                  getShortAnswerResponse={handleShortAnswerResponse}
+                  // getMCResponse={handleMCQuestionReponse}
+                  // getReponseTime={handleTimeCollection}
+                  // getShortAnswerResponse={handleShortAnswerResponse}
                   submit={submitUserAnswers}
+                  getInfo={collectUserReponse}
+                  getTime={collectTime}
                 />
               }
             />
