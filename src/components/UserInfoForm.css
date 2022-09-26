@@ -26,6 +26,13 @@
     margin:10px auto
 }
 
+.label::after{
+    content:" *";
+    width:12px;
+    color: red;
+    
+}
+
 @media only screen and (max-width:400px) {
     .userform-container {
         padding: 10px;

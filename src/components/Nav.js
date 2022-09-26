@@ -6,7 +6,7 @@ function Nav() {
       <a href="/" className="logo">
         <img src="logo192.png" alt="react-logo" style={{ height: "100%" }} />
       </a>
-      <h1>Survey Questionaire</h1>
+      <h1>Survey Questionnaire</h1>
     </div>
   );
 }

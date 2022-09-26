@@ -151,6 +151,7 @@ function QuestionCard(props) {
                           rows={3}
                           onChange={(e) => getValue(e)}
                           value={res[img] || ""}
+                          required
                         ></textarea>
                       </div>
                     )}
@@ -161,10 +162,21 @@ function QuestionCard(props) {
                 <div className="d-flex  justify-content-end">
                   <button
                     onClick={(e) => {
-                      let duration = getTime();
-                      props.getTime(index, duration);
-                      setRes({});
-                      nextQuestion(e);
+                      console.log(Object.keys(res).length);
+                      if (
+                        Object.keys(res).length <
+                        questions[index].imgURL.length -
+                          questions[index].imgDesc.length
+                      ) {
+                        console.log("if");
+                        alert("Cannot leave fields empty");
+                      } else {
+                        console.log("else");
+                        let duration = getTime();
+                        props.getTime(index, duration);
+                        setRes({});
+                        nextQuestion(e);
+                      }
                     }}
                     className="btn btn-primary text-end"
                   >
@@ -175,11 +187,22 @@ function QuestionCard(props) {
                 <div className="d-flex justify-content-end">
                   <button
                     onClick={(e) => {
-                      let duration = getTime();
-                      props.getTime(index, duration);
-                      setRes({});
-                      submitAnswers();
-                      nextQuestion(e);
+                      console.log("out");
+                      if (
+                        Object.keys(res).length <
+                        questions[index].imgURL.length -
+                          questions[index].imgDesc.length
+                      ) {
+                        console.log("if");
+                        alert("Cannot leave fields empty");
+                      } else {
+                        console.log("else");
+                        let duration = getTime();
+                        props.getTime(index, duration);
+                        setRes({});
+                        submitAnswers();
+                        nextQuestion(e);
+                      }
                     }}
                     className="btn btn-primary text-end"
                   >

@@ -14,8 +14,8 @@ function App() {
   const [userData, setUserData] = useState(() => {
     return (
       JSON.parse(localStorage.getItem("user")) || {
-        userName: "",
-        email: "",
+        userName: null,
+        email: null,
         surveyTaken: [
           {
             surveyId: "6324d547c2e9d1cde20183d0",
