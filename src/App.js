@@ -1,11 +1,12 @@
 import "./App.css";
 import Nav from "./components/Nav";
 import Welcome from "./components/Welcome";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import QuestionCard from "./components/QuestionCard";
 import UserInfoForm from "./components/UserInfoForm";
 import useFetch from "./useFetch";
+
 function App() {
   const [start, setStart] = useState(false);
   const getStarted = () => {
@@ -29,7 +30,7 @@ function App() {
 
   const collectUserReponse = (e, index, res) => {
     const newObj = userData;
-    console.log(res);
+
     if (!res) {
       const newData = {
         [e.target.name]: [e.target.value],
@@ -45,7 +46,6 @@ function App() {
         ...newObj,
       };
     });
-    console.log(userData);
   };
 
   const collectTime = (index, time) => {
@@ -63,7 +63,6 @@ function App() {
         ...newObj,
       };
     });
-    console.log(userData);
   };
   // Change user object when input value changes
   const handleUserInfoChange = (e) => {
@@ -82,34 +81,8 @@ function App() {
     });
   };
 
-  // const handleMCQuestionReponse = (e) => {
-  //   const newObj = userData;
-  //   const newData = e.target.value;
-
-  //   newObj.surveyTaken[0].response.push(newData);
-  //   setUserData((user) => {
-  //     return {
-  //       ...user,
-  //       ...newObj,
-  //     };
-  //   });
-  //   console.log(newData);
-  // };
-
-  // const handleTimeCollection = (time) => {
-  //   const newObj = userData;
-  //   const timeTaken = time / 1000;
-  //   newObj.surveyTaken[0].time.push(timeTaken);
-  //   setUserData((user) => {
-  //     return {
-  //       ...user,
-  //       ...newObj,
-  //     };
-  //   });
-  // };
-
   const { data, loading } = useFetch(
-    "http://localhost:5000/surveys/6324d547c2e9d1cde20183d0"
+    "http://localhost:5000/surveys/63bf0c80a6ffb6b3bbb278bb"
   );
 
   const submitUserAnswers = () => {
@@ -156,9 +129,6 @@ function App() {
                 <QuestionCard
                   user={userData}
                   survey={data}
-                  // getMCResponse={handleMCQuestionReponse}
-                  // getReponseTime={handleTimeCollection}
-                  // getShortAnswerResponse={handleShortAnswerResponse}
                   submit={submitUserAnswers}
                   getInfo={collectUserReponse}
                   getTime={collectTime}

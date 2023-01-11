@@ -12,7 +12,7 @@ function QuestionCard(props) {
 
     setIndex((index) => {
       index += 1;
-      console.log(index);
+
       return index;
     });
   };

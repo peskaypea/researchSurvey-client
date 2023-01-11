@@ -3,7 +3,7 @@ import "./UserInfoForm.css";
 function UserInfoForm(props) {
   const setUserData = props.setUser;
   const userData = props.user;
-  const emailRegex = /^[a-z][a-z0-9]+?@[\w]+[.][a-z]{2,}/i; //validate email
+  //const emailRegex = /^[a-z][a-z0-9]+?@[\w]+[.][a-z]{2,}/i; //validate email
 
   return (
     <div className="userform-container">
@@ -19,7 +19,7 @@ function UserInfoForm(props) {
           placeholder="Your email address"
           id="email"
           name="email"
-          value={userData.email}
+          value={userData.email || ""}
           onChange={setUserData}
           required
         />
@@ -33,7 +33,7 @@ function UserInfoForm(props) {
           placeholder="Full name"
           id="fullname"
           name="userName"
-          value={userData.userName}
+          value={userData.userName || ""}
           onChange={setUserData}
           required
         />
