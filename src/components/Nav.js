@@ -1,35 +1,29 @@
 import React, { useState } from "react";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import logo from "../assets/SC.svg";
+import { NavLink } from "react-router-dom";
 import "./Nav.css";
 
 const Menu = () => (
-  <>
-    <p>
-      <a href="#Home">Home</a>
-    </p>
-    <p>
-      <a href="#NewSurvey">About</a>
-    </p>
-
-    <p>
-      <a href="#Features">Contacts</a>
-    </p>
-    <p>
-      <a href="#Blog">Library</a>
-    </p>
-  </>
+  <nav className="nav-nav">
+    <ul>
+      <li>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/about">About</NavLink>
+      </li>
+      <li>
+        <NavLink to="/contact">Contact</NavLink>
+      </li>
+    </ul>
+  </nav>
 );
+
 function Nav() {
   const [toggleMenu, SetToggleMenu] = useState(false);
 
   return (
-    // <div className="nav">
-    //   <a href="/" className="logo">
-    //     <img src="logo192.png" alt="react-logo" style={{ height: "100%" }} />
-    //   </a>
-    //   <h1>Survey Questionnaire</h1>
-    // </div>
     <div className="sc__navbar">
       <div className="sc__navbar-links">
         <div className="sc__navbar-links_logo">
@@ -58,7 +52,7 @@ function Nav() {
           />
         )}
         {toggleMenu && (
-          <div className="sc__navbar-menu_container scale-up-center">
+          <div className="sc__navbar-menu_container">
             <div className="sc__navbar-menu_container-links">
               <Menu />
               <div className="sc__navbar-menu_container-links-sign">

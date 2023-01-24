@@ -1,11 +1,13 @@
 import "./App.css";
-import Nav from "./components/Nav";
 import Welcome from "./components/Welcome";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import QuestionCard from "./components/QuestionCard";
 import UserInfoForm from "./components/UserInfoForm";
 import useFetch from "./useFetch";
+
+import Contact from "components/Contact";
+import About from "components/About";
 
 function App() {
   const [start, setStart] = useState(false);
@@ -102,8 +104,6 @@ function App() {
 
   return (
     <div className="main-container">
-      <Nav />
-
       {loading ? (
         <h1>Loading</h1>
       ) : (
@@ -113,6 +113,11 @@ function App() {
               path="/"
               element={<Welcome start={start} getStarted={getStarted} />}
             />
+
+            <Route path="/" element={<Welcome />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+
             <Route
               path="/getstarted"
               element={
