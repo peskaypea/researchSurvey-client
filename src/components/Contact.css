@@ -54,3 +54,14 @@ textarea {
 [type="submit"]:hover {
   background: #2e8196d4;
 }
+@media screen and (max-width: 1100px) {
+  .form__container {
+    flex-direction: column;
+  }
+  form {
+    margin: 0 1rem;
+  }
+  .form__container img {
+    height: 300px;
+  }
+}
