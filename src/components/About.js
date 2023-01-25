@@ -2,6 +2,9 @@ import React from "react";
 import "./About.css";
 import Navbar from "./Nav";
 import aboutImage from "../assets/about-us.gif";
+import johnProfilePic from "../assets/john-profilepic.jpg";
+import jillProfilePic from "../assets/jill-profilepic.jpg";
+import carolProfilePic from "../assets/carol-profilepic.jpg";
 
 const About = () => {
   return (
@@ -30,7 +33,47 @@ const About = () => {
               </p>
             </div>
           </div>
-          <img className="about-img" src={aboutImage} alt="" />
+          <div>
+            <img className="about-img" src={aboutImage} alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div className="about__container-bottom">
+        <div className="container-bottom-div">
+          <img src={carolProfilePic} alt="profilepic" />
+          <div className="about__review-name">
+            <h3>Carol, Makret Researcher</h3>
+          </div>
+          <div className="about__review-text">
+            <p>“Survey Connect is the perfect tool for my business.”</p>
+          </div>
+        </div>
+
+        <div className="container-bottom-div">
+          <img src={jillProfilePic} alt="profilepic" />
+          <div className="about__review-name">
+            <h3>Jill, Product Manager</h3>
+          </div>
+          <div className="about__review-text">
+            <p>
+              “I love the real-time data it provides me with and it's easy to
+              use.”
+            </p>
+          </div>
+        </div>
+
+        <div className="container-bottom-div">
+          <img src={johnProfilePic} alt="profilepic" />
+          <div className="about__review-name">
+            <h3>John, Small Business Owner</h3>
+          </div>
+          <div className="about__review-text">
+            <p>
+              “Survey Connect is a great tool for getting valuable customer
+              feedback!”
+            </p>
+          </div>
         </div>
       </div>
     </div>
