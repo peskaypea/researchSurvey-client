@@ -34,7 +34,7 @@ function Nav() {
         </div>
       </div>
       <div className="sc__navbar-sign">
-        <p>Login→ </p>
+        <p className="navbar__login">Login→ </p>
         <button type="button">Sign Up</button>
       </div>
       <div className="sc__navbar-menu">

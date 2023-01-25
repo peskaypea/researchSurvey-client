@@ -95,7 +95,7 @@ ul {
   cursor: pointer;
 }
 .sc__navbar-links_container a:hover,
-p:hover {
+.navbar__login:hover {
   color: #2b788ba2;
 }
 .sc__navbar-sign button,
@@ -160,7 +160,7 @@ p:hover {
 .sc__navbar-menu-container-links-sign p {
   display: none;
 }
-.sc__navbar-sign p:hover {
+.sc__navbar-sign:hover {
   color: #2b788b;
 }
 .sc__navbar-sign button:hover {
@@ -201,7 +201,7 @@ p:hover {
   .sc__navbar-menu_container-links-sign p {
     color: #2b788b;
   }
-  .sc__navbar-menu_container-links-sign p:hover {
+  .sc__navbar-menu_container-links-sign:hover {
     color: black;
   }
 
@@ -215,8 +215,7 @@ p:hover {
   .sc__navbar-menu_container button:hover {
     background-color: #2b788ba2;
   }
-  .c__navbar-menu_container-links p,
-  a:hover {
+  .c__navbar-menu_container-links a:hover {
     color: #2b788ba2;
   }
 }
