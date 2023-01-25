@@ -86,4 +86,8 @@
   .about__container-bottom {
     flex-direction: column;
   }
+  /* .about__top-tail h3,
+  .about__top-tail p {
+    margin-left: 5rem;
+  } */
 }

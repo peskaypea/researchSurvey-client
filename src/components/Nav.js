@@ -8,13 +8,19 @@ const Menu = () => (
   <nav className="nav-nav">
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink className="nav-nav-link" to="/">
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/about">About</NavLink>
+        <NavLink className="nav-nav-link" to="/about">
+          About
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink className="nav-nav-link" to="/contact">
+          Contact
+        </NavLink>
       </li>
     </ul>
   </nav>

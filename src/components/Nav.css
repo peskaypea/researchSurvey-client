@@ -65,6 +65,7 @@ ul {
   list-style: none;
   display: flex;
   justify-content: center;
+  flex-direction: row;
   margin-top: 1rem;
 }
 
@@ -80,7 +81,7 @@ ul {
   align-items: center;
 }
 
-.sc__navbar-links_container p,
+.sc__navbar-links_container ul,
 .sc__navbar-sign p,
 .sc__navbar-menu_container li {
   color: rgb(0, 0, 0);
@@ -168,6 +169,9 @@ ul {
 }
 
 @media screen and (max-width: 1224px) {
+  .nav-nav ul {
+    flex-direction: column;
+  }
   .sc__navbar-links_container {
     display: none;
   }
@@ -180,18 +184,18 @@ ul {
   .sc__navbar-sign {
     display: none;
   }
-  .sc__navbar-links_container p,
-  .sc__navbar-sign p,
-  .sc__navbar-menu_container p {
+  .sc__navbar-menu_container-links ul,
+  .sc__navbar-menu_container-links-sign p,
+  .sc__navbar-menu_container-links li {
     color: rgb(0, 0, 0);
 
     font-weight: 500;
     font-size: 30px;
-    line-height: 40px;
+    line-height: 25px;
     text-transform: capitalize;
     text-align: center;
 
-    margin: 2rem 0rem;
+    margin: 1.5rem 0rem;
     cursor: pointer;
   }
 
@@ -199,9 +203,10 @@ ul {
     margin-top: 7rem;
   }
   .sc__navbar-menu_container-links-sign p {
+    margin-left: 2rem;
     color: #2b788b;
   }
-  .sc__navbar-menu_container-links-sign:hover {
+  .sc__navbar-menu_container-links-sign p:hover {
     color: black;
   }
 
@@ -215,7 +220,7 @@ ul {
   .sc__navbar-menu_container button:hover {
     background-color: #2b788ba2;
   }
-  .c__navbar-menu_container-links a:hover {
+  .nav-nav-link:hover {
     color: #2b788ba2;
   }
 }
