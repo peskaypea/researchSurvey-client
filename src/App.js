@@ -8,6 +8,7 @@ import useFetch from "./useFetch";
 
 import Contact from "components/Contact";
 import About from "components/About";
+import DashNav from "components/DashNav";
 
 function App() {
   const [start, setStart] = useState(false);
@@ -121,11 +122,12 @@ function App() {
             <Route
               path="/getstarted"
               element={
-                <UserInfoForm
-                  user={userData}
-                  setUser={handleUserInfoChange}
-                  // getInfo={collectUserReponse}
-                />
+                <DashNav />
+                // <UserInfoForm
+                //   user={userData}
+                //   setUser={handleUserInfoChange}
+                //   // getInfo={collectUserReponse}
+                // />
               }
             />
             <Route
