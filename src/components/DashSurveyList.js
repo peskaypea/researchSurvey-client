@@ -12,25 +12,40 @@ import useFetch from "useFetch";
 import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
 function DashFilter() {
+  const { data, loading, err } = useFetch("http://localhost:5000/api/surveys");
+  const [surveyList, setSurveyList] = useState([]);
   const [tabActive, setTabActive] = useState("All");
+  const [filteredSurveys, setFilteredSurveys] = useState([]);
+  console.log(filteredSurveys);
   const tabActivate = (e) => {
     setTabActive(e.target.value);
   };
 
-  const [surveyList, setSurveyList] = useState([]);
-  const { data, loading, err } = useFetch("http://localhost:5000/api/surveys");
-  console.log(err);
+  const searchSurvey = (value) => {
+    const filteredSurvey = surveyList.filter((survey) => {
+      return (
+        survey.surveyName.toLowerCase().includes(value) ||
+        survey.surveyOwner.toLowerCase().includes(value)
+      );
+    });
+    console.log(filteredSurvey);
+    setTabActive("Custom");
+    setFilteredSurveys(filteredSurvey);
+  };
+
   useEffect(() => {
     setSurveyList(() => {
       return data ?? [];
     });
-  }, [loading, err]);
+  }, [loading, err, data]);
 
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const del = <FontAwesomeIcon icon={faX} />;
   const edit = <FontAwesomeIcon icon={faEdit} />;
   const view = <FontAwesomeIcon icon={faEye} />;
   const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
+
+  //Error Message
   if (err) {
     return (
       <div className=" flex flex-col items-center mt-36">
@@ -40,6 +55,8 @@ function DashFilter() {
       </div>
     );
   }
+
+  //Loading animation
   if (loading) {
     return (
       <div className="flex  justify-center items-center w-full mt-36">
@@ -48,9 +65,10 @@ function DashFilter() {
     );
   }
 
+  //Return List of all surveys
   return (
     <div className="flex flex-col justify-center">
-      <div className="flex justify-between w-8/12 mx-auto border-b-2 h-20 items-center">
+      <div className="flex justify-between w-full xl:w-8/12 mx-auto border-b-2 h-20 items-center">
         {/* Dashboard Navbar */}
         <div
           id="surveyTabs"
@@ -98,7 +116,7 @@ function DashFilter() {
         {/* Survey Navbar*/}
         <div
           id="selectMenu"
-          className="sm:hidden flex border border-1 p-2 rounded-3xl bg-slate-200"
+          className="sm:hidden flex border border-1 p-2 rounded-3xl bg-slate-200 mx-3 sm:mx-0"
         >
           {/* Survey Navbar mobile*/}
           <select name="" id="" className="outline-0 bg-transparent">
@@ -107,16 +125,19 @@ function DashFilter() {
             <option value="Past">Past</option>
           </select>
         </div>
-
+        {/* Search bar */}
         <div
           id="searchBar"
-          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200"
+          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200 mx-3 sm:mx-0"
         >
           {searchIcon}
           <input
             type="text"
             placeholder="Search"
             className="ml-2 w-9/12 outline-0 bg-transparent"
+            onChange={(e) => {
+              searchSurvey(e.target.value);
+            }}
           />
         </div>
       </div>
@@ -124,6 +145,7 @@ function DashFilter() {
       <div className=" bg-slate-300 min-h-screen">
         <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
           {/* List of recent surveys*/}
+
           <h1 className="font-bold text-md md:text-xl w-full">Recent Survey</h1>
           <div className="flex justify-end md:justify-around w-72">
             <select
@@ -147,11 +169,11 @@ function DashFilter() {
         {surveyList.length > 0 && (
           <div className="mb-1">
             <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-              <div className="md:flex md:justify-between md:w-72">
-                <h6 className="font-semibold w-28">
-                  {surveyList[0].surveyName}
+              <div className="md:flex md:justify-around  w-20 md:w-72">
+                <h6 className="text-xs sm:text-sm font-semibold w-24 sm:w-28">
+                  {surveyList[0].surveyName.slice(0, 18)}
                 </h6>
-                <h6 className="block md:hidden w-28">
+                <h6 className="text-center text-xs sm:text-sm block md:hidden w-28">
                   {surveyList[0].surveyOwner[8] === " "
                     ? surveyList[0].surveyOwner.slice(0, 8) + "..."
                     : surveyList[0].surveyOwner}
@@ -162,19 +184,19 @@ function DashFilter() {
               </div>
 
               <div className="w-16 ">
-                <h6 className="font-semibold">Start Date</h6>
+                <h6 className="text-xs sm:text-sm font-semibold">Start Date</h6>
                 <p className="text-xs">
                   {surveyList[0].dateCreated.slice(0, 10)}
                 </p>
               </div>
               <div className="w-16">
-                <h6 className="font-semibold">End Date</h6>
+                <h6 className="text-xs sm:text-sm font-semibold">End Date</h6>
                 <p className="text-xs">{surveyList[0].dateEnd.slice(0, 10)}</p>
               </div>
 
               <div className="flex   ">
-                <div className="border h-10 py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-30 ">
-                  <p>Take Survey</p>
+                <div className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20  sm:w-36 ">
+                  <p className="w-full text-xs text-center">Take Survey</p>
                 </div>
                 <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
                   <p>{edit}</p>
@@ -186,7 +208,7 @@ function DashFilter() {
                   <p>{view}</p>
                 </div>
               </div>
-              <div className="flex lg:hidden h-full align-top hover:cursor-pointer">
+              <div className="flex lg:hidden h-full align-top hover:cursor-pointer sm:hidden">
                 {ellipsis}
               </div>
             </div>
@@ -194,117 +216,205 @@ function DashFilter() {
         )}
 
         {/* List of active surveys*/}
-        <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
-          <h1 className="font-bold text-md md:text-xl w-full">Active</h1>
-        </div>
-        {surveyList.length > 0 &&
-          surveyList.map((survey) => {
-            if (survey.status === true)
-              return (
-                <div className="mb-1">
-                  <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-                    <div className="md:flex md:justify-between md:w-72">
-                      <h6 className="font-semibold w-28">
-                        {survey.surveyName}
-                      </h6>
-                      <h6 className="block md:hidden w-28">
-                        {survey.surveyOwner[8] === " "
-                          ? survey.surveyOwner.slice(0, 8) + "..."
-                          : survey.surveyOwner}
-                      </h6>
-                      <h6 className="hidden md:block w-28">
-                        {survey.surveyOwner}
-                      </h6>
-                    </div>
+        {(tabActive === "Active" || tabActive === "All") && (
+          <div>
+            <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
+              <h1 className="font-bold text-md md:text-xl w-full">Active</h1>
+            </div>
+            {surveyList.length > 0 &&
+              surveyList.map((survey) => {
+                if (survey.status === true)
+                  return (
+                    <div className="mb-1" key={survey._id}>
+                      <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
+                        <div className="md:flex md:justify-around   w-20 md:w-72">
+                          <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
+                            {survey.surveyName.slice(0, 18)}
+                          </h6>
+                          <h6 className="text-center text-xs sm:text-sm block md:hidden w-28">
+                            {survey.surveyOwner[8] === " "
+                              ? survey.surveyOwner.slice(0, 8)
+                              : survey.surveyOwner}
+                          </h6>
+                          <h6 className="hidden md:block w-28">
+                            {survey.surveyOwner}
+                          </h6>
+                        </div>
 
-                    <div className="w-16 ">
-                      <h6 className="font-semibold">Start Date</h6>
-                      <p className="text-xs">
-                        {survey.dateCreated.slice(0, 10)}
-                      </p>
-                    </div>
-                    <div className="w-16">
-                      <h6 className="font-semibold">End Date</h6>
-                      <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
-                    </div>
+                        <div className="w-16 ">
+                          <h6 className="text-xs sm:text-sm font-semibold">
+                            Start Date
+                          </h6>
+                          <p className="text-xs">
+                            {survey.dateCreated.slice(0, 10)}
+                          </p>
+                        </div>
+                        <div className="w-16">
+                          <h6 className="text-xs sm:text-sm font-semibold">
+                            End Date
+                          </h6>
+                          <p className="text-xs">
+                            {survey.dateEnd.slice(0, 10)}
+                          </p>
+                        </div>
 
-                    <div className="flex   ">
-                      <div className="border h-10 py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-30 ">
-                        <p>Take Survey</p>
-                      </div>
-                      <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                        <p>{edit}</p>
-                      </div>
-                      <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                        <p>{del}</p>
-                      </div>
-                      <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                        <p>{view}</p>
+                        <div className="flex   ">
+                          <div className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 ">
+                            <p className="w-full text-xs text-center">
+                              Take Survey
+                            </p>
+                          </div>
+                          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                            <p>{edit}</p>
+                          </div>
+                          <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                            <p>{del}</p>
+                          </div>
+                          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                            <p>{view}</p>
+                          </div>
+                        </div>
+                        <div className="flex sm:hidden h-full align-top hover:cursor-pointer">
+                          {ellipsis}
+                        </div>
                       </div>
                     </div>
-                    <div className="flex lg:hidden h-full align-top hover:cursor-pointer">
-                      {ellipsis}
-                    </div>
-                  </div>
-                </div>
-              );
-          })}
+                  );
+              })}
+          </div>
+        )}
 
         {/* List of past surveys*/}
-        <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
-          <h1 className="font-bold text-md md:text-xl w-full">Past</h1>
-        </div>
-        {surveyList.length > 0 &&
-          surveyList.map((survey) => {
-            if (survey.status === false) {
-              return (
-                <div className="mb-1">
-                  <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-                    <div className="md:flex md:justify-between md:w-72">
-                      <h6 className="font-semibold w-28">
-                        {survey.surveyName}
-                      </h6>
-                      <h6 className="block md:hidden w-28">
-                        {survey.surveyOwner}
-                      </h6>
-                      <h6 className="hidden md:block w-28">
-                        {survey.surveyOwner}
-                      </h6>
-                    </div>
+        {(tabActive === "Past" || tabActive === "All") && (
+          <div>
+            <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
+              <h1 className="font-bold text-md md:text-xl w-full">Past</h1>
+            </div>
+            {surveyList.length > 0 &&
+              surveyList.map((survey) => {
+                if (survey.status === false) {
+                  return (
+                    <div className="mb-1" key={survey._id}>
+                      <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
+                        <div className="md:flex md:justify-around w-20 md:w-72">
+                          <h6 className="text-center text-xs sm:text-sm font-semibold w-full sm:w-28">
+                            {survey.surveyName.slice(0, 18)}
+                          </h6>
+                          <h6 className="text-center text-xs sm:text-sm block md:hidden w-full sm:w-28">
+                            {survey.surveyOwner.slice(0, 8)}
+                          </h6>
+                          <h6 className=" text-xs sm:text-sm hidden md:block w-full sm:w-28">
+                            {survey.surveyOwner}
+                          </h6>
+                        </div>
 
-                    <div className="w-16 ">
-                      <h6 className="font-semibold">Start Date</h6>
-                      <p className="text-xs">
-                        {survey.dateCreated.slice(0, 10)}
-                      </p>
-                    </div>
-                    <div className="w-16">
-                      <h6 className="font-semibold">End Date</h6>
-                      <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
-                    </div>
+                        <div className="w-16 ">
+                          <h6 className="text-xs sm:text-sm font-semibold">
+                            Start Date
+                          </h6>
+                          <p className="text-xs">
+                            {survey.dateCreated.slice(0, 10)}
+                          </p>
+                        </div>
+                        <div className="w-16">
+                          <h6 className="text-xs sm:text-sm font-semibold">
+                            End Date
+                          </h6>
+                          <p className="text-xs">
+                            {survey.dateEnd.slice(0, 10)}
+                          </p>
+                        </div>
 
-                    <div className="lg:flex hidden  ">
-                      <div className="border h-10 py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-30 ">
-                        <p>Take Survey</p>
-                      </div>
-                      <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                        <p>{edit}</p>
-                      </div>
-                      <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                        <p>{del}</p>
-                      </div>
-                      <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                        <p>{view}</p>
+                        <div className="flex   ">
+                          <div className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 ">
+                            <p className="w-full text-xs text-center">
+                              Take Survey
+                            </p>
+                          </div>
+                          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                            <p>{edit}</p>
+                          </div>
+                          <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                            <p>{del}</p>
+                          </div>
+                          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                            <p>{view}</p>
+                          </div>
+                        </div>
+                        <div className="flex sm:hidden h-full align-top hover:cursor-pointer ">
+                          {ellipsis}
+                        </div>
                       </div>
                     </div>
-                    <div className="flex lg:hidden h-full align-top hover:cursor-pointer ">
-                      {ellipsis}
+                  );
+                }
+              })}
+          </div>
+        )}
+
+        {/*List of filtered surveys*/}
+        {tabActive === "Custom" && (
+          <div>
+            <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
+              <h1 className="font-bold text-md md:text-xl w-full">Result</h1>
+            </div>
+            {filteredSurveys.length > 0 &&
+              filteredSurveys.map((survey) => {
+                return (
+                  <div className="mb-1" key={survey._id}>
+                    <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
+                      <div className="md:flex md:justify-around w-20 md:w-72">
+                        <h6 className="text-center text-xs sm:text-sm font-semibold w-full sm:w-28">
+                          {survey.surveyName.slice(0, 18)}
+                        </h6>
+                        <h6 className="text-center text-xs sm:text-sm block md:hidden w-full sm:w-28">
+                          {survey.surveyOwner.slice(0, 8)}
+                        </h6>
+                        <h6 className=" text-xs sm:text-sm hidden md:block w-full sm:w-28">
+                          {survey.surveyOwner}
+                        </h6>
+                      </div>
+
+                      <div className="w-16 ">
+                        <h6 className="text-xs sm:text-sm font-semibold">
+                          Start Date
+                        </h6>
+                        <p className="text-xs">
+                          {survey.dateCreated.slice(0, 10)}
+                        </p>
+                      </div>
+                      <div className="w-16">
+                        <h6 className="text-xs sm:text-sm font-semibold">
+                          End Date
+                        </h6>
+                        <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
+                      </div>
+
+                      <div className="flex   ">
+                        <div className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 ">
+                          <p className="w-full text-xs text-center">
+                            Take Survey
+                          </p>
+                        </div>
+                        <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                          <p>{edit}</p>
+                        </div>
+                        <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                          <p>{del}</p>
+                        </div>
+                        <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                          <p>{view}</p>
+                        </div>
+                      </div>
+                      <div className="flex sm:hidden h-full align-top hover:cursor-pointer ">
+                        {ellipsis}
+                      </div>
                     </div>
                   </div>
-                </div>
-              );
-            }
-          })}
+                );
+              })}
+          </div>
+        )}
       </div>
     </div>
   );
