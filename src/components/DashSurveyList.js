@@ -9,7 +9,8 @@ import {
 import React, { useState } from "react";
 import { useEffect } from "react";
 import useFetch from "useFetch";
-
+import ErrorImg from "../assets/error.jpg";
+import Spinner from "../assets/loading-gif.gif";
 function DashFilter() {
   const [tabActive, setTabActive] = useState("All");
   const tabActivate = (e) => {
@@ -17,21 +18,35 @@ function DashFilter() {
   };
 
   const [surveyList, setSurveyList] = useState([]);
-  const { data, loading, error } = useFetch(
-    "http://localhost:5000/api/surveys"
-  );
-  console.log(surveyList.length);
+  const { data, loading, err } = useFetch("http://localhost:5000/api/surveys");
+  console.log(err);
   useEffect(() => {
     setSurveyList(() => {
       return data ?? [];
     });
-  }, [loading]);
+  }, [loading, err]);
 
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const del = <FontAwesomeIcon icon={faX} />;
   const edit = <FontAwesomeIcon icon={faEdit} />;
   const view = <FontAwesomeIcon icon={faEye} />;
   const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
+  if (err) {
+    return (
+      <div className=" flex flex-col items-center mt-36">
+        <img src={ErrorImg} alt="" className="w-1/6" />
+        <h3 className="text-3xl mb-5">Something's wrong</h3>
+        <h3 className="text-xl">We're unable to retrieve data.</h3>
+      </div>
+    );
+  }
+  if (loading) {
+    return (
+      <div className="flex  justify-center items-center w-full mt-36">
+        <img src={Spinner} alt="" className="w-8" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col justify-center">
@@ -101,7 +116,7 @@ function DashFilter() {
           <input
             type="text"
             placeholder="Search"
-            className="ml-2 w-11/12 outline-0 bg-transparent"
+            className="ml-2 w-9/12 outline-0 bg-transparent"
           />
         </div>
       </div>
@@ -153,7 +168,7 @@ function DashFilter() {
                 </p>
               </div>
               <div className="w-16">
-                <h6 className="font-semibold">Start Date</h6>
+                <h6 className="font-semibold">End Date</h6>
                 <p className="text-xs">{surveyList[0].dateEnd.slice(0, 10)}</p>
               </div>
 
@@ -209,7 +224,7 @@ function DashFilter() {
                       </p>
                     </div>
                     <div className="w-16">
-                      <h6 className="font-semibold">Start Date</h6>
+                      <h6 className="font-semibold">End Date</h6>
                       <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
                     </div>
 
@@ -239,114 +254,57 @@ function DashFilter() {
         <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
           <h1 className="font-bold text-md md:text-xl w-full">Past</h1>
         </div>
-        <div className="mb-1">
-          <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-            <div className="md:flex md:justify-between md:w-72">
-              <h6 className="font-semibold w-28">Survey Name</h6>
-              <h6 className="block md:hidden w-28">Survey Owner</h6>
-              <h6 className="hidden md:block w-28">Survey Owner</h6>
-            </div>
+        {surveyList.length > 0 &&
+          surveyList.map((survey) => {
+            if (survey.status === false) {
+              return (
+                <div className="mb-1">
+                  <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
+                    <div className="md:flex md:justify-between md:w-72">
+                      <h6 className="font-semibold w-28">
+                        {survey.surveyName}
+                      </h6>
+                      <h6 className="block md:hidden w-28">
+                        {survey.surveyOwner}
+                      </h6>
+                      <h6 className="hidden md:block w-28">
+                        {survey.surveyOwner}
+                      </h6>
+                    </div>
 
-            <div className="w-16 ">
-              <h6 className="font-semibold">Start Date</h6>
-              <p className="text-xs">01-01-1976</p>
-            </div>
-            <div className="w-16">
-              <h6 className="font-semibold">Start Date</h6>
-              <p className="text-xs">01-01-1977</p>
-            </div>
+                    <div className="w-16 ">
+                      <h6 className="font-semibold">Start Date</h6>
+                      <p className="text-xs">
+                        {survey.dateCreated.slice(0, 10)}
+                      </p>
+                    </div>
+                    <div className="w-16">
+                      <h6 className="font-semibold">End Date</h6>
+                      <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
+                    </div>
 
-            <div className="lg:flex hidden  ">
-              <div className="border h-10 py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-30 ">
-                <p>Take Survey</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{edit}</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{del}</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{view}</p>
-              </div>
-            </div>
-            <div className="flex lg:hidden h-full align-top hover:cursor-pointer ">
-              {ellipsis}
-            </div>
-          </div>
-        </div>
-        <div className="mb-1">
-          <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-            <div className="md:flex md:justify-between md:w-72">
-              <h6 className="font-semibold w-28">Survey Name</h6>
-              <h6 className="block md:hidden w-28">Survey Owner</h6>
-              <h6 className="hidden md:block w-28">Survey Owner</h6>
-            </div>
-
-            <div className="w-16 ">
-              <h6 className="font-semibold">Start Date</h6>
-              <p className="text-xs">01-01-1976</p>
-            </div>
-            <div className="w-16">
-              <h6 className="font-semibold">Start Date</h6>
-              <p className="text-xs">01-01-1977</p>
-            </div>
-
-            <div className="lg:flex hidden  ">
-              <div className="border h-10 py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-30 ">
-                <p>Take Survey</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{edit}</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{del}</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{view}</p>
-              </div>
-            </div>
-            <div className="flex lg:hidden h-full align-top hover:cursor-pointer ">
-              {ellipsis}
-            </div>
-          </div>
-        </div>
-        <div className="mb-1">
-          <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-            <div className="md:flex md:justify-between md:w-72">
-              <h6 className="font-semibold w-28">Survey Name</h6>
-              <h6 className="block md:hidden w-28">Survey Owner</h6>
-              <h6 className="hidden md:block w-28">Survey Owner</h6>
-            </div>
-
-            <div className="w-16 ">
-              <h6 className="font-semibold">Start Date</h6>
-              <p className="text-xs">01-01-1976</p>
-            </div>
-            <div className="w-16">
-              <h6 className="font-semibold">Start Date</h6>
-              <p className="text-xs">01-01-1977</p>
-            </div>
-
-            <div className="lg:flex hidden  ">
-              <div className="border h-10 py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-30 ">
-                <p>Take Survey</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{edit}</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{del}</p>
-              </div>
-              <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                <p>{view}</p>
-              </div>
-            </div>
-            <div className="flex lg:hidden h-full align-top hover:cursor-pointer ">
-              {ellipsis}
-            </div>
-          </div>
-        </div>
+                    <div className="lg:flex hidden  ">
+                      <div className="border h-10 py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-30 ">
+                        <p>Take Survey</p>
+                      </div>
+                      <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                        <p>{edit}</p>
+                      </div>
+                      <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                        <p>{del}</p>
+                      </div>
+                      <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
+                        <p>{view}</p>
+                      </div>
+                    </div>
+                    <div className="flex lg:hidden h-full align-top hover:cursor-pointer ">
+                      {ellipsis}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+          })}
       </div>
     </div>
   );
