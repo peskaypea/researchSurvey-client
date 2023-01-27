@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import useFetch from "useFetch";
 import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
+
 function DashFilter() {
   const { data, loading, err } = useFetch("http://localhost:5000/api/surveys");
   const [surveyList, setSurveyList] = useState([]);
@@ -25,13 +26,21 @@ function DashFilter() {
     const filteredSurvey = surveyList.filter((survey) => {
       return (
         survey.surveyName.toLowerCase().includes(value) ||
-        survey.surveyOwner.toLowerCase().includes(value)
+        survey.surveyOwner.toLowerCase().includes(value) ||
+        survey.dateCreated.toString().slice(0, 10) === value
       );
     });
     console.log(filteredSurvey);
     setTabActive("Custom");
     setFilteredSurveys(filteredSurvey);
   };
+
+  // const filterByDate = (event) => {
+  //   const array = surveyList.filter((survey) => {
+  //     return survey.dateCreated.toString().slice(0, 10) === event.target.value;
+  //   });
+  //   console.log(array);
+  // };
 
   useEffect(() => {
     setSurveyList(() => {
@@ -163,6 +172,9 @@ function DashFilter() {
             <input
               type="date"
               className="ml-1 border border-1 border-slate-200 rounded-3xl w-28 md:w-46 bg-slate-200 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none "
+              onChange={(e) => {
+                searchSurvey(e.target.value);
+              }}
             />
           </div>
         </div>
