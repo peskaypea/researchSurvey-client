@@ -8,7 +8,6 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../assets/SC.svg";
-import DashFilter from "./DashSurveyList";
 
 function DashNav() {
   const bell = <FontAwesomeIcon icon={faBell} size={"xl"} />;
@@ -25,11 +24,13 @@ function DashNav() {
   };
 
   return (
-    <>
+    <div>
       <div className="dashNavContainer">
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">
-            <img src={Logo} alt="" className="w-100" />
+            <a href="/">
+              <img src={Logo} alt="" className="w-100" />
+            </a>
           </div>
           <div className="sm:hidden hover:cursor-pointer">{menu}</div>
 
@@ -80,13 +81,13 @@ function DashNav() {
             <button
               className={
                 btnColorChange
-                  ? "px-2 py-2 w-36   mr-3 text-center border rounded-3xl border-transparent bg-white text-cyan-900"
-                  : "px-2 py-2 w-36   mr-3  text-center border rounded-3xl border-white text-slade-100"
+                  ? "px-2 py-2 w-36   mr-3 text-center border rounded-3xl border-transparent bg-white text-cyan-900 focus:ring focus:ring-slate-400 focus:outline-none"
+                  : "px-2 py-2 w-36   mr-3  text-center border rounded-3xl border-white text-slade-100 focus:ring focus:white focus:outline-none"
               }
               onMouseEnter={() => setBtnColorChange(true)}
               onMouseLeave={() => setBtnColorChange(false)}
             >
-              <div className="flex justify-center">
+              <div className="flex justify-center focus:ring focus:white ">
                 <div className="mr-1">{add}</div>
                 <div>New Survey</div>
               </div>
@@ -98,8 +99,7 @@ function DashNav() {
           </div>
         </header>
       </div>
-      <DashFilter />
-    </>
+    </div>
   );
 }
 

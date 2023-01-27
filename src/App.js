@@ -9,6 +9,7 @@ import useFetch from "./useFetch";
 import Contact from "components/Contact";
 import About from "components/About";
 import DashNav from "components/DashNav";
+import Dashboard from "pages/Dashboard";
 
 function App() {
   // const [start, setStart] = useState(false);
@@ -120,7 +121,7 @@ function App() {
           <Route
             path="/getstarted"
             element={
-              <DashNav />
+              <Dashboard />
               // <UserInfoForm
               //   user={userData}
               //   setUser={handleUserInfoChange}
