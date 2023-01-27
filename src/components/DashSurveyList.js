@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import useFetch from "useFetch";
 import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
+
 function DashFilter() {
   const { data, loading, err } = useFetch("http://localhost:5000/api/surveys");
   const [surveyList, setSurveyList] = useState([]);
@@ -32,7 +33,12 @@ function DashFilter() {
     setTabActive("Custom");
     setFilteredSurveys(filteredSurvey);
   };
-
+  const filterByDate = (e) => {
+    const array = surveyList.filter((survey) => {
+      return survey.dateCreated.toString().slice(0, 10) === e.target.value;
+    });
+    console.log(array);
+  };
   useEffect(() => {
     setSurveyList(() => {
       return data ?? [];
@@ -163,6 +169,9 @@ function DashFilter() {
             <input
               type="date"
               className="ml-1 border border-1 border-slate-200 rounded-3xl w-28 md:w-46 bg-slate-200 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none "
+              onChange={(e) => {
+                filterByDate(e);
+              }}
             />
           </div>
         </div>
@@ -170,16 +179,13 @@ function DashFilter() {
           <div className="mb-1">
             <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
               <div className="md:flex md:justify-around  w-20 md:w-72">
-                <h6 className="text-xs sm:text-sm font-semibold w-24 sm:w-28">
+                <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
                   {surveyList[0].surveyName.slice(0, 18)}
                 </h6>
-                <h6 className="text-center text-xs sm:text-sm block md:hidden w-28">
+                <h6 className="text-center text-xs sm:text-sm block w-24 sm:w-28">
                   {surveyList[0].surveyOwner[8] === " "
                     ? surveyList[0].surveyOwner.slice(0, 8) + "..."
                     : surveyList[0].surveyOwner}
-                </h6>
-                <h6 className="hidden md:block w-28">
-                  {surveyList[0].surveyOwner}
                 </h6>
               </div>
 
@@ -231,13 +237,10 @@ function DashFilter() {
                           <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
                             {survey.surveyName.slice(0, 18)}
                           </h6>
-                          <h6 className="text-center text-xs sm:text-sm block md:hidden w-28">
+                          <h6 className="text-center text-xs sm:text-sm  w-24 sm:w-28">
                             {survey.surveyOwner[8] === " "
                               ? survey.surveyOwner.slice(0, 8)
                               : survey.surveyOwner}
-                          </h6>
-                          <h6 className="hidden md:block w-28">
-                            {survey.surveyOwner}
                           </h6>
                         </div>
 
@@ -367,11 +370,8 @@ function DashFilter() {
                         <h6 className="text-center text-xs sm:text-sm font-semibold w-full sm:w-28">
                           {survey.surveyName.slice(0, 18)}
                         </h6>
-                        <h6 className="text-center text-xs sm:text-sm block md:hidden w-full sm:w-28">
+                        <h6 className="text-center text-xs sm:text-sm block md:hidden w-full w-4 sm:w-28">
                           {survey.surveyOwner.slice(0, 8)}
-                        </h6>
-                        <h6 className=" text-xs sm:text-sm hidden md:block w-full sm:w-28">
-                          {survey.surveyOwner}
                         </h6>
                       </div>
 
