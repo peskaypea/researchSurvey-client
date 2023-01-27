@@ -26,19 +26,15 @@ function DashFilter() {
     const filteredSurvey = surveyList.filter((survey) => {
       return (
         survey.surveyName.toLowerCase().includes(value) ||
-        survey.surveyOwner.toLowerCase().includes(value)
+        survey.surveyOwner.toLowerCase().includes(value) ||
+        survey.dateCreated.toString().slice(0, 10) === value
       );
     });
     console.log(filteredSurvey);
     setTabActive("Custom");
     setFilteredSurveys(filteredSurvey);
   };
-  const filterByDate = (e) => {
-    const array = surveyList.filter((survey) => {
-      return survey.dateCreated.toString().slice(0, 10) === e.target.value;
-    });
-    console.log(array);
-  };
+
   useEffect(() => {
     setSurveyList(() => {
       return data ?? [];
@@ -170,7 +166,7 @@ function DashFilter() {
               type="date"
               className="ml-1 border border-1 border-slate-200 rounded-3xl w-28 md:w-46 bg-slate-200 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none "
               onChange={(e) => {
-                filterByDate(e);
+                searchSurvey(e.target.value);
               }}
             />
           </div>
