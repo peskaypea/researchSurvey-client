@@ -17,10 +17,8 @@ function Welcome(props) {
               "Connect with your customers: Get the answers you need with Survey
               Connect!"
             </p>
-            <div className="sc__welcome-sign">
-              <a className="btn btn-primary" href="/getstarted">
-                Get Started
-              </a>
+            <div className="sc__welcome-sign bg-cyan-900 w-1/7 py-2 border rounded-3xl text-white">
+              <a href="/getstarted">Get Started</a>
             </div>
           </div>
           <div className="sc__main-container-img">
