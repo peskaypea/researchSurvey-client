@@ -2,8 +2,8 @@ import React from "react";
 import "./About.css";
 import Navbar from "./Nav";
 import aboutImage from "../assets/about-us.gif";
-import johnProfilePic from "../assets/john-profilepic.jpg";
-import jillProfilePic from "../assets/jill-profilepic.jpg";
+import johnProfilePic from "../assets/john-profilepic.jpeg";
+import jillProfilePic from "../assets/jill-profilepic.jpeg";
 import carolProfilePic from "../assets/carol-profilepic.jpg";
 
 const About = () => {

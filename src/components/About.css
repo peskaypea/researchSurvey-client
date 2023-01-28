@@ -50,9 +50,10 @@
   margin-right: 3rem;
 }
 .container-bottom-div img {
-  height: 100px;
+  height: 150px;
+  width: 150px;
   border-radius: 80%;
-  margin-top: 2rem;
+  margin-top: 4rem;
   margin-bottom: 1rem;
 }
 .about__container-bottom {
