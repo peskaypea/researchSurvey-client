@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-form {
+.form {
   max-width: 420px;
   margin: 50px auto;
 }
@@ -36,7 +36,7 @@ textarea {
   resize: vertical;
 }
 
-[type="submit"] {
+/* [type="submit"] {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
   width: 100%;
   background: #2b788ba2;
@@ -50,17 +50,21 @@ textarea {
   transition: all 0.3s;
   margin-top: -4px;
   font-weight: 700;
-}
-[type="submit"]:hover {
+} */
+
+/* [type="submit"]:hover {
   background: #2e8196d4;
-}
+} */
+
 @media screen and (max-width: 1100px) {
   .form__container {
     flex-direction: column;
   }
-  form {
+
+  .form {
     margin: 0 1rem;
   }
+
   .form__container img {
     height: 300px;
   }

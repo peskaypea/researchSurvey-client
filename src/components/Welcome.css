@@ -6,7 +6,7 @@
 
 .sc__main-container-info {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
 }
 
 .sc__main-container-img {

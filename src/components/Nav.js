@@ -40,10 +40,15 @@ function Nav() {
         </div>
       </div>
       <div className="sc__navbar-sign">
-        <p className="navbar__login">Login→ </p>
-        <button href="/getstarted" type="button">
+        <a className="navbar__login" href="/login">
+          Login→{" "}
+        </a>
+        <a
+          href="/register"
+          className="w-full bg-cyan-900 p-2 rounded-xl text-sky-100"
+        >
           Sign Up
-        </button>
+        </a>
       </div>
       <div className="sc__navbar-menu">
         {toggleMenu ? (

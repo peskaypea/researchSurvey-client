@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import useFetch from "../utility/useFetch";
+import React from "react";
 import DashNav from "../components/DashNav";
 import SurveysList from "../components/DashSurveyList";
 

@@ -1,11 +1,20 @@
 import React from "react";
 import boyWithBook from "../assets/boy-with-book.svg";
+import { useNavigate } from "react-router-dom";
 import "./Welcome.css";
-import Nav from "./Nav";
-function Welcome(props) {
+
+function Welcome() {
+  const navigate = useNavigate();
+  const checkLogin = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  };
   return (
     <div>
-      <Nav />
       <div className="sc__main-container">
         <div className="sc__main-container-info">
           <div className="sc__main-container-info-text">
@@ -17,8 +26,8 @@ function Welcome(props) {
               "Connect with your customers: Get the answers you need with Survey
               Connect!"
             </p>
-            <div className="sc__welcome-sign bg-cyan-900 w-1/7 py-2 border rounded-3xl text-white">
-              <a href="/getstarted">Get Started</a>
+            <div className=" bg-cyan-900 w-1/7 px-4 py-2 border rounded-3xl text-white">
+              <button onClick={checkLogin}>Get Started</button>
             </div>
           </div>
           <div className="sc__main-container-img">

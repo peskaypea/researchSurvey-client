@@ -8,21 +8,37 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import useFetch from "useFetch";
+import useFetch from "../utility/useFetch";
 import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
+import { useNavigate } from "react-router-dom";
 
-function DashFilter() {
-  const { data, loading, err } = useFetch("http://localhost:5000/api/surveys");
+function DashSurveyList() {
+  const searchIcon = <FontAwesomeIcon icon={faSearch} />;
+  const del = <FontAwesomeIcon icon={faX} />;
+  const edit = <FontAwesomeIcon icon={faEdit} />;
+  const view = <FontAwesomeIcon icon={faEye} />;
+  const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
+  const token = localStorage.getItem("token");
+
+  const navigate = useNavigate();
+  const { data, loading, err } = useFetch(
+    "http://localhost:5000/survey",
+    token
+  );
+
   const [surveyList, setSurveyList] = useState([]);
   const [tabActive, setTabActive] = useState("All");
   const [filteredSurveys, setFilteredSurveys] = useState([]);
-  console.log(filteredSurveys);
   const tabActivate = (e) => {
     setTabActive(e.target.value);
   };
 
   const searchSurvey = (value) => {
+    if (value === "") {
+      setTabActive("All");
+      return;
+    }
     const filteredSurvey = surveyList.filter((survey) => {
       return (
         survey.surveyName.toLowerCase().includes(value) ||
@@ -36,16 +52,14 @@ function DashFilter() {
   };
 
   useEffect(() => {
-    setSurveyList(() => {
-      return data ?? [];
-    });
+    if (token) {
+      setSurveyList(() => {
+        return data ?? [];
+      });
+    } else {
+      navigate("/login");
+    }
   }, [loading, err, data]);
-
-  const searchIcon = <FontAwesomeIcon icon={faSearch} />;
-  const del = <FontAwesomeIcon icon={faX} />;
-  const edit = <FontAwesomeIcon icon={faEdit} />;
-  const view = <FontAwesomeIcon icon={faEye} />;
-  const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
 
   //Error Message
   if (err) {
@@ -61,8 +75,9 @@ function DashFilter() {
   //Loading animation
   if (loading) {
     return (
-      <div className="flex  justify-center items-center w-full mt-36">
-        <img src={Spinner} alt="" className="w-8" />
+      <div className="flex flex-col justify-center items-center w-full mt-36">
+        <img src={Spinner} alt="" className="w-8 mb-2" />
+        <h3>Retrieving data.</h3>
       </div>
     );
   }
@@ -230,13 +245,17 @@ function DashFilter() {
                     <div className="mb-1" key={survey._id}>
                       <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
                         <div className="md:flex md:justify-around   w-20 md:w-72">
-                          <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
-                            {survey.surveyName.slice(0, 18)}
+                          <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
+                            {survey.surveyName}
                           </h6>
-                          <h6 className="text-center text-xs sm:text-sm  w-24 sm:w-28">
-                            {survey.surveyOwner[8] === " "
-                              ? survey.surveyOwner.slice(0, 8)
-                              : survey.surveyOwner}
+                          <h6 className="text-center text-xs sm:text-sm font-semibold  hidden md:block w-28 ">
+                            {survey.surveyName}
+                          </h6>
+                          <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
+                            {survey.surveyOwner}
+                          </h6>
+                          <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
+                            {survey.surveyOwner}
                           </h6>
                         </div>
 
@@ -295,14 +314,17 @@ function DashFilter() {
                   return (
                     <div className="mb-1" key={survey._id}>
                       <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-                        <div className="md:flex md:justify-around w-20 md:w-72">
-                          <h6 className="text-center text-xs sm:text-sm font-semibold w-full sm:w-28">
-                            {survey.surveyName.slice(0, 18)}
+                        <div className="md:flex md:justify-around   w-20 md:w-72">
+                          <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
+                            {survey.surveyName}
                           </h6>
-                          <h6 className="text-center text-xs sm:text-sm block md:hidden w-full sm:w-28">
-                            {survey.surveyOwner.slice(0, 8)}
+                          <h6 className="text-center text-xs sm:text-sm font-semibold  hidden md:block w-28 ">
+                            {survey.surveyName}
                           </h6>
-                          <h6 className=" text-xs sm:text-sm hidden md:block w-full sm:w-28">
+                          <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
+                            {survey.surveyOwner}
+                          </h6>
+                          <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
                             {survey.surveyOwner}
                           </h6>
                         </div>
@@ -340,7 +362,7 @@ function DashFilter() {
                             <p>{view}</p>
                           </div>
                         </div>
-                        <div className="flex sm:hidden h-full align-top hover:cursor-pointer ">
+                        <div className="flex sm:hidden h-full align-top hover:cursor-pointer">
                           {ellipsis}
                         </div>
                       </div>
@@ -363,10 +385,10 @@ function DashFilter() {
                   <div className="mb-1" key={survey._id}>
                     <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
                       <div className="md:flex md:justify-around w-20 md:w-72">
-                        <h6 className="text-center text-xs sm:text-sm font-semibold w-full sm:w-28">
+                        <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
                           {survey.surveyName.slice(0, 18)}
                         </h6>
-                        <h6 className="text-center text-xs sm:text-sm block md:hidden w-full w-4 sm:w-28">
+                        <h6 className="text-center text-xs sm:text-sm   w-24 sm:w-28">
                           {survey.surveyOwner.slice(0, 8)}
                         </h6>
                       </div>
@@ -416,4 +438,4 @@ function DashFilter() {
   );
 }
 
-export default DashFilter;
+export default DashSurveyList;
