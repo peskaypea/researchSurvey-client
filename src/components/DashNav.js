@@ -19,7 +19,6 @@ function DashNav() {
   const [btnColorChange, setBtnColorChange] = useState(false);
 
   const changeTab = (e) => {
-    console.log(e.target.value);
     setTabActive(e.target.value);
   };
 

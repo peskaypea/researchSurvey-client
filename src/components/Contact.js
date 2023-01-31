@@ -9,7 +9,7 @@ const Contact = () => {
       <Nav />
       <div className="form__container">
         <img className="contact-gif" src={contactImage} alt="contact-img" />
-        <form>
+        <form className="form">
           <input
             name="name"
             type="text"

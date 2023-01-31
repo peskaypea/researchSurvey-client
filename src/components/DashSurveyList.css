@@ -1,0 +1,7 @@
+#parId {
+    transition: translate-X(0) 1s;
+}
+
+.removed {
+    translate: 100vw;
+}

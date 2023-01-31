@@ -1,146 +1,26 @@
 import "./App.css";
-import Welcome from "./components/Welcome";
-import React, { useState } from "react";
+
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import QuestionCard from "./components/QuestionCard";
-import UserInfoForm from "./components/UserInfoForm";
-import useFetch from "./useFetch";
 
 import Contact from "components/Contact";
 import About from "components/About";
-import DashNav from "components/DashNav";
 import Dashboard from "pages/Dashboard";
+import Home from "pages/Home";
+import Register from "pages/Register";
+import Login from "pages/Login";
 
 function App() {
-  // const [start, setStart] = useState(false);
-  // const getStarted = () => {
-  //   setStart(!start);
-  // };
-  // const [userData, setUserData] = useState(() => {
-  //   return (
-  //     JSON.parse(localStorage.getItem("user")) || {
-  //       userName: null,
-  //       email: null,
-  //       surveyTaken: [
-  //         {
-  //           surveyId: "6324d547c2e9d1cde20183d0",
-  //           surveyName: "Basic Logo-syllabic Chinese Character",
-  //           response: [],
-  //         },
-  //       ],
-  //     }
-  //   );
-  // });
-
-  // const collectUserReponse = (e, index, res) => {
-  //   const newObj = userData;
-
-  //   if (!res) {
-  //     const newData = {
-  //       [e.target.name]: [e.target.value],
-  //       time: 0,
-  //     };
-  //     newObj.surveyTaken[0].response.push(newData);
-  //   } else {
-  //     newObj.surveyTaken[0].response[index] = res;
-  //   }
-  //   setUserData((user) => {
-  //     return {
-  //       ...user,
-  //       ...newObj,
-  //     };
-  //   });
-  // };
-
-  // const collectTime = (index, time) => {
-  //   const newObj = userData;
-
-  //   const timeInSeconds = time / 1000;
-  //   newObj.surveyTaken[0].response[index] = {
-  //     ...newObj.surveyTaken[0].response[index],
-  //     time: timeInSeconds,
-  //   };
-
-  //   setUserData((user) => {
-  //     return {
-  //       ...user,
-  //       ...newObj,
-  //     };
-  //   });
-  // };
-  // Change user object when input value changes
-  // const handleUserInfoChange = (e) => {
-  //   const newData = {
-  //     [e.target.name]: e.target.value,
-  //   };
-
-  //   setUserData((user) => {
-  //     const newUser = {
-  //       ...user,
-  //       ...newData,
-  //     };
-
-  //     localStorage.setItem("user", JSON.stringify(newUser));
-  //     return newUser;
-  //   });
-  // };
-
-  // const { data, loading } = useFetch(
-  //   "http://localhost:5000/surveys/63bf0c80a6ffb6b3bbb278bb"
-  // );
-
-  // const submitUserAnswers = () => {
-  //   fetch("http://localhost:5000/submit/userresponse", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(userData),
-  //   })
-  //     .then(() => {
-  //       console.log("success");
-  //       localStorage.clear();
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
   return (
     <div className="">
       <Router>
         <Routes>
-          <Route
-            path="/"
-            // element={<Welcome start={start} getStarted={getStarted} />}
-            element={<Welcome />}
-          />
-
-          <Route path="/" element={<Welcome />} />
-          <Route path="about" element={<About />} />
-          <Route path="contact" element={<Contact />} />
-
-          <Route
-            path="/getstarted"
-            element={
-              <Dashboard />
-              // <UserInfoForm
-              //   user={userData}
-              //   setUser={handleUserInfoChange}
-              //   // getInfo={collectUserReponse}
-              // />
-            }
-          />
-          {/* <Route
-              path="/survey"
-              element={
-                <QuestionCard
-                  user={userData}
-                  survey={data}
-                  submit={submitUserAnswers}
-                  getInfo={collectUserReponse}
-                  getTime={collectTime}
-                />
-              }
-            /> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </div>

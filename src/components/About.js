@@ -2,9 +2,9 @@ import React from "react";
 import "./About.css";
 import Navbar from "./Nav";
 import aboutImage from "../assets/about-us.gif";
-import johnProfilePic from "../assets/john-profilepic.jpg";
-import jillProfilePic from "../assets/jill-profilepic.jpg";
-import carolProfilePic from "../assets/carol-profilepic.jpg";
+import johnPic from "../assets/john-profilepic.jpeg";
+import jillPic from "../assets/jill-profilepic.jpeg";
+import carolPic from "../assets/carol-profilepic.jpg";
 
 const About = () => {
   return (
@@ -41,7 +41,7 @@ const About = () => {
 
       <div className="about__container-bottom">
         <div className="container-bottom-div">
-          <img src={carolProfilePic} alt="profilepic" />
+          <img src={carolPic} alt="profilepic" />
           <div className="about__review-name">
             <h3>Carol, Makret Researcher</h3>
           </div>
@@ -51,7 +51,7 @@ const About = () => {
         </div>
 
         <div className="container-bottom-div">
-          <img src={jillProfilePic} alt="profilepic" />
+          <img src={jillPic} alt="profilepic" />
           <div className="about__review-name">
             <h3>Jill, Product Manager</h3>
           </div>
@@ -64,7 +64,7 @@ const About = () => {
         </div>
 
         <div className="container-bottom-div">
-          <img src={johnProfilePic} alt="profilepic" />
+          <img src={johnPic} alt="profilepic" />
           <div className="about__review-name">
             <h3>John, Small Business Owner</h3>
           </div>

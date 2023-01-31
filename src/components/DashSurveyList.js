@@ -8,21 +8,41 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { useEffect } from "react";
-import useFetch from "useFetch";
+import useFetch from "../utility/useFetch";
 import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
+import { useNavigate } from "react-router-dom";
+import "animate.css";
+const baseURL = "http://localhost:5000";
+function DashSurveyList() {
+  const searchIcon = <FontAwesomeIcon icon={faSearch} />;
+  const del = <FontAwesomeIcon icon={faX} />;
+  const edit = <FontAwesomeIcon icon={faEdit} />;
+  const view = <FontAwesomeIcon icon={faEye} />;
+  const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
+  const token = localStorage.getItem("token");
 
-function DashFilter() {
-  const { data, loading, err } = useFetch("http://localhost:5000/api/surveys");
+  const navigate = useNavigate();
+  //Fetch data from db
+  const { data = [], loading, error } = useFetch(`${baseURL}/survey`, token);
+
   const [surveyList, setSurveyList] = useState([]);
   const [tabActive, setTabActive] = useState("All");
   const [filteredSurveys, setFilteredSurveys] = useState([]);
-  console.log(filteredSurveys);
+
+  console.log(surveyList);
   const tabActivate = (e) => {
     setTabActive(e.target.value);
   };
 
+  //Set tab in surveyList navbar
   const searchSurvey = (value) => {
+    if (value === "") {
+      setTabActive("All");
+      return;
+    }
+
+    //Logic for filtering surveys using search bar and date picker
     const filteredSurvey = surveyList.filter((survey) => {
       return (
         survey.surveyName.toLowerCase().includes(value) ||
@@ -35,20 +55,52 @@ function DashFilter() {
     setFilteredSurveys(filteredSurvey);
   };
 
-  useEffect(() => {
-    setSurveyList(() => {
-      return data ?? [];
-    });
-  }, [loading, err, data]);
+  const deleteSurvey = async (e) => {
+    let id = "";
+    if (e.target.id) {
+      id = e.target.id;
+    } else if (e.target.parentNode.id) {
+      id = e.target.parentNode.id;
+    } else {
+      id = e.target.parentNode.parentNode.id;
+    }
 
-  const searchIcon = <FontAwesomeIcon icon={faSearch} />;
-  const del = <FontAwesomeIcon icon={faX} />;
-  const edit = <FontAwesomeIcon icon={faEdit} />;
-  const view = <FontAwesomeIcon icon={faEye} />;
-  const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
+    await fetch(`${baseURL}/survey/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      const newData = surveyList.filter((survey) => survey._id !== id);
+      setSurveyList(newData);
+
+      console.log(res);
+    });
+  };
+
+  useEffect(() => {
+    //Check if there is token in localstorage
+    if (token) {
+      //Check if token is valid by checking the data got back is an array of surveys or an error.
+      if (!Array.isArray(data)) {
+        //If token is invalid, remove token from localstorage
+        localStorage.removeItem("token");
+      } else {
+        //If token valid, set data for rendering
+        const list = data.map((survey) => {
+          return { ...survey, isDelete: false };
+        });
+        setSurveyList(list);
+      }
+    } else {
+      //If token doesn't exists, redirect to login page
+      navigate("/login");
+    }
+  }, [loading, data]);
 
   //Error Message
-  if (err) {
+  if (error) {
     return (
       <div className=" flex flex-col items-center mt-36">
         <img src={ErrorImg} alt="" className="w-1/6" />
@@ -61,15 +113,16 @@ function DashFilter() {
   //Loading animation
   if (loading) {
     return (
-      <div className="flex  justify-center items-center w-full mt-36">
-        <img src={Spinner} alt="" className="w-8" />
+      <div className="flex flex-col justify-center items-center w-full mt-36">
+        <img src={Spinner} alt="" className="w-8 mb-2" />
+        <h3>Retrieving data.</h3>
       </div>
     );
   }
 
   //Return List of all surveys
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center ">
       <div className="flex justify-between w-full xl:w-8/12 mx-auto border-b-2 h-20 items-center">
         {/* Dashboard Navbar */}
         <div
@@ -121,10 +174,15 @@ function DashFilter() {
           className="sm:hidden flex border border-1 p-2 rounded-3xl bg-slate-200 mx-3 sm:mx-0"
         >
           {/* Survey Navbar mobile*/}
-          <select name="" id="" className="outline-0 bg-transparent">
-            <option value="All">All</option>
-            <option value="Active">Active</option>
-            <option value="Past">Past</option>
+          <select
+            name="activeTab"
+            id="activeTab"
+            className="outline-0 bg-transparent"
+            onChange={(e) => tabActivate(e)}
+          >
+            <option value={"All"}>All</option>
+            <option value={"Active"}>Active</option>
+            <option value={"Past"}>Past</option>
           </select>
         </div>
         {/* Search bar */}
@@ -201,13 +259,19 @@ function DashFilter() {
                   <p className="w-full text-xs text-center">Take Survey</p>
                 </div>
                 <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
-                  <p>{edit}</p>
+                  {edit}
                 </div>
-                <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
-                  <p>{del}</p>
+                <div
+                  className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
+                  id={surveyList[0]._id}
+                  onClick={(e) => {
+                    deleteSurvey(e);
+                  }}
+                >
+                  {del}
                 </div>
                 <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
-                  <p>{view}</p>
+                  {view}
                 </div>
               </div>
               <div className="flex lg:hidden h-full align-top hover:cursor-pointer sm:hidden">
@@ -227,16 +291,20 @@ function DashFilter() {
               surveyList.map((survey) => {
                 if (survey.status === true)
                   return (
-                    <div className="mb-1" key={survey._id}>
+                    <div className="mb-1 " key={survey._id}>
                       <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
                         <div className="md:flex md:justify-around   w-20 md:w-72">
-                          <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
-                            {survey.surveyName.slice(0, 18)}
+                          <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
+                            {survey.surveyName}
                           </h6>
-                          <h6 className="text-center text-xs sm:text-sm  w-24 sm:w-28">
-                            {survey.surveyOwner[8] === " "
-                              ? survey.surveyOwner.slice(0, 8)
-                              : survey.surveyOwner}
+                          <h6 className="text-center text-xs sm:text-sm font-semibold  hidden md:block w-28 ">
+                            {survey.surveyName}
+                          </h6>
+                          <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
+                            {survey.surveyOwner}
+                          </h6>
+                          <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
+                            {survey.surveyOwner}
                           </h6>
                         </div>
 
@@ -258,16 +326,28 @@ function DashFilter() {
                         </div>
 
                         <div className="flex   ">
-                          <div className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 ">
+                          <div
+                            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
+                            id={survey._id}
+                          >
                             <p className="w-full text-xs text-center">
                               Take Survey
                             </p>
                           </div>
-                          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                            <p>{edit}</p>
+                          <div
+                            className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
+                            id={survey._id}
+                          >
+                            {edit}
                           </div>
-                          <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                            <p>{del}</p>
+                          <div
+                            className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
+                            id={survey._id}
+                            onClick={(e) => {
+                              deleteSurvey(e);
+                            }}
+                          >
+                            {del}
                           </div>
                           <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                             <p>{view}</p>
@@ -295,14 +375,17 @@ function DashFilter() {
                   return (
                     <div className="mb-1" key={survey._id}>
                       <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-                        <div className="md:flex md:justify-around w-20 md:w-72">
-                          <h6 className="text-center text-xs sm:text-sm font-semibold w-full sm:w-28">
-                            {survey.surveyName.slice(0, 18)}
+                        <div className="md:flex md:justify-around   w-20 md:w-72">
+                          <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
+                            {survey.surveyName}
                           </h6>
-                          <h6 className="text-center text-xs sm:text-sm block md:hidden w-full sm:w-28">
-                            {survey.surveyOwner.slice(0, 8)}
+                          <h6 className="text-center text-xs sm:text-sm font-semibold  hidden md:block w-28 ">
+                            {survey.surveyName}
                           </h6>
-                          <h6 className=" text-xs sm:text-sm hidden md:block w-full sm:w-28">
+                          <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
+                            {survey.surveyOwner}
+                          </h6>
+                          <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
                             {survey.surveyOwner}
                           </h6>
                         </div>
@@ -333,14 +416,20 @@ function DashFilter() {
                           <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                             <p>{edit}</p>
                           </div>
-                          <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                            <p>{del}</p>
+                          <div
+                            className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
+                            id={survey._id}
+                            onClick={(e) => {
+                              deleteSurvey(e);
+                            }}
+                          >
+                            {del}
                           </div>
                           <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                             <p>{view}</p>
                           </div>
                         </div>
-                        <div className="flex sm:hidden h-full align-top hover:cursor-pointer ">
+                        <div className="flex sm:hidden h-full align-top hover:cursor-pointer">
                           {ellipsis}
                         </div>
                       </div>
@@ -363,10 +452,10 @@ function DashFilter() {
                   <div className="mb-1" key={survey._id}>
                     <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
                       <div className="md:flex md:justify-around w-20 md:w-72">
-                        <h6 className="text-center text-xs sm:text-sm font-semibold w-full sm:w-28">
+                        <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
                           {survey.surveyName.slice(0, 18)}
                         </h6>
-                        <h6 className="text-center text-xs sm:text-sm block md:hidden w-full w-4 sm:w-28">
+                        <h6 className="text-center text-xs sm:text-sm   w-24 sm:w-28">
                           {survey.surveyOwner.slice(0, 8)}
                         </h6>
                       </div>
@@ -395,8 +484,14 @@ function DashFilter() {
                         <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                           <p>{edit}</p>
                         </div>
-                        <div className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                          <p>{del}</p>
+                        <div
+                          className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
+                          id={survey._id}
+                          onClick={(e) => {
+                            deleteSurvey(e);
+                          }}
+                        >
+                          {del}
                         </div>
                         <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                           <p>{view}</p>
@@ -416,4 +511,4 @@ function DashFilter() {
   );
 }
 
-export default DashFilter;
+export default DashSurveyList;

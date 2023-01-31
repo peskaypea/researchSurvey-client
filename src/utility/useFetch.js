@@ -1,25 +1,36 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-function useFetch(url) {
+function useFetch(url, token) {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState(false);
+  const [error, setErr] = useState(false);
+  const requestHeaders = token
+    ? {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      }
+    : {
+        "Content-Type": "application/json",
+      };
   useEffect(() => {
-    fetch(url)
+    fetch(url, {
+      method: "GET",
+      headers: requestHeaders,
+    })
       .then((res) => res.json())
       .then((res) => {
         setData(res);
       })
-      .catch((err) => {
+      .catch((error) => {
         setErr(true);
-        console.log(err);
+        console.log(error);
       })
       .finally(() => {
         setLoading(false);
       });
   }, [url]);
 
-  return { data, loading, err };
+  return { data, loading, error };
 }
 
 export default useFetch;

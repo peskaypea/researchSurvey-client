@@ -6,8 +6,7 @@
 
 .sc__main-container-info {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
+  justify-content: center;
 }
 
 .sc__main-container-img {
@@ -26,8 +25,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  margin-left: 3rem;
+  margin: 1rem;
 }
 
 .sc__main-container-info-text h3 {
