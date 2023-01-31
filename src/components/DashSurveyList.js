@@ -205,9 +205,18 @@ function DashSurveyList() {
       <div className=" bg-slate-300 min-h-screen">
         <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
           {/* List of recent surveys*/}
-
-          <h1 className="font-bold text-md md:text-xl w-full">Recent Survey</h1>
-          <div className="flex justify-end md:justify-around w-72">
+          {tabActive === "All" && (
+            <h1 className="font-bold text-md md:text-xl w-full">
+              Recent Survey
+            </h1>
+          )}
+          <div
+            className={
+              tabActive === "All"
+                ? "flex justify-end md:justify-around w-72"
+                : "flex justify-end md:justify-end w-full"
+            }
+          >
             <select
               name=""
               id=""
@@ -229,7 +238,7 @@ function DashSurveyList() {
             />
           </div>
         </div>
-        {surveyList.length > 0 && (
+        {tabActive === "All" && surveyList.length > 0 && (
           <div className="mb-1">
             <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
               <div className="md:flex md:justify-around  w-20 md:w-72">
@@ -365,7 +374,7 @@ function DashSurveyList() {
 
         {/* List of past surveys*/}
         {(tabActive === "Past" || tabActive === "All") && (
-          <div>
+          <div className="mb-20">
             <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
               <h1 className="font-bold text-md md:text-xl w-full">Past</h1>
             </div>
