@@ -23,10 +23,10 @@ function Welcome() {
               Ask the questions <br /> that matter
             </h1>
             <p>
-              "Connect with your customers: Get the answers you need with Survey
-              Connect!"
+              Connect with your customers. Get the answers you need with Survey
+              Connect!
             </p>
-            <div className=" bg-cyan-900 w-1/7 px-4 py-2 border rounded-3xl text-white">
+            <div className=" bg-cyan-900 w-1/7 px-4 py-2 border rounded-3xl text-white mt-5">
               <button onClick={checkLogin}>Get Started</button>
             </div>
           </div>

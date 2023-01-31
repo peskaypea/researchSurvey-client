@@ -25,8 +25,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  margin-left: 3rem;
+  margin: 1rem;
 }
 
 .sc__main-container-info-text h3 {

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 function useFetch(url, token) {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState(false);
+  const [error, setErr] = useState(false);
   const requestHeaders = token
     ? {
         "Content-Type": "application/json",
@@ -21,16 +21,16 @@ function useFetch(url, token) {
       .then((res) => {
         setData(res);
       })
-      .catch((err) => {
+      .catch((error) => {
         setErr(true);
-        console.log(err);
+        console.log(error);
       })
       .finally(() => {
         setLoading(false);
       });
   }, [url]);
 
-  return { data, loading, err };
+  return { data, loading, error };
 }
 
 export default useFetch;
