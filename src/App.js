@@ -9,7 +9,7 @@ import Dashboard from "pages/Dashboard";
 import Home from "pages/Home";
 import Register from "pages/Register";
 import Login from "pages/Login";
-
+import Survey from "pages/Survey";
 function App() {
   return (
     <div className="">
@@ -21,6 +21,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/survey/:id" element={<Survey />} />
         </Routes>
       </Router>
     </div>

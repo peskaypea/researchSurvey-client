@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faEye } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const HomeIcon = <FontAwesomeIcon icon={faHome} />;
+  const EyeReveal = <FontAwesomeIcon icon={faEye} />;
+
   const navigate = useNavigate();
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -19,7 +21,7 @@ function Login() {
 
   const [rememberLogin, setRememberLogin] = useState(false);
   const [authErrorMsg, setAuthErrorMsg] = useState("");
-
+  const [revealPass, setRevealPass] = useState(false);
   const inputOnChange = (e) => {
     setLoginInfo((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -128,15 +130,25 @@ function Login() {
             <label htmlFor="password" className="text-md text-sky-100 mb-2">
               Password
             </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={loginInfo.password}
-              className="border-transparent rounded-xl outline-0 p-2 h-9 mb-3"
-              onChange={(e) => inputOnChange(e)}
-              placeholder="password"
-            />
+            <div className="flex w-full">
+              <input
+                type={revealPass ? "text" : "password"}
+                name="password"
+                id="password"
+                value={loginInfo.password}
+                className="border-transparent rounded-l-xl outline-0 p-2 h-9 mb-3 w-11/12"
+                onChange={(e) => inputOnChange(e)}
+                placeholder="password"
+              />
+              <button
+                style={{ backgroundColor: "#E8F0FE", color: "#1A2629" }}
+                type="button"
+                className="bg-slate-100 rounded-r-xl outline-0 p-2 h-9 mb-3"
+                onClick={() => setRevealPass(!revealPass)}
+              >
+                {EyeReveal}
+              </button>
+            </div>
           </div>
           <div className="flex gap-1 mb-3">
             <input

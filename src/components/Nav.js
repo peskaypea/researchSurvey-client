@@ -39,13 +39,13 @@ function Nav() {
           <Menu />
         </div>
       </div>
-      <div className="sc__navbar-sign">
-        <a className="navbar__login" href="/login">
+      <div className="sc__navbar-sign ">
+        <a className="navbar__login px-5" href="/login">
           Login→{" "}
         </a>
         <a
           href="/register"
-          className="w-full bg-cyan-900 p-2 rounded-xl text-sky-100"
+          className="w-full bg-cyan-900 p-2 rounded-xl text-sky-100 px-5"
         >
           Sign Up
         </a>

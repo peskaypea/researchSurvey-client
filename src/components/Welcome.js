@@ -16,7 +16,7 @@ function Welcome() {
   return (
     <div>
       <div className="sc__main-container">
-        <div className="sc__main-container-info">
+        <div className="flex flex-col md:flex-row justify-center">
           <div className="sc__main-container-info-text">
             <h3>Build, Create, Connect</h3>
             <h1>
@@ -30,24 +30,15 @@ function Welcome() {
               <button onClick={checkLogin}>Get Started</button>
             </div>
           </div>
-          <div className="sc__main-container-img">
-            <img src={boyWithBook} alt="boy-with-book" />
+          <div className="w-1/2 mx-auto md:mx-0 lg:w-1/4 flex justify-center items-center">
+            <img
+              src={boyWithBook}
+              alt="boy-with-book"
+              className="sm:w-1/2 md:w-full"
+            />
           </div>
         </div>
       </div>
-
-      {/* <div className="hand-wave">
-        <img src="wave.gif" alt="hand-wave" className="hand-wave" />
-      </div>
-      <h3>Welcome</h3>
-      <p>
-        Thank you for participating the research project. All personal
-        information collected by this research is done so exclusively with your
-        consent
-      </p>
-      <a className="btn btn-primary" href="/getstarted">
-        Get Started
-      </a> */}
     </div>
   );
 }

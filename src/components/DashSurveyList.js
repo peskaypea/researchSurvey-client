@@ -30,7 +30,6 @@ function DashSurveyList() {
   const [tabActive, setTabActive] = useState("All");
   const [filteredSurveys, setFilteredSurveys] = useState([]);
 
-  console.log(surveyList);
   const tabActivate = (e) => {
     setTabActive(e.target.value);
   };
@@ -46,7 +45,7 @@ function DashSurveyList() {
     const filteredSurvey = surveyList.filter((survey) => {
       return (
         survey.surveyName.toLowerCase().includes(value) ||
-        survey.surveyOwner.toLowerCase().includes(value) ||
+        survey.organization.toLowerCase().includes(value) ||
         survey.dateCreated.toString().slice(0, 10) === value
       );
     });
@@ -86,6 +85,7 @@ function DashSurveyList() {
       if (!Array.isArray(data)) {
         //If token is invalid, remove token from localstorage
         localStorage.removeItem("token");
+        navigate("/login");
       } else {
         //If token valid, set data for rendering
         const list = data.map((survey) => {
@@ -245,10 +245,11 @@ function DashSurveyList() {
                 <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
                   {surveyList[0].surveyName.slice(0, 18)}
                 </h6>
-                <h6 className="text-center text-xs sm:text-sm block w-24 sm:w-28">
-                  {surveyList[0].surveyOwner[8] === " "
-                    ? surveyList[0].surveyOwner.slice(0, 8) + "..."
-                    : surveyList[0].surveyOwner}
+                <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
+                  {surveyList[0].organization}
+                </h6>
+                <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
+                  {surveyList[0].organization}
                 </h6>
               </div>
 
@@ -263,10 +264,13 @@ function DashSurveyList() {
                 <p className="text-xs">{surveyList[0].dateEnd.slice(0, 10)}</p>
               </div>
 
-              <div className="flex   ">
-                <div className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20  sm:w-36 ">
+              <div className="flex ">
+                <a
+                  className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20  sm:w-36 "
+                  href={`/survey/${surveyList[0]._id}`}
+                >
                   <p className="w-full text-xs text-center">Take Survey</p>
-                </div>
+                </a>
                 <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
                   {edit}
                 </div>
@@ -310,10 +314,10 @@ function DashSurveyList() {
                             {survey.surveyName}
                           </h6>
                           <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
-                            {survey.surveyOwner}
+                            {survey.organization}
                           </h6>
                           <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
-                            {survey.surveyOwner}
+                            {survey.organization}
                           </h6>
                         </div>
 
@@ -334,15 +338,15 @@ function DashSurveyList() {
                           </p>
                         </div>
 
-                        <div className="flex   ">
-                          <div
+                        <div className="flex">
+                          <a
                             className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
-                            id={survey._id}
+                            href={`/survey/${survey._id}`}
                           >
                             <p className="w-full text-xs text-center">
                               Take Survey
                             </p>
-                          </div>
+                          </a>
                           <div
                             className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
                             id={survey._id}
@@ -392,10 +396,10 @@ function DashSurveyList() {
                             {survey.surveyName}
                           </h6>
                           <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
-                            {survey.surveyOwner}
+                            {survey.organization}
                           </h6>
                           <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
-                            {survey.surveyOwner}
+                            {survey.organization}
                           </h6>
                         </div>
 
@@ -416,12 +420,15 @@ function DashSurveyList() {
                           </p>
                         </div>
 
-                        <div className="flex   ">
-                          <div className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 ">
+                        <div className="flex">
+                          <a
+                            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
+                            href={`survey/${survey._id}`}
+                          >
                             <p className="w-full text-xs text-center">
                               Take Survey
                             </p>
-                          </div>
+                          </a>
                           <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                             <p>{edit}</p>
                           </div>
@@ -465,7 +472,7 @@ function DashSurveyList() {
                           {survey.surveyName.slice(0, 18)}
                         </h6>
                         <h6 className="text-center text-xs sm:text-sm   w-24 sm:w-28">
-                          {survey.surveyOwner.slice(0, 8)}
+                          {survey.organization.slice(0, 8)}
                         </h6>
                       </div>
 
@@ -484,12 +491,15 @@ function DashSurveyList() {
                         <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
                       </div>
 
-                      <div className="flex   ">
-                        <div className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 ">
+                      <div className="flex">
+                        <a
+                          className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
+                          href={`/survey/${survey._id}`}
+                        >
                           <p className="w-full text-xs text-center">
                             Take Survey
                           </p>
-                        </div>
+                        </a>
                         <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                           <p>{edit}</p>
                         </div>
