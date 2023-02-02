@@ -9,16 +9,14 @@ function Survey() {
     `http://localhost:5000/survey/${id}`,
     token
   );
-  useEffect(() => {
-    console.log(data);
-  }, [loading]);
-  return (
-    <div>
-      {!loading && (
+
+  if (!loading) {
+    return (
+      <div>
         <QuestionCard survey={data} error={error} loading={loading} />
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 }
 
 export default Survey;
