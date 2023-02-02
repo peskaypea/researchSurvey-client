@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-function QuestionCard({ survey, error, loading }) {
-  const home = <FontAwesomeIcon icon={faHome} />;
+import { useNavigate } from "react-router-dom";
 
+const home = <FontAwesomeIcon icon={faHome} />;
+
+function QuestionCard({ survey, error, loading }) {
   const [questionNum, setQuestionNum] = useState(0);
+  const questions = survey.questions.map((q) => {
+    return q.question;
+  });
+  const initialResponse = {};
+  for (const question of questions) {
+    initialResponse[question] = "";
+  }
+
+  const [response, setReseponse] = useState(initialResponse);
+  console.log(response);
+
+  const navigate = useNavigate();
   const nextQuestion = (action) => {
     if (action === "next") {
       if (questionNum < survey.questions.length - 1)
@@ -14,6 +28,39 @@ function QuestionCard({ survey, error, loading }) {
     }
   };
 
+  const saveResponse = (e) => {
+    let newData = {};
+
+    if (e.target.type === "checkbox") {
+      if (response[survey.questions[questionNum].question] !== "") {
+        response[survey.questions[questionNum].question].push(e.target.value);
+      } else {
+        response[survey.questions[questionNum].question] = [e.target.value];
+      }
+
+      newData = {
+        ...response,
+        [survey.questions[questionNum].question]:
+          response[survey.questions[questionNum].question],
+      };
+    } else {
+      newData = {
+        ...response,
+        [survey.questions[questionNum].question]: e.target.value,
+      };
+    }
+
+    setReseponse(newData);
+  };
+
+  const navigateHome = () => {
+    const res = window.confirm(
+      "Are you sure you want to return? All your progress will be lost."
+    );
+    if (res) {
+      navigate("/dashboard");
+    }
+  };
   return (
     <div className="w-full text-center h-screen bg-cyan-900">
       <div className="mb-8 pt-8 text-sky-100">
@@ -24,9 +71,9 @@ function QuestionCard({ survey, error, loading }) {
         </p>
       </div>
 
-      <hr className="mb-8 w-11/12 md:w-1/2 mx-auto" />
+      <hr className="mb-8 w-11/12 lg:w-1/2 mx-auto" />
       {/*Question card body */}
-      <div className="w-11/12 md:w-1/3 rounded-xl mx-auto p-5 bg-sky-100">
+      <div className="w-11/12 lg:w-1/2 rounded-xl mx-auto p-5 bg-sky-100">
         <div>
           {/*Question*/}
           <div className="mb-5">
@@ -39,38 +86,82 @@ function QuestionCard({ survey, error, loading }) {
           {/*For MC question */}
           {survey.questions[questionNum].questionType === "MC" && (
             <div className="ml-5">
-              {survey.questions[questionNum].options.map((option, index) => {
-                return (
-                  <div key={index} className="flex items-center  mb-5">
-                    <input
-                      type="radio"
-                      id={option}
-                      value={option}
-                      className=" w-4 h-4 mr-3"
-                      name="value"
-                    />
-                    <label htmlFor={option}>{option}</label>
-                  </div>
-                );
+              {survey.questions[questionNum].options.map((option) => {
+                let id = Math.random();
+                if (
+                  option === response[survey.questions[questionNum].question]
+                ) {
+                  return (
+                    <div key={id} className="flex items-center  mb-5">
+                      <input
+                        checked
+                        type="radio"
+                        id={option}
+                        value={option}
+                        className=" w-4 h-4 mr-3"
+                        name={`value-${questionNum}`}
+                        onChange={(e) => saveResponse(e)}
+                      />
+                      <label htmlFor={option}>{option}</label>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div key={id} className="flex items-center  mb-5">
+                      <input
+                        type="radio"
+                        id={option}
+                        value={option}
+                        className=" w-4 h-4 mr-3"
+                        name={`value-${questionNum}`}
+                        onChange={(e) => saveResponse(e)}
+                      />
+                      <label htmlFor={option}>{option}</label>
+                    </div>
+                  );
+                }
               })}
             </div>
           )}
           {/*For Checkbox type question */}
           {survey.questions[questionNum].questionType === "Checkbox" && (
             <div className="ml-5">
-              {survey.questions[questionNum].options.map((option, index) => {
-                return (
-                  <div key={index} className="flex items-center  mb-5">
-                    <input
-                      type="checkbox"
-                      id={option}
-                      value={option}
-                      className=" w-4 h-4 mr-3"
-                      name="value"
-                    />
-                    <label htmlFor={option}>{option}</label>
-                  </div>
-                );
+              {survey.questions[questionNum].options.map((option) => {
+                let id = Math.random();
+                if (
+                  response[survey.questions[questionNum].question].includes(
+                    option
+                  )
+                ) {
+                  return (
+                    <div key={id} className="flex items-center  mb-5">
+                      <input
+                        checked
+                        type="checkbox"
+                        id={option}
+                        value={option}
+                        className=" w-4 h-4 mr-3"
+                        name="value"
+                        onChange={(e) => saveResponse(e)}
+                      />
+                      <label htmlFor={option}>{option}</label>
+                    </div>
+                  );
+                } else {
+                  return (
+                    <div key={id} className="flex items-center  mb-5">
+                      <input
+                        type="checkbox"
+                        id={option}
+                        value={option}
+                        className=" w-4 h-4 mr-3"
+                        name="value"
+                        onChange={(e) => saveResponse(e)}
+                      />
+                      <label htmlFor={option}>{option}</label>
+                    </div>
+                  );
+                }
               })}
             </div>
           )}
@@ -125,7 +216,7 @@ function QuestionCard({ survey, error, loading }) {
               {survey.questions[questionNum].imgURL.map((img, index) => {
                 if (img !== undefined) {
                   return (
-                    <div>
+                    <div key={img}>
                       <img
                         src={img}
                         alt={survey.questions[questionNum].imgDesc[index]}
@@ -142,6 +233,10 @@ function QuestionCard({ survey, error, loading }) {
                           type="text"
                           placeholder="Enter your answer"
                           className="mb-5 rounded-lg h-8 text-center px-5"
+                          value={
+                            response[survey.questions[questionNum].question]
+                          }
+                          onChange={(e) => saveResponse(e)}
                         />
                       )}
                     </div>
@@ -154,6 +249,67 @@ function QuestionCard({ survey, error, loading }) {
                         type="text"
                         placeholder="Enter your answer"
                         className="mb-5 rounded-lg h-8 text-center px-5"
+                        value={response[survey.questions[questionNum].question]}
+                        onChange={(e) => saveResponse(e)}
+                      />
+                    </div>
+                  );
+                }
+              })}
+            </div>
+          )}
+          {/*For Long-Feedback type question */}
+          {survey.questions[questionNum].questionType === "Long Feedback" && (
+            <div>
+              <div className="w-full">
+                {!survey.questions[questionNum].imgURL.length && (
+                  <div className="w-full">
+                    <textarea
+                      placeholder="Please enter your response here."
+                      className="mb-5 w-full rounded-lg px-5 py-3 outline-0"
+                      value={response[survey.questions[questionNum].question]}
+                      onChange={(e) => saveResponse(e)}
+                    />
+                  </div>
+                )}
+              </div>
+              {survey.questions[questionNum].imgURL.map((img, index) => {
+                let id = Math.random();
+                if (img !== undefined) {
+                  return (
+                    <div key={id} className="w-full">
+                      <img
+                        src={img}
+                        alt={survey.questions[questionNum].imgDesc[index]}
+                        className="w-20 mx-auto mb-5 rounded-xl"
+                      />
+                      {survey.questions[questionNum].imgDesc[index] && (
+                        <p className="mb-5">
+                          <b>Description:</b>{" "}
+                          {survey.questions[questionNum].imgDesc[index]}
+                        </p>
+                      )}
+                      {!survey.questions[questionNum].imgDesc[index] && (
+                        <textarea
+                          placeholder="Please enter your response here."
+                          className="mb-5 rounded-lg outline-0 text-center px-5"
+                          value={
+                            response[survey.questions[questionNum].question]
+                          }
+                          onChange={(e) => saveResponse(e)}
+                        />
+                      )}
+                    </div>
+                  );
+                } else if (img === undefined) {
+                  console.log(img);
+                  return (
+                    <div>
+                      <textarea
+                        placeholder="Enter your answer"
+                        className="mb-5 rounded-lg text-center px-5"
+                        value={response[survey.questions[questionNum].question]}
+                        onChange={(e) => saveResponse(e)}
                       />
                     </div>
                   );
@@ -188,9 +344,13 @@ function QuestionCard({ survey, error, loading }) {
           )}
         </div>
         <br />
-        <a href="/dashboard" className="text-cyan-900">
+        <button
+          type="button"
+          className="text-cyan-900"
+          onClick={() => navigateHome()}
+        >
           {home}
-        </a>
+        </button>
       </div>
     </div>
   );

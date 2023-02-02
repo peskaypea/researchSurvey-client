@@ -97,7 +97,7 @@ function DashSurveyList() {
       //If token doesn't exists, redirect to login page
       navigate("/login");
     }
-  }, [loading, data]);
+  }, [loading]);
 
   //Error Message
   if (error) {
@@ -105,7 +105,7 @@ function DashSurveyList() {
       <div className=" flex flex-col items-center mt-36">
         <img src={ErrorImg} alt="" className="w-1/6" />
         <h3 className="text-3xl mb-5">Something's wrong</h3>
-        <h3 className="text-xl">We're unable to retrieve data.</h3>
+        <h3 className="text-xl">We were unable to retrieve any data.</h3>
       </div>
     );
   }
