@@ -1,18 +1,21 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import QuestionCard from "components/QuestionCard";
 import useFetch from "../utility/useFetch";
 import LoadingSpinner from "../assets/loading-gif.gif";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
+
 const home = <FontAwesomeIcon icon={faHome} />;
 const id = window.location.href.split("/").pop();
 const token = localStorage.getItem("token");
 
 function Survey() {
+  const navigate = useNavigate();
   const {
-    data = { questions: [] },
-    loading,
-    error,
+    data = { errorMessage: "", _id: "" },
+    loading = true,
+    error = false,
   } = useFetch(`http://localhost:5000/survey/${id}`, token);
 
   if (loading) {
@@ -21,6 +24,8 @@ function Survey() {
         <img src={LoadingSpinner} alt="loading" className="w-8" />
       </div>
     );
+  } else if (data.errorMessage === "verifyAccess") {
+    navigate("/verify", { state: { id: `${id}` } });
   } else if (error) {
     return (
       <div className="w-full flex flex-col justify-center items-center h-screen bg-cyan-900 text-sky-100">
@@ -31,10 +36,10 @@ function Survey() {
         </a>
       </div>
     );
-  } else if (!loading && data !== undefined) {
+  } else if (data._id) {
     return (
       <div>
-        <QuestionCard survey={data} error={error} loading={loading} />
+        <QuestionCard survey={data} />
       </div>
     );
   }

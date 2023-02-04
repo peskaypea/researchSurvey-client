@@ -45,7 +45,7 @@ function Nav() {
         </a>
         <a
           href="/register"
-          className="w-full bg-cyan-900 p-2 rounded-xl text-sky-100 px-5"
+          className="w-full bg-cyan-800 p-2 rounded-xl text-white px-5"
         >
           Sign Up
         </a>

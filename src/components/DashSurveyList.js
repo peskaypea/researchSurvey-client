@@ -5,6 +5,7 @@ import {
   faEdit,
   faEye,
   faEllipsisV,
+  faLock,
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { useEffect } from "react";
@@ -20,6 +21,8 @@ function DashSurveyList() {
   const edit = <FontAwesomeIcon icon={faEdit} />;
   const view = <FontAwesomeIcon icon={faEye} />;
   const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
+  const lock = <FontAwesomeIcon icon={faLock} size={"sm"} />;
+
   const token = localStorage.getItem("token");
 
   const navigate = useNavigate();
@@ -242,8 +245,11 @@ function DashSurveyList() {
           <div className="mb-1">
             <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
               <div className="md:flex md:justify-around  w-20 md:w-72">
-                <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
-                  {surveyList[0].surveyName.slice(0, 18)}
+                <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
+                  {surveyList[0].surveyName}
+                </h6>
+                <h6 className="text-center text-xs sm:text-sm font-semibold  hidden md:block w-28 ">
+                  {surveyList[0].surveyName}
                 </h6>
                 <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
                   {surveyList[0].organization}
@@ -266,7 +272,7 @@ function DashSurveyList() {
 
               <div className="flex ">
                 <a
-                  className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20  sm:w-36 "
+                  className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-800 hover:opacity-90 hover:cursor-pointer w-20  sm:w-36 "
                   href={`/survey/${surveyList[0]._id}`}
                 >
                   <p className="w-full text-xs text-center">Take Survey</p>
@@ -286,10 +292,20 @@ function DashSurveyList() {
                 <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
                   {view}
                 </div>
+                {!surveyList[0].public && (
+                  <div className=" h-10 py-3 rounded-2xl hidden sm:block">
+                    {lock}
+                  </div>
+                )}
               </div>
               <div className="flex lg:hidden h-full align-top hover:cursor-pointer sm:hidden">
                 {ellipsis}
               </div>
+              {!surveyList[0].public && (
+                <div className="flex lg:hidden h-full align-top sm:hidden">
+                  {lock}
+                </div>
+              )}
             </div>
           </div>
         )}
@@ -340,7 +356,7 @@ function DashSurveyList() {
 
                         <div className="flex">
                           <a
-                            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
+                            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-800 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
                             href={`/survey/${survey._id}`}
                           >
                             <p className="w-full text-xs text-center">
@@ -365,10 +381,20 @@ function DashSurveyList() {
                           <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                             <p>{view}</p>
                           </div>
+                          {!survey.public && (
+                            <div className=" h-10 py-3 rounded-2xl  hidden sm:block">
+                              {lock}
+                            </div>
+                          )}
                         </div>
                         <div className="flex sm:hidden h-full align-top hover:cursor-pointer">
                           {ellipsis}
                         </div>
+                        {!survey.public && (
+                          <div className="flex lg:hidden h-full align-top  sm:hidden">
+                            {lock}
+                          </div>
+                        )}
                       </div>
                     </div>
                   );
@@ -422,7 +448,7 @@ function DashSurveyList() {
 
                         <div className="flex">
                           <a
-                            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
+                            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-800 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
                             href={`survey/${survey._id}`}
                           >
                             <p className="w-full text-xs text-center">
@@ -444,10 +470,20 @@ function DashSurveyList() {
                           <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                             <p>{view}</p>
                           </div>
+                          {!survey.public && (
+                            <div className=" h-10 py-3 rounded-2xl   hidden sm:block hidden">
+                              {lock}
+                            </div>
+                          )}
                         </div>
                         <div className="flex sm:hidden h-full align-top hover:cursor-pointer">
                           {ellipsis}
                         </div>
+                        {!survey.public && (
+                          <div className="flex sm:hidden h-full align-top ">
+                            {lock}
+                          </div>
+                        )}
                       </div>
                     </div>
                   );

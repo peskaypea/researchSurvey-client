@@ -26,8 +26,13 @@ function Welcome() {
               Connect with your customers. Get the answers you need with Survey
               Connect!
             </p>
-            <div className=" bg-cyan-900 w-1/7 px-4 py-2 border rounded-3xl text-white mt-5">
-              <button onClick={checkLogin}>Get Started</button>
+            <div className="flex">
+              <div className=" bg-cyan-800 w-1/7 px-4 py-2 border rounded-3xl text-white mt-5 mx-2 hover:bg-white hover:text-cyan-800 hover:border-cyan-800 hover:cursor-pointer">
+                <button onClick={checkLogin}>Get Started</button>
+              </div>
+              <div className=" border-cyan-900 w-1/7 px-4 py-2 border rounded-3xl text-cyan-900 mt-5 hover:text-white hover:bg-cyan-800 mx-2 hover:cursor-pointer">
+                <button onClick={checkLogin}>Take Survey</button>
+              </div>
             </div>
           </div>
           <div className="w-1/2 mx-auto md:mx-0 lg:w-1/4 flex justify-center items-center">

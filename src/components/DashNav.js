@@ -24,7 +24,7 @@ function DashNav() {
 
   return (
     <div>
-      <div className="dashNavContainer">
+      <div className="bg-cyan-800 text-white h-16">
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">
             <a href="/">
@@ -93,7 +93,9 @@ function DashNav() {
             </button>
             <div className="flex justify-content-evenly ">
               <button className="pt-1">{bell}</button>
-              <button className="px-3 flex pt-1 align-top">{user}</button>
+              <a href="/user" className="px-3 flex pt-1 align-top">
+                {user}
+              </a>
             </div>
           </div>
         </header>

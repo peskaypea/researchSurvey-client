@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 const home = <FontAwesomeIcon icon={faHome} />;
 
-function QuestionCard({ survey, error, loading }) {
+function QuestionCard({ survey }) {
   const [questionNum, setQuestionNum] = useState(0);
   const questions = survey.questions.map((q) => {
     return q.question;
@@ -15,7 +15,9 @@ function QuestionCard({ survey, error, loading }) {
     initialResponse[question] = "";
   }
 
+  //Survey response
   const [response, setReseponse] = useState(initialResponse);
+
   console.log(response);
 
   const navigate = useNavigate();
@@ -29,28 +31,40 @@ function QuestionCard({ survey, error, loading }) {
   };
 
   const saveResponse = (e) => {
-    let newData = {};
+    const currentQuestion = survey.questions[questionNum].question;
 
     if (e.target.type === "checkbox") {
-      if (response[survey.questions[questionNum].question] !== "") {
-        response[survey.questions[questionNum].question].push(e.target.value);
+      if (response[currentQuestion] !== "") {
+        if (!response[currentQuestion].includes(e.target.value)) {
+          response[currentQuestion].push(e.target.value);
+        } else {
+          const index = response[currentQuestion].indexOf(e.target.value);
+          response[currentQuestion].splice(index, 1);
+        }
       } else {
-        response[survey.questions[questionNum].question] = [e.target.value];
+        response[currentQuestion] = [e.target.value];
       }
 
-      newData = {
+      setReseponse({
         ...response,
-        [survey.questions[questionNum].question]:
-          response[survey.questions[questionNum].question],
-      };
+        [currentQuestion]: response[currentQuestion],
+      });
+    } else if (
+      survey.questions[questionNum].questionType === "CustomUserInfo"
+    ) {
+      setReseponse({
+        ...response,
+        [currentQuestion]: {
+          ...response[currentQuestion],
+          [e.target.name]: e.target.value,
+        },
+      });
     } else {
-      newData = {
+      setReseponse({
         ...response,
-        [survey.questions[questionNum].question]: e.target.value,
-      };
+        [currentQuestion]: e.target.value,
+      });
     }
-
-    setReseponse(newData);
   };
 
   const navigateHome = () => {
@@ -173,10 +187,17 @@ function QuestionCard({ survey, error, loading }) {
                 type="text"
                 name="fullName"
                 id="fullName"
-                className="mb-5"
+                className="mb-5 rounded-lg h-8 px-3 outline-0"
+                onChange={(e) => saveResponse(e)}
               />
               <label htmlFor="email">Email Address</label>
-              <input type="email" name="email" id="email" />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                className="mb-5 rounded-lg h-8 px-3 outline-0"
+                onChange={(e) => saveResponse(e)}
+              />
             </div>
           )}
           {/*For Other type question */}
@@ -184,7 +205,7 @@ function QuestionCard({ survey, error, loading }) {
             <div className="ml-5">
               {survey.questions[questionNum].imgURL.map((img, index) => {
                 return (
-                  <div>
+                  <div key={img}>
                     <img
                       src={survey.questions[questionNum].imgURL[index]}
                       alt={survey.questions[questionNum].imgDesc[index]}
@@ -231,10 +252,13 @@ function QuestionCard({ survey, error, loading }) {
                       {!survey.questions[questionNum].imgDesc[index] && (
                         <input
                           type="text"
+                          id={img}
                           placeholder="Enter your answer"
                           className="mb-5 rounded-lg h-8 text-center px-5"
                           value={
-                            response[survey.questions[questionNum].question]
+                            response[
+                              survey.questions[questionNum].question[index]
+                            ]
                           }
                           onChange={(e) => saveResponse(e)}
                         />
