@@ -32,11 +32,14 @@ function AccessCode() {
       authorization: `Bearer ${token}`,
     };
 
-    const res = await fetch(`http://localhost:5000/survey/verifyaccess`, {
-      method: "POST",
-      headers: requestHeaders,
-      body: JSON.stringify(accessBody),
-    });
+    const res = await fetch(
+      `https://surveyconnect-server.onrender.com/survey/verifyaccess`,
+      {
+        method: "POST",
+        headers: requestHeaders,
+        body: JSON.stringify(accessBody),
+      }
+    );
     const data = await res.json();
     if (data._id) {
       navigate("/survey/asl", { state: { survey: data } });
@@ -54,7 +57,9 @@ function AccessCode() {
     <div className="bg-cyan-800 h-screen flex jsutify-center">
       <div className="w-11/12 md:w-1/4 bg-white mx-auto my-auto h-1/2 rounded-xl p-5 bg-sky-50">
         <div className="text-center mt-16">
-          <h3 className="font-bold text-xl">Survey: ASL Studies Survey</h3>
+          <h3 className="font-bold text-xl">
+            Survey Name: {location.state.surveyName}
+          </h3>
           <p className="mt-5">
             This is a private survey. Please enter the access code to continue.
           </p>

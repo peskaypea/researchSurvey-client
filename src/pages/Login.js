@@ -30,13 +30,16 @@ function Login() {
 
   const logUserIn = async (userInfo, e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/user/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    });
+    const response = await fetch(
+      "https://surveyconnect-server.onrender.com/user/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      }
+    );
     const data = await response.json();
     if (data.token) {
       localStorage.setItem("token", data.token);

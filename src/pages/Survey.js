@@ -13,10 +13,10 @@ const token = localStorage.getItem("token");
 function Survey() {
   const navigate = useNavigate();
   const {
-    data = { errorMessage: "", _id: "" },
+    data = { errorMessage: "", _id: "", surveyName: "" },
     loading = true,
     error = false,
-  } = useFetch(`http://localhost:5000/survey/${id}`, token);
+  } = useFetch(`https://surveyconnect-server.onrender.com/survey/${id}`, token);
 
   if (loading) {
     return (
@@ -25,7 +25,9 @@ function Survey() {
       </div>
     );
   } else if (data.errorMessage === "verifyAccess") {
-    navigate("/verify", { state: { id: `${id}` } });
+    navigate("/verify", {
+      state: { id: `${id}`, surveyName: data.surveyName },
+    });
   } else if (error) {
     return (
       <div className="w-full flex flex-col justify-center items-center h-screen bg-cyan-900 text-sky-100">

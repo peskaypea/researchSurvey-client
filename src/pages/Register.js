@@ -33,13 +33,16 @@ function Register() {
   const registerUser = async (user, e) => {
     e.preventDefault();
     if (emailFormatRegex.test(user.email)) {
-      const response = await fetch("http://localhost:5000/user/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user),
-      });
+      const response = await fetch(
+        "https://surveyconnect-server.onrender.com/user/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      );
 
       const data = await response.json();
 

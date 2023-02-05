@@ -14,7 +14,8 @@ import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
 import { useNavigate } from "react-router-dom";
 import "animate.css";
-const baseURL = "http://localhost:5000";
+
+const baseURL = "https://surveyconnect-server.onrender.com";
 function DashSurveyList() {
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const del = <FontAwesomeIcon icon={faX} />;
@@ -452,7 +453,7 @@ function DashSurveyList() {
                             href={`survey/${survey._id}`}
                           >
                             <p className="w-full text-xs text-center">
-                              Take Survey
+                              View Survey
                             </p>
                           </a>
                           <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
@@ -532,9 +533,15 @@ function DashSurveyList() {
                           className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
                           href={`/survey/${survey._id}`}
                         >
-                          <p className="w-full text-xs text-center">
-                            Take Survey
-                          </p>
+                          {survey.status ? (
+                            <p className="w-full text-xs text-center">
+                              Take Survey
+                            </p>
+                          ) : (
+                            <p className="w-full text-xs text-center">
+                              View Survey
+                            </p>
+                          )}
                         </a>
                         <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
                           <p>{edit}</p>
