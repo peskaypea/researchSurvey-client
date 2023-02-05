@@ -200,7 +200,7 @@ function DashSurveyList() {
             placeholder="Search"
             className="ml-2 w-9/12 outline-0 bg-transparent"
             onChange={(e) => {
-              searchSurvey(e.target.value);
+              searchSurvey(e.target.value.toLowerCase());
             }}
           />
         </div>

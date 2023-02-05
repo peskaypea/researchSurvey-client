@@ -3,7 +3,6 @@ import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import logo from "../assets/SC.svg";
 import { NavLink } from "react-router-dom";
 import "./Nav.css";
-import CreateSurvey from "./CreateSurvey";
 
 const Menu = () => (
   <nav className="nav-nav">
@@ -42,7 +41,7 @@ function Nav() {
       </div>
       <div className="sc__navbar-sign ">
         <a className="navbar__login px-5" href="/login">
-          Login→{" "}
+          Login→
         </a>
         <a
           href="/register"
