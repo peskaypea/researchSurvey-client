@@ -3,6 +3,7 @@ import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import logo from "../assets/SC.svg";
 import { NavLink } from "react-router-dom";
 import "./Nav.css";
+import CreateSurvey from "./CreateSurvey";
 
 const Menu = () => (
   <nav className="nav-nav">
