@@ -8,7 +8,7 @@ function AccessCode() {
   const navigate = useNavigate();
   const surveyId = location.state.id;
   const HomeIcon = <FontAwesomeIcon icon={faHome} />;
-
+  const baseURL_development = "http://localhost:5000";
   const [accessBody, setAccessBody] = useState({
     surveyId: surveyId,
     accessCode: "",
@@ -32,17 +32,18 @@ function AccessCode() {
       authorization: `Bearer ${token}`,
     };
 
-    const res = await fetch(
-      `https://surveyconnect-server.onrender.com/survey/verifyaccess`,
-      {
-        method: "POST",
-        headers: requestHeaders,
-        body: JSON.stringify(accessBody),
-      }
-    );
+    const res = await fetch(`${baseURL_development}/verifyaccess`, {
+      method: "POST",
+      headers: requestHeaders,
+      body: JSON.stringify(accessBody),
+    });
     const data = await res.json();
     if (data._id) {
-      navigate("/survey/asl", { state: { survey: data } });
+      if (data._id === "63dfc01a24efd633b22678c2") {
+        navigate("/survey/asl", { state: { survey: data } });
+      } else {
+        navigate(`/survey/${data._id}`);
+      }
     } else {
       setAccessBody((oldData) => {
         return {
@@ -55,7 +56,7 @@ function AccessCode() {
   };
   return (
     <div className="bg-cyan-800 h-screen flex jsutify-center">
-      <div className="w-11/12 md:w-1/4 bg-white mx-auto my-auto h-1/2 rounded-xl p-5 bg-sky-50">
+      <div className="w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white mx-auto my-auto h-1/2 rounded-xl p-5 bg-sky-50">
         <div className="text-center mt-16">
           <h3 className="font-bold text-xl">
             Survey Name: {location.state.surveyName}

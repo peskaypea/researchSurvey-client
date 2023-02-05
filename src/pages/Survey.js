@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import QuestionCard from "components/QuestionCard";
 import useFetch from "../utility/useFetch";
@@ -12,11 +12,13 @@ const token = localStorage.getItem("token");
 
 function Survey() {
   const navigate = useNavigate();
+  const baseURL_development = "http://localhost:5000";
+
   const {
     data = { errorMessage: "", _id: "", surveyName: "" },
     loading = true,
     error = false,
-  } = useFetch(`https://surveyconnect-server.onrender.com/survey/${id}`, token);
+  } = useFetch(`${baseURL_development}/survey/${id}`, token);
 
   if (loading) {
     return (

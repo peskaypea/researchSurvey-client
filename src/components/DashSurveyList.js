@@ -14,7 +14,7 @@ import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
 import { useNavigate } from "react-router-dom";
 import "animate.css";
-
+const baseURL_development = "http://localhost:5000";
 const baseURL = "https://surveyconnect-server.onrender.com";
 function DashSurveyList() {
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
@@ -28,7 +28,11 @@ function DashSurveyList() {
 
   const navigate = useNavigate();
   //Fetch data from db
-  const { data = [], loading, error } = useFetch(`${baseURL}/survey`, token);
+  const {
+    data = [],
+    loading,
+    error,
+  } = useFetch(`${baseURL_development}/survey`, token);
 
   const [surveyList, setSurveyList] = useState([]);
   const [tabActive, setTabActive] = useState("All");

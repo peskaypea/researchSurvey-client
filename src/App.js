@@ -28,7 +28,6 @@ function App() {
           <Route path="/survey/asl" element={<ASLSurvey />} />
           <Route path="/survey/:id" element={<Survey />} />
           <Route path="/verify" element={<AccessCode />} />
-
           <Route path="/user/" element={<UserProfile />} />
         </Routes>
       </Router>

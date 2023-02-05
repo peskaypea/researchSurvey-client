@@ -22,8 +22,12 @@ function useFetch(url, token) {
         setData(res);
       })
       .catch((error) => {
-        setErr(true);
-        console.log(error);
+        if (error.name === "AbortError") {
+          console.log("Fetch aborted");
+        } else {
+          setErr(true);
+          console.log(error);
+        }
       })
       .finally(() => {
         setLoading(false);

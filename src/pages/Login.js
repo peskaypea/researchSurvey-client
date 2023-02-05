@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const HomeIcon = <FontAwesomeIcon icon={faHome} />;
   const EyeReveal = <FontAwesomeIcon icon={faEye} />;
+  const baseURL_development = "http://localhost:5000";
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -30,16 +31,13 @@ function Login() {
 
   const logUserIn = async (userInfo, e) => {
     e.preventDefault();
-    const response = await fetch(
-      "https://surveyconnect-server.onrender.com/user/login",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userInfo),
-      }
-    );
+    const response = await fetch(`${baseURL_development}/user/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userInfo),
+    });
     const data = await response.json();
     if (data.token) {
       localStorage.setItem("token", data.token);

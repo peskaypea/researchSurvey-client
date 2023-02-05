@@ -21,7 +21,7 @@ h1{
 
 .sc__navbar {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 
   padding: 2rem 0;
