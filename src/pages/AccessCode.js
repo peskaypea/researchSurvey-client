@@ -32,7 +32,7 @@ function AccessCode() {
       authorization: `Bearer ${token}`,
     };
 
-    const res = await fetch(`${baseURL_development}/verifyaccess`, {
+    const res = await fetch(`${baseURL_development}/survey/verifyaccess`, {
       method: "POST",
       headers: requestHeaders,
       body: JSON.stringify(accessBody),

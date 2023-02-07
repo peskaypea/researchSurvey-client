@@ -12,7 +12,7 @@ import Login from "pages/Login";
 import Survey from "pages/Survey";
 import ASLSurvey from "pages/ASLSurvey";
 import AccessCode from "pages/AccessCode";
-
+import SurveyEdit from "pages/SurveyEdit";
 import UserProfile from "pages/UserProfile";
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/survey/asl" element={<ASLSurvey />} />
           <Route path="/survey/:id" element={<Survey />} />
+          <Route path="/surveyedit/" element={<SurveyEdit />} />
           <Route path="/verify" element={<AccessCode />} />
           <Route path="/user/" element={<UserProfile />} />
         </Routes>

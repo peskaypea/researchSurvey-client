@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import "animate.css";
 const baseURL_development = "http://localhost:5000";
 const baseURL = "https://surveyconnect-server.onrender.com";
+
 function DashSurveyList() {
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const del = <FontAwesomeIcon icon={faX} />;
@@ -282,9 +283,12 @@ function DashSurveyList() {
                 >
                   <p className="w-full text-xs text-center">Take Survey</p>
                 </a>
-                <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
+                <a
+                  href="/surveyedit"
+                  className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
+                >
                   {edit}
-                </div>
+                </a>
                 <div
                   className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
                   id={surveyList[0]._id}
