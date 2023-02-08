@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Logo from "../assets/SC.svg";
+import MobileNavMenu from "./MobileNavMenu";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
+
 function Nav2() {
   const token = localStorage.getItem("token");
   return (
@@ -50,6 +54,7 @@ function Nav2() {
           )}
         </div>
       </div>
+      <MobileNavMenu />
     </div>
   );
 }
