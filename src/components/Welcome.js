@@ -28,14 +28,14 @@ function Welcome() {
             </p>
             <div className="flex">
               <button
-                className=" bg-cyan-800 w-1/7 px-4 py-2 border rounded-3xl text-white mt-5 mx-2 hover:bg-white hover:text-cyan-800 hover:border-cyan-800 hover:cursor-pointer"
+                className=" bg-cyan-800 w-1/7 px-4 py-2 border rounded-3xl text-white mt-5 mx-2 hover:text-white hover:border-cyan-700 hover:cursor-pointer  hover:shadow-xl"
                 onClick={checkLogin}
               >
                 Get Started
               </button>
 
               <button
-                className=" border-cyan-900 w-1/7 px-4 py-2 border rounded-3xl text-cyan-900 mt-5 hover:text-white hover:bg-cyan-800 mx-2 hover:cursor-pointer"
+                className=" border-cyan-900 w-1/7 px-4 py-2 border rounded-3xl text-cyan-800 mt-5 mx-2 hover:shadow-xl hover:cursor-pointer"
                 onClick={checkLogin}
               >
                 Take Survey

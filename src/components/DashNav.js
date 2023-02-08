@@ -28,18 +28,18 @@ function DashNav() {
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">
             <a href="/">
-              <img src={Logo} alt="" className="w-100" />
+              <img src={Logo} alt="" className="w-100 " />
             </a>
           </div>
           <div className="sm:hidden hover:cursor-pointer">{menu}</div>
 
           <nav className=" sm:flex md:flex-row-reverse hidden mr-3  ">
-            <ul className="w-100 dash-ul-font sm:ml-5">
+            <ul className="w-full dash-ul-font sm:ml-5">
               <button
                 className={
                   tabActive === "Surveys"
-                    ? "px-4 py-1 dash-active"
-                    : "px-4 py-1 "
+                    ? "px-4 py-1 dash-active text-xs"
+                    : "px-4 py-1  text-xs"
                 }
                 onClick={(e) => {
                   changeTab(e);
@@ -51,8 +51,8 @@ function DashNav() {
               <button
                 className={
                   tabActive === "Statistics"
-                    ? "px-4 py-1 dash-active"
-                    : "px-4 py-1 "
+                    ? "px-4 py-1 dash-active  text-xs"
+                    : "px-4 py-1  text-xs"
                 }
                 value={"Statistics"}
                 onClick={(e) => {
@@ -64,8 +64,8 @@ function DashNav() {
               <button
                 className={
                   tabActive === "Feature"
-                    ? "px-4 py-1 dash-active"
-                    : "px-4 py-1 "
+                    ? "px-4 py-1 dash-active  text-xs"
+                    : "px-4 py-1  text-xs"
                 }
                 value={"Feature"}
                 onClick={(e) => {

@@ -1,109 +1,57 @@
-import React, { useState } from "react";
-import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
-import logo from "../assets/SC.svg";
-import { NavLink } from "react-router-dom";
-import "./Nav.css";
-
-const Menu = () => (
-  <nav className="nav-nav">
-    <ul>
-      <li>
-        <NavLink className="nav-nav-link" to="/">
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className="nav-nav-link" to="/about">
-          About
-        </NavLink>
-      </li>
-      <li>
-        <NavLink className="nav-nav-link" to="/contact">
-          Contact
-        </NavLink>
-      </li>
-    </ul>
-  </nav>
-);
-
-function Nav() {
-  const [toggleMenu, SetToggleMenu] = useState(false);
+import React from "react";
+import Logo from "../assets/SC.svg";
+function Nav2() {
   const token = localStorage.getItem("token");
   return (
-    <div className="w-vw flex justify-between h-24">
-      {/* logo and main nav */}
-      <div className="flex justify-between w-1/3 ml-10 md:ml-0 text-xl items-center">
-        {/* logo */}
-        <div className=" xl:w-1/3 w-full  mx-auto">
-          <img src={logo} alt="logoFiller" className="h-full w-full mx-auto" />
+    <div className="h-26 flex justify-between items-center px-10 py-2 border-b-2 shadow-2xl mb-10">
+      <a href="/" className="w-60">
+        <img src={Logo} alt="SurveyConnect" className="w-full" />
+      </a>
+      <div className="w-full hidden md:flex justify-end items-center">
+        <div className="flex md:w-1/2 xl:w-1/3 justify-evenly">
+          <a href="/" className="hover:shadow-xl">
+            Product
+          </a>
+          <a href="/" className=" hover:shadow-xl">
+            Solutions
+          </a>
+          <a href="/" className=" hover:shadow-xl">
+            Pricing
+          </a>
+          <a href="/about" className=" hover:shadow-xl">
+            About
+          </a>
         </div>
-        {/* main nav */}
-        <div className=" justify-evenly w-1/2 gap-5 hidden xl:flex">
-          <div>
-            <a href="/">Home</a>
-          </div>
-          <div>
-            <a href="/about">About</a>
-          </div>
-          <div>
-            <a href="/contact">Contact</a>
-          </div>
-        </div>
-      </div>
-      {/* dashboard button and hidden menu */}
-      <div className="w-2/3 flex justify-end h-full ">
-        {token && (
-          <div className="hidden xl:flex mx-10 h-full  items-center ">
-            <a
-              className="w-28 flex justify-center items-center h-10 rounded-xl bg-cyan-800 text-sky-50 hover:bg-white hover:text-cyan-800 hover:border-cyan-800 hover:border"
-              href="/dashboard"
-            >
-              Dashboard
-            </a>
-          </div>
-        )}
-        {!token && (
-          <div className="sc__navbar-sign ">
-            <a className="navbar__login px-5" href="/login">
-              Login→{" "}
-            </a>
-            <a
-              href="/register"
-              className="w-full bg-cyan-800 p-2 rounded-xl text-white px-5"
-            >
-              Sign Up
-            </a>
-          </div>
-        )}
-      </div>
-      <div className="sc__navbar-menu">
-        {toggleMenu ? (
-          <RiCloseLine
-            color="#000000"
-            size={27}
-            onClick={() => SetToggleMenu(false)}
-          />
-        ) : (
-          <RiMenu3Line
-            color="#000000"
-            size={27}
-            onClick={() => SetToggleMenu(true)}
-          />
-        )}
-        {toggleMenu && (
-          <div className="sc__navbar-menu_container">
-            <div className="sc__navbar-menu_container-links">
-              <Menu />
-              <div className="sc__navbar-menu_container-links-sign">
-                <p>Login→ </p>
-                <button type="button">Sign Up</button>
-              </div>
+        <div className="md:ml-4">
+          {token ? (
+            <div>
+              <a
+                href="/dashboard"
+                className="w-28 text-center py-2 px-4 rounded-3xl text-sky-50 bg-cyan-800"
+              >
+                Dashboard
+              </a>
             </div>
-          </div>
-        )}
+          ) : (
+            <div className="w-48 flex  items-center">
+              <a
+                href="/login"
+                className="w-20 text-center py-1 px-4 rounded-3xl   "
+              >
+                Login
+              </a>
+              <a
+                href="/register"
+                className="w-24 text-center py-1 px-4 rounded-3xl text-sky-50 bg-cyan-800 hover:border hover:border-cyan-800 hover:bg-white hover:text-cyan-800"
+              >
+                Sign Up
+              </a>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
-export default Nav;
+export default Nav2;
