@@ -1,16 +1,40 @@
 import React from "react";
 import "./About.css";
 import Navbar from "./Nav";
-import aboutImage from "../assets/about-us.gif";
-import johnPic from "../assets/john-profilepic.jpeg";
-import jillPic from "../assets/jill-profilepic.jpeg";
-import carolPic from "../assets/carol-profilepic.jpg";
+import aboutImage from "../assets/SuveryConnect.png";
 
 const About = () => {
   return (
     <div>
       <Navbar />
-      <div className="about__container">
+      <div className="">
+        <div className="flex justify-center">
+          <h1 className="text-4xl text-cyan-800 ">
+            Welcome to Survey Connect!
+          </h1>
+        </div>
+        <div className="flex justify-center m-7 mt-24">
+          <div className="w-80 flex items-center">
+            <p className="text-xl">
+              We're here to help you quickly and easily create surveys that can
+              help you better understand your customers and make better
+              decisions for your business. With Survey Connect, you can create
+              custom surveys, gather real-time feedback, analyze data and make
+              informed decisions.
+            </p>
+          </div>
+          <img src={aboutImage} alt="aboutImg" className="w-72 ml-12" />
+        </div>
+        <div className="flex pt-3 pb-3 justify-center bg-cyan-800">
+          <p className=" flex justify-center text-lg text-white text-center w-2/3">
+            Decades of experience in survey design, data analysis and customer
+            service. We understand the importance of providing you with
+            high-quality insights that can help you make better decisions.
+          </p>
+        </div>
+      </div>
+
+      {/* <div className="about__container">
         <div className="about__container-top">
           <div className="about__top-info">
             <div className="about__top-head">
@@ -75,7 +99,7 @@ const About = () => {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
