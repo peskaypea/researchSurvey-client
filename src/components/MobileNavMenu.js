@@ -21,15 +21,13 @@ function MobileNavMenu() {
       <div
         className={
           collapse
-            ? "flex justify-between md:hidden absolute text-end w-full -right-10 -top-11  items-center "
-            : "flex justify-between md:hidden absolute text-end w-full -right-10  -top-11 items-center bg-cyan-900/[0.9] text-white"
+            ? "flex justify-between md:hidden fixed text-end w-full -right-5 -top-5  items-center "
+            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  -top-5 items-center bg-cyan-900/[0.9] text-white"
         }
       >
         <div
           className={
-            collapse
-              ? "w-5/6 h-screen text-start ml-5 pt-5 invisible"
-              : "w-5/6 h-screen text-start ml-5 pt-16 "
+            collapse ? "invisible" : "h-screen text-start ml-10 pt-16 "
           }
         >
           {/* Mobile Nav Items */}
@@ -40,7 +38,7 @@ function MobileNavMenu() {
             <a href="/" className="p-2 hover:text-cyan-600">
               Solutions
             </a>
-            <a href="/" className=" p-2 hover:text-cyan-600">
+            <a href="/pricing" className=" p-2 hover:text-cyan-600">
               Pricing
             </a>
             <a href="/about" className="p-2 hover:text-cyan-600">

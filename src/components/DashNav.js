@@ -15,12 +15,7 @@ function DashNav() {
   const add = <FontAwesomeIcon icon={faPlus} size={"xs"} />;
   const menu = <FontAwesomeIcon icon={faBars} size={"2xl"} />;
 
-  const [tabActive, setTabActive] = useState("Surveys");
   const [btnColorChange, setBtnColorChange] = useState(false);
-
-  const changeTab = (e) => {
-    setTabActive(e.target.value);
-  };
 
   return (
     <div>
@@ -33,49 +28,6 @@ function DashNav() {
           </div>
           <div className="sm:hidden hover:cursor-pointer">{menu}</div>
 
-          <nav className=" sm:flex md:flex-row-reverse hidden mr-3  ">
-            <ul className="w-full dash-ul-font sm:ml-5">
-              <button
-                className={
-                  tabActive === "Surveys"
-                    ? "px-4 py-1 dash-active text-xs"
-                    : "px-4 py-1  text-xs"
-                }
-                onClick={(e) => {
-                  changeTab(e);
-                }}
-                value={"Surveys"}
-              >
-                Surveys
-              </button>
-              <button
-                className={
-                  tabActive === "Statistics"
-                    ? "px-4 py-1 dash-active  text-xs"
-                    : "px-4 py-1  text-xs"
-                }
-                value={"Statistics"}
-                onClick={(e) => {
-                  changeTab(e);
-                }}
-              >
-                Statistics
-              </button>
-              <button
-                className={
-                  tabActive === "Feature"
-                    ? "px-4 py-1 dash-active  text-xs"
-                    : "px-4 py-1  text-xs"
-                }
-                value={"Feature"}
-                onClick={(e) => {
-                  changeTab(e);
-                }}
-              >
-                Feature
-              </button>
-            </ul>
-          </nav>
           <div className="flex dash-ul-font items-center w-56 justify-end">
             <button
               className={
