@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
+const baseURL_development = "http://localhost:5000/response/submitresponse";
 const home = <FontAwesomeIcon icon={faHome} />;
-
+const surveyID = window.location.href.split("/").pop();
+const token = localStorage.getItem("token");
 function QuestionCard({ survey }) {
   const [questionNum, setQuestionNum] = useState(0);
   const questions = survey.questions.map((q) => {
@@ -67,6 +69,20 @@ function QuestionCard({ survey }) {
     }
   };
 
+  const submitResponse = async () => {
+    const requestHeaders = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+      surveyID: surveyID,
+    };
+    const res = await fetch(`${baseURL_development}`, {
+      method: "POST",
+      headers: requestHeaders,
+      body: JSON.stringify(response),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
   const navigateHome = () => {
     if (survey.status) {
       const res = window.confirm(
@@ -385,6 +401,7 @@ function QuestionCard({ survey }) {
             <button
               type="button"
               className="bg-cyan-900 w-24 text-sm px-4 py-2 border rounded-3xl text-white mt-5 active:bg-cyan-900/75"
+              onClick={() => submitResponse()}
             >
               Submit
             </button>
