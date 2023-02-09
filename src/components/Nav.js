@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import Logo from "../assets/SC.svg";
 import MobileNavMenu from "./MobileNavMenu";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 function Nav2() {
   const token = localStorage.getItem("token");
@@ -19,7 +17,7 @@ function Nav2() {
           <a href="/" className=" hover:shadow-xl">
             Solutions
           </a>
-          <a href="/" className=" hover:shadow-xl">
+          <a href="/Pricing" className=" hover:shadow-xl">
             Pricing
           </a>
           <a href="/about" className=" hover:shadow-xl">
