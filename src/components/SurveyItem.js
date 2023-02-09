@@ -58,7 +58,7 @@ function SurveyItem({ survey, deleteSurvey, id }) {
             <p className="w-full text-xs text-center">Take Survey</p>
           </a>
           <a
-            href="/surveyedit"
+            href={`/surveyedit/${survey._id}`}
             className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
           >
             {edit}

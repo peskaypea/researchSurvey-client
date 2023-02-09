@@ -27,7 +27,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/survey/asl" element={<ASLSurvey />} />
           <Route path="/survey/:id" element={<Survey />} />
-          <Route path="/surveyedit/" element={<SurveyEdit />} />
+          <Route path="/surveyedit/:id" element={<SurveyEdit />} />
           <Route path="/verify" element={<AccessCode />} />
           <Route path="/user/" element={<UserProfile />} />
         </Routes>

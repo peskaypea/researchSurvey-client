@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 function SurveyEditForm({ survey }) {
   const [formBody, setFormBody] = useState(survey);
-  console.log(formBody);
 
   const updateForm = (e) => {
     if (e.target.name === "public") {
@@ -23,9 +22,9 @@ function SurveyEditForm({ survey }) {
   };
 
   return (
-    <div className="w-1/3 mx-auto  rounded-xl mt-20 p-5 bg-cyan-800/[0.9] shadow-2xl ">
-      <form className="flex flex-col gap-2 text-sm ">
-        <label htmlFor="surveyName" className="font-bold text-white">
+    <div className="w-2/3 mx-auto bg-slate-300 mt-10 p-5 border-t-4 border-cyan-900">
+      <form className="flex  flex-col gap-2 text-sm ">
+        <label htmlFor="surveyName" className="font-bold ">
           Survey Name
         </label>
         <input
@@ -39,7 +38,7 @@ function SurveyEditForm({ survey }) {
           }}
         />
 
-        <label htmlFor="organization" className="font-bold text-white">
+        <label htmlFor="organization" className="font-bold">
           Organization
         </label>
         <input
@@ -54,7 +53,7 @@ function SurveyEditForm({ survey }) {
         />
         <div className="w-full flex justify-between">
           <div className="flex flex-col w-1/2 pr-4 gap-2">
-            <label htmlFor="surveyType" className="font-bold text-white">
+            <label htmlFor="surveyType" className="font-bold ">
               Type
             </label>
             <input
@@ -69,7 +68,7 @@ function SurveyEditForm({ survey }) {
             />
           </div>
           <div className="flex flex-col w-1/2 pl-4 gap-2">
-            <label htmlFor="dateEnd" className="font-bold text-white">
+            <label htmlFor="dateEnd" className="font-bold ">
               End Date
             </label>
             <input
@@ -87,7 +86,7 @@ function SurveyEditForm({ survey }) {
 
         <div className="w-full flex justify-between">
           <div className="flex flex-col w-1/2 pr-4 gap-2">
-            <label className="text-sm font-bold text-white" htmlFor="public">
+            <label className="text-sm font-bold " htmlFor="public">
               Access
             </label>
             <select
@@ -99,7 +98,7 @@ function SurveyEditForm({ survey }) {
               }}
             >
               <option value={Number(formBody.public)}>
-                {formBody.public ? "Public" : "Private"}
+                {formBody.public ? "--Public--" : "--Private--"}
               </option>
               <option value={1}>Public</option>
               <option value={0}>Private</option>
@@ -107,7 +106,7 @@ function SurveyEditForm({ survey }) {
           </div>
           {!formBody.public && (
             <div className="flex flex-col w-1/2 pl-4 gap-2">
-              <label htmlFor="surveyType " className="font-bold text-white">
+              <label htmlFor="surveyType " className="font-bold ">
                 Access Code
               </label>
               <input
@@ -123,11 +122,11 @@ function SurveyEditForm({ survey }) {
             </div>
           )}
         </div>
-        <label htmlFor="description" className="font-bold text-white">
+        <label htmlFor="description" className="font-bold ">
           Description
         </label>
         <textarea
-          className="rounded-lg px-3 resize-none outline-none mb-5 h-32"
+          className="rounded-lg p-3 resize-none outline-none mb-5 h-32"
           name="description"
           id="description"
           value={formBody.description}
@@ -136,7 +135,12 @@ function SurveyEditForm({ survey }) {
           }}
         ></textarea>
 
-        <button type="button">Save</button>
+        <button
+          type="button"
+          className=" bg-cyan-900 w-1/3 h-8 mx-auto text-white rounded-xl"
+        >
+          Save
+        </button>
       </form>
     </div>
   );
