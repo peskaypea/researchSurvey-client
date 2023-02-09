@@ -14,6 +14,7 @@ import ASLSurvey from "pages/ASLSurvey";
 import AccessCode from "pages/AccessCode";
 import SurveyEdit from "pages/SurveyEdit";
 import UserProfile from "pages/UserProfile";
+import Pricing from "../src/pages/Pricing";
 function App() {
   return (
     <div className="">
@@ -30,6 +31,7 @@ function App() {
           <Route path="/surveyedit/:id" element={<SurveyEdit />} />
           <Route path="/verify" element={<AccessCode />} />
           <Route path="/user/" element={<UserProfile />} />
+          <Route path="/pricing" element={<Pricing />} />
         </Routes>
       </Router>
     </div>
