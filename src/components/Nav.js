@@ -7,8 +7,8 @@ import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 function Nav2() {
   const token = localStorage.getItem("token");
   return (
-    <div className="h-26 flex justify-between items-center px-10 py-2 border-b-2 shadow-2xl mb-10">
-      <a href="/" className="w-60">
+    <div className="h-26 flex justify-between items-center px-10 py-2 border-b-2 shadow-2xl mb:5 md:mb-10">
+      <a href="/" className="md:w-60 w-1/2">
         <img src={Logo} alt="SurveyConnect" className="w-full" />
       </a>
       <div className="w-full hidden md:flex justify-end items-center">
@@ -54,7 +54,9 @@ function Nav2() {
           )}
         </div>
       </div>
-      <MobileNavMenu />
+      <div className="w-full md:w-0">
+        <MobileNavMenu />
+      </div>
     </div>
   );
 }

@@ -6,10 +6,10 @@ function MobileNavMenu() {
   const token = localStorage.getItem("token");
 
   const mobileMenu = (
-    <FontAwesomeIcon icon={faBars} size={"lg"}></FontAwesomeIcon>
+    <FontAwesomeIcon icon={faBars} size={"xl"}></FontAwesomeIcon>
   );
   const menuCloseBtn = (
-    <FontAwesomeIcon icon={faXmark} size={"lg"}></FontAwesomeIcon>
+    <FontAwesomeIcon icon={faXmark} size={"xl"}></FontAwesomeIcon>
   );
 
   const [collapse, setCollapse] = useState(true);
@@ -17,60 +17,62 @@ function MobileNavMenu() {
     setCollapse(!collapse);
   };
   return (
-    <div className="relative w-1/3 bg-slate-900/75  ">
-      {collapse ? (
+    <div className="relative md:hidden flex w-full flex-end ">
+      <div
+        className={
+          collapse
+            ? "flex justify-between md:hidden absolute text-end w-full -right-10 -top-11  items-center "
+            : "flex justify-between md:hidden absolute text-end w-full -right-10  -top-11 items-center bg-cyan-900/[0.9] text-white"
+        }
+      >
         <div
-          className="block md:hidden text-end"
-          onClick={() => {
-            collapseMenu();
-          }}
+          className={
+            collapse
+              ? "w-5/6 h-screen text-start ml-5 pt-5 invisible"
+              : "w-5/6 h-screen text-start ml-5 pt-16 "
+          }
         >
-          {mobileMenu}
-        </div>
-      ) : (
-        <div
-          className="block md:hidden text-end"
-          onClick={() => {
-            collapseMenu();
-          }}
-        >
-          {menuCloseBtn}
-          <div className="absolute w-full bg-slate-900/75  h-screen text-center pt-5">
-            <div className="flex flex-col">
-              <a href="/" className="p-2">
-                Product
-              </a>
-              <a href="/" className="p-2">
-                Solutions
-              </a>
-              <a href="/" className=" p-2">
-                Pricing
-              </a>
-              <a href="/about" className="p-2 ">
-                About
-              </a>
-            </div>
-            <div className="">
-              {token ? (
-                <div>
-                  <a href="/dashboard" className="">
-                    Dashboard
-                  </a>
-                </div>
-              ) : (
-                <div className="">
-                  <a href="/login" className=" ">
-                    Login
-                  </a>
-                  <a href="/register" className="">
-                    Sign Up
-                  </a>
-                </div>
-              )}
-            </div>
+          {/* Mobile Nav Items */}
+          <div className="flex flex-col pb-2">
+            <a href="/" className="p-2 hover:text-cyan-600">
+              Product
+            </a>
+            <a href="/" className="p-2 hover:text-cyan-600">
+              Solutions
+            </a>
+            <a href="/" className=" p-2 hover:text-cyan-600">
+              Pricing
+            </a>
+            <a href="/about" className="p-2 hover:text-cyan-600">
+              About
+            </a>
+          </div>
+          {/* Dashboard/Login/Signup */}
+          <div>
+            {token ? (
+              <div>
+                <a href="/dashboard" className="ml-2 hover:text-cyan-600">
+                  Dashboard
+                </a>
+              </div>
+            ) : (
+              <div className="flex flex-col">
+                <a href="/login" className="pb-4 hover:text-cyan-600">
+                  Login
+                </a>
+                <a href="/register" className=" hover:text-cyan-500">
+                  Sign Up
+                </a>
+              </div>
+            )}
           </div>
         </div>
-      )}
+        <div className=" h-screen ">
+          <button className=" pt-8 pr-16 w-1/6" onClick={() => collapseMenu()}>
+            {collapse ? mobileMenu : menuCloseBtn}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

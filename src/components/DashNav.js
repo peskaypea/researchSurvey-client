@@ -24,7 +24,7 @@ function DashNav() {
 
   return (
     <div>
-      <div className="bg-cyan-800 text-white h-16">
+      <div className="bg-cyan-800 text-white h-16 shadow-xl">
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">
             <a href="/">

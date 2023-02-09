@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faEye } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-
+import "./GradientBG.css";
 function Login() {
   const HomeIcon = <FontAwesomeIcon icon={faHome} />;
   const EyeReveal = <FontAwesomeIcon icon={faEye} />;

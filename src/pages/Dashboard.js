@@ -1,12 +1,12 @@
 import React from "react";
 import DashNav from "../components/DashNav";
-import SurveysList from "../components/DashSurveyList";
+import DashSurveyList from "../components/DashSurveyList";
 
 function Dashboard() {
   return (
     <div>
       <DashNav />
-      <SurveysList />
+      <DashSurveyList />
     </div>
   );
 }

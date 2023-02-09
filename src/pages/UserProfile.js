@@ -13,7 +13,7 @@ function UserProfile() {
   } = useFetch(`${baseURL_development}/user/userprofile`, token);
 
   return (
-    <div className="bg-sky-100 h-screen">
+    <div className="bg-slate-100 h-screen">
       <div className="bg-cyan-800 h-80">
         <DashNav></DashNav>
         <UserCard user={data} loading={loading}></UserCard>

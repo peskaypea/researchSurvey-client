@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./Register.css";
+import "./GradientBG.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -67,7 +67,7 @@ function Register() {
   };
   return (
     <div className="w-full h-screen flex items-center justify-center background pb-1">
-      <div className="w-96 xl:w-1/4 h-5/7  border-transparet rounded-2xl p-10 bg-slate-800/50">
+      <div className="w-96 xl:w-1/4 h-5/7  border-transparent rounded-2xl p-10 bg-slate-800/50">
         <form action="" className="flex flex-col w-full">
           {card === 1 && (
             <button

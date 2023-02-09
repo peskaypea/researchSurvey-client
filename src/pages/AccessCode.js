@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faEye } from "@fortawesome/free-solid-svg-icons";
-
+import { faHome } from "@fortawesome/free-solid-svg-icons";
+import "./GradientBG.css";
 function AccessCode() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -55,8 +55,9 @@ function AccessCode() {
     }
   };
   return (
-    <div className="bg-cyan-800 h-screen flex jsutify-center">
-      <div className="w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-white mx-auto my-auto h-1/2 rounded-xl p-5 bg-sky-50">
+    <div className="background h-screen flex jsutify-center">
+      {/* w-96 xl:w-1/4 h-5/7 border-transparet rounded-2xl p-10 bg-slate-800/50 */}
+      <div className="w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-slate-800/50 text-white mx-auto my-auto h-1/2 rounded-xl p-5 bg-sky-50">
         <div className="text-center mt-16">
           <h3 className="font-bold text-xl">
             Survey Name: {location.state.surveyName}
@@ -65,7 +66,10 @@ function AccessCode() {
             This is a private survey. Please enter the access code to continue.
           </p>
         </div>
-        <div className="text-center mt-16 flex flex-col w-2/3   mx-auto">
+        <form
+          className="text-center mt-12 flex flex-col w-2/3  mx-auto"
+          onSubmit={(e) => verifyAccess(e)}
+        >
           {accessCodeError && (
             <div
               id="toast-danger"
@@ -120,7 +124,7 @@ function AccessCode() {
 
           <input
             type="text"
-            className="border-2 border-stone-900 rounded-xl px-5 h-10 text-center"
+            className="rounded-xl px-5 h-10 text-center text-black border-transparent"
             placeholder="Enter Access Code"
             value={accessBody.accessCode}
             name="accessCode"
@@ -128,15 +132,15 @@ function AccessCode() {
           />
           <button
             type="button"
-            className=" mt-5 bg-cyan-800 h-10 rounded-xl text-sky-50 active:bg-cyan-800/75"
+            className=" mt-5  h-10 rounded-xl active:bg-cyan-800/75 bg-zinc-900/75 h-10 text-sky-100"
             onClick={(e) => verifyAccess(e)}
           >
             Continue
           </button>
-          <a href="/dashboard" className="text-cyan-800 text-center mt-5">
+          <a href="/dashboard" className="text-sky-100 text-center mt-5">
             {HomeIcon}
           </a>
-        </div>
+        </form>
       </div>
     </div>
   );

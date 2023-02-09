@@ -1,32 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSearch,
-  faX,
-  faEdit,
-  faEye,
-  faEllipsisV,
-  faLock,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
 import { useEffect } from "react";
 import useFetch from "../utility/useFetch";
 import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
 import { useNavigate } from "react-router-dom";
-import "animate.css";
+import SurveyItem from "./SurveyItem";
 const baseURL_development = "http://localhost:5000";
 const baseURL = "https://surveyconnect-server.onrender.com";
 
 function DashSurveyList() {
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
-  const del = <FontAwesomeIcon icon={faX} />;
-  const edit = <FontAwesomeIcon icon={faEdit} />;
-  const view = <FontAwesomeIcon icon={faEye} />;
-  const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
-  const lock = <FontAwesomeIcon icon={faLock} size={"sm"} />;
-
   const token = localStorage.getItem("token");
-
   const navigate = useNavigate();
   //Fetch data from db
   const {
@@ -132,8 +118,9 @@ function DashSurveyList() {
   //Return List of all surveys
   return (
     <div className="flex flex-col justify-center ">
+      {/*Survey List Search Utility Nav */}
       <div className="flex justify-between w-full xl:w-8/12 mx-auto border-b-2 h-20 items-center">
-        {/* Dashboard Navbar */}
+        {/* Survey Filter Desktop */}
         <div
           id="surveyTabs"
           className="sm:flex hidden w-52 justify-around h-full items-center"
@@ -176,13 +163,11 @@ function DashSurveyList() {
             Past
           </button>
         </div>
-
-        {/* Survey Navbar*/}
+        {/* Survey Filter Mobile*/}
         <div
           id="selectMenu"
           className="sm:hidden flex border border-1 p-2 rounded-3xl bg-slate-200 mx-3 sm:mx-0"
         >
-          {/* Survey Navbar mobile*/}
           <select
             name="activeTab"
             id="activeTab"
@@ -210,8 +195,8 @@ function DashSurveyList() {
           />
         </div>
       </div>
-
-      <div className=" bg-slate-300 min-h-screen">
+      {/* List of all surveys */}
+      <div className=" bg-slate-200 min-h-screen">
         <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
           {/* List of recent surveys*/}
           {tabActive === "All" && (
@@ -248,75 +233,11 @@ function DashSurveyList() {
           </div>
         </div>
         {tabActive === "All" && surveyList.length > 0 && (
-          <div className="mb-1">
-            <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-              <div className="md:flex md:justify-around  w-20 md:w-72">
-                <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
-                  {surveyList[0].surveyName}
-                </h6>
-                <h6 className="text-center text-xs sm:text-sm font-semibold  hidden md:block w-28 ">
-                  {surveyList[0].surveyName}
-                </h6>
-                <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
-                  {surveyList[0].organization}
-                </h6>
-                <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
-                  {surveyList[0].organization}
-                </h6>
-              </div>
-
-              <div className="w-16 ">
-                <h6 className="text-xs sm:text-sm font-semibold">Start Date</h6>
-                <p className="text-xs">
-                  {surveyList[0].dateCreated.slice(0, 10)}
-                </p>
-              </div>
-              <div className="w-16">
-                <h6 className="text-xs sm:text-sm font-semibold">End Date</h6>
-                <p className="text-xs">{surveyList[0].dateEnd.slice(0, 10)}</p>
-              </div>
-
-              <div className="flex ">
-                <a
-                  className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-800 hover:opacity-90 hover:cursor-pointer w-20  sm:w-36 "
-                  href={`/survey/${surveyList[0]._id}`}
-                >
-                  <p className="w-full text-xs text-center">Take Survey</p>
-                </a>
-                <a
-                  href="/surveyedit"
-                  className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
-                >
-                  {edit}
-                </a>
-                <div
-                  className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
-                  id={surveyList[0]._id}
-                  onClick={(e) => {
-                    deleteSurvey(e);
-                  }}
-                >
-                  {del}
-                </div>
-                <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
-                  {view}
-                </div>
-                {!surveyList[0].public && (
-                  <div className=" h-10 py-3 rounded-2xl hidden sm:block">
-                    {lock}
-                  </div>
-                )}
-              </div>
-              <div className="flex lg:hidden h-full align-top hover:cursor-pointer sm:hidden">
-                {ellipsis}
-              </div>
-              {!surveyList[0].public && (
-                <div className="flex lg:hidden h-full align-top sm:hidden">
-                  {lock}
-                </div>
-              )}
-            </div>
-          </div>
+          <SurveyItem
+            survey={surveyList[0]}
+            deleteSurvey={deleteSurvey}
+            id={surveyList[0]._id}
+          />
         )}
 
         {/* List of active surveys*/}
@@ -329,83 +250,11 @@ function DashSurveyList() {
               surveyList.map((survey) => {
                 if (survey.status === true)
                   return (
-                    <div className="mb-1 " key={survey._id}>
-                      <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-                        <div className="md:flex md:justify-around   w-20 md:w-72">
-                          <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
-                            {survey.surveyName}
-                          </h6>
-                          <h6 className="text-center text-xs sm:text-sm font-semibold  hidden md:block w-28 ">
-                            {survey.surveyName}
-                          </h6>
-                          <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
-                            {survey.organization}
-                          </h6>
-                          <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
-                            {survey.organization}
-                          </h6>
-                        </div>
-
-                        <div className="w-16 ">
-                          <h6 className="text-xs sm:text-sm font-semibold">
-                            Start Date
-                          </h6>
-                          <p className="text-xs">
-                            {survey.dateCreated.slice(0, 10)}
-                          </p>
-                        </div>
-                        <div className="w-16">
-                          <h6 className="text-xs sm:text-sm font-semibold">
-                            End Date
-                          </h6>
-                          <p className="text-xs">
-                            {survey.dateEnd.slice(0, 10)}
-                          </p>
-                        </div>
-
-                        <div className="flex">
-                          <a
-                            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-800 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
-                            href={`/survey/${survey._id}`}
-                          >
-                            <p className="w-full text-xs text-center">
-                              Take Survey
-                            </p>
-                          </a>
-                          <div
-                            className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
-                            id={survey._id}
-                          >
-                            {edit}
-                          </div>
-                          <div
-                            className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
-                            id={survey._id}
-                            onClick={(e) => {
-                              deleteSurvey(e);
-                            }}
-                          >
-                            {del}
-                          </div>
-                          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                            <p>{view}</p>
-                          </div>
-                          {!survey.public && (
-                            <div className=" h-10 py-3 rounded-2xl  hidden sm:block">
-                              {lock}
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex sm:hidden h-full align-top hover:cursor-pointer">
-                          {ellipsis}
-                        </div>
-                        {!survey.public && (
-                          <div className="flex lg:hidden h-full align-top  sm:hidden">
-                            {lock}
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                    <SurveyItem
+                      survey={survey}
+                      deleteSurvey={deleteSurvey}
+                      id={survey._id}
+                    />
                   );
               })}
           </div>
@@ -421,80 +270,11 @@ function DashSurveyList() {
               surveyList.map((survey) => {
                 if (survey.status === false) {
                   return (
-                    <div className="mb-1" key={survey._id}>
-                      <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-                        <div className="md:flex md:justify-around   w-20 md:w-72">
-                          <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
-                            {survey.surveyName}
-                          </h6>
-                          <h6 className="text-center text-xs sm:text-sm font-semibold  hidden md:block w-28 ">
-                            {survey.surveyName}
-                          </h6>
-                          <h6 className="text-center text-xs  sm:text-sm truncate md:hidden w-24 ">
-                            {survey.organization}
-                          </h6>
-                          <h6 className="text-center text-xs  sm:text-sm  hidden md:block w-28 ">
-                            {survey.organization}
-                          </h6>
-                        </div>
-
-                        <div className="w-16 ">
-                          <h6 className="text-xs sm:text-sm font-semibold">
-                            Start Date
-                          </h6>
-                          <p className="text-xs">
-                            {survey.dateCreated.slice(0, 10)}
-                          </p>
-                        </div>
-                        <div className="w-16">
-                          <h6 className="text-xs sm:text-sm font-semibold">
-                            End Date
-                          </h6>
-                          <p className="text-xs">
-                            {survey.dateEnd.slice(0, 10)}
-                          </p>
-                        </div>
-
-                        <div className="flex">
-                          <a
-                            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-800 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
-                            href={`survey/${survey._id}`}
-                          >
-                            <p className="w-full text-xs text-center">
-                              View Survey
-                            </p>
-                          </a>
-                          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                            <p>{edit}</p>
-                          </div>
-                          <div
-                            className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
-                            id={survey._id}
-                            onClick={(e) => {
-                              deleteSurvey(e);
-                            }}
-                          >
-                            {del}
-                          </div>
-                          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                            <p>{view}</p>
-                          </div>
-                          {!survey.public && (
-                            <div className=" h-10 py-3 rounded-2xl   hidden sm:block hidden">
-                              {lock}
-                            </div>
-                          )}
-                        </div>
-                        <div className="flex sm:hidden h-full align-top hover:cursor-pointer">
-                          {ellipsis}
-                        </div>
-                        {!survey.public && (
-                          <div className="flex sm:hidden h-full align-top ">
-                            {lock}
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                    <SurveyItem
+                      survey={survey}
+                      deleteSurvey={deleteSurvey}
+                      id={survey._id}
+                    />
                   );
                 }
               })}
@@ -505,73 +285,16 @@ function DashSurveyList() {
         {tabActive === "Custom" && (
           <div>
             <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
-              <h1 className="font-bold text-md md:text-xl w-full">Result</h1>
+              <h1 className="font-bold text-md md:text-xl w-full">Results</h1>
             </div>
             {filteredSurveys.length > 0 &&
               filteredSurveys.map((survey) => {
                 return (
-                  <div className="mb-1" key={survey._id}>
-                    <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg">
-                      <div className="md:flex md:justify-around w-20 md:w-72">
-                        <h6 className="text-center text-xs sm:text-sm font-semibold w-24 sm:w-28">
-                          {survey.surveyName.slice(0, 18)}
-                        </h6>
-                        <h6 className="text-center text-xs sm:text-sm   w-24 sm:w-28">
-                          {survey.organization.slice(0, 8)}
-                        </h6>
-                      </div>
-
-                      <div className="w-16 ">
-                        <h6 className="text-xs sm:text-sm font-semibold">
-                          Start Date
-                        </h6>
-                        <p className="text-xs">
-                          {survey.dateCreated.slice(0, 10)}
-                        </p>
-                      </div>
-                      <div className="w-16">
-                        <h6 className="text-xs sm:text-sm font-semibold">
-                          End Date
-                        </h6>
-                        <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
-                      </div>
-
-                      <div className="flex">
-                        <a
-                          className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-700 hover:opacity-90 hover:cursor-pointer w-20 sm:w-36 "
-                          href={`/survey/${survey._id}`}
-                        >
-                          {survey.status ? (
-                            <p className="w-full text-xs text-center">
-                              Take Survey
-                            </p>
-                          ) : (
-                            <p className="w-full text-xs text-center">
-                              View Survey
-                            </p>
-                          )}
-                        </a>
-                        <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                          <p>{edit}</p>
-                        </div>
-                        <div
-                          className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer sm:block hidden"
-                          id={survey._id}
-                          onClick={(e) => {
-                            deleteSurvey(e);
-                          }}
-                        >
-                          {del}
-                        </div>
-                        <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer sm:block hidden">
-                          <p>{view}</p>
-                        </div>
-                      </div>
-                      <div className="flex sm:hidden h-full align-top hover:cursor-pointer ">
-                        {ellipsis}
-                      </div>
-                    </div>
-                  </div>
+                  <SurveyItem
+                    survey={survey}
+                    deleteSurvey={deleteSurvey}
+                    id={survey._id}
+                  />
                 );
               })}
           </div>

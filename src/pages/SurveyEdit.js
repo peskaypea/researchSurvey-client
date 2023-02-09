@@ -11,7 +11,7 @@ function SurveyEdit() {
   );
 
   return (
-    <div>
+    <div className="bg-white h-screen">
       <DashNav></DashNav>
       {!loading && <SurveyEditForm survey={data}></SurveyEditForm>}
     </div>
