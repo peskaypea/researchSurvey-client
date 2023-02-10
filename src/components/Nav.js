@@ -1,34 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../assets/SC.svg";
 import MobileNavMenu from "./MobileNavMenu";
 import Switch from "./Switch";
 
-function Nav2() {
+function Nav2({ theme, toggleTheme }) {
   const token = localStorage.getItem("token");
 
-  const [darkTheme, setDarkTheme] = useState(false);
-  const toggleTheme = () => {
-    setDarkTheme(!darkTheme);
-  };
-  console.log(darkTheme);
   return (
-    <div className={darkTheme ? "dark" : ""}>
-      <div className="h-26 flex justify-between items-center px-10 py-2 border-b-2 shadow-2xl mb:5 md:mb-10 dark:bg-slate-600">
+    <div className={theme ? "dark" : ""}>
+      <div className="h-26 flex justify-between items-center px-10 py-2  shadow-2xl   dark:bg-slate-600">
         <a href="/" className="md:w-60 w-1/2 z-100">
           <img src={Logo} alt="SurveyConnect" className="w-full " />
         </a>
         <div className="w-full hidden md:flex justify-end items-center">
           <div className="flex md:w-1/2 xl:w-1/3 justify-evenly">
-            <a href="/" className="hover:text-green-600">
+            <a href="/" className="hover:text-green-600 dark:text-white">
               Product
             </a>
-            <a href="/" className=" hover:text-green-600">
+            <a href="/" className=" hover:text-green-600 dark:text-white">
               Solutions
             </a>
-            <a href="/Pricing" className=" hover:text-green-600">
+            <a
+              href="/Pricing"
+              className=" hover:text-green-600 dark:text-white"
+            >
               Pricing
             </a>
-            <a href="/about" className=" hover:text-green-600">
+            <a href="/about" className=" hover:text-green-600 dark:text-white">
               About
             </a>
             <button onClick={toggleTheme}>
@@ -41,7 +39,7 @@ function Nav2() {
               <div>
                 <a
                   href="/dashboard"
-                  className="w-28 text-center py-2 px-4 rounded-3xl text-sky-50 bg-green-600"
+                  className="w-28 text-center py-2 px-4 rounded-3xl text-white bg-green-600 dark:bg-slate-400"
                 >
                   Dashboard
                 </a>

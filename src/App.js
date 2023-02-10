@@ -15,6 +15,8 @@ import AccessCode from "pages/AccessCode";
 import SurveyEdit from "pages/SurveyEdit";
 import UserProfile from "pages/UserProfile";
 import Pricing from "../src/pages/Pricing";
+import Nav from "components/Nav";
+
 function App() {
   const [darkTheme, setDarkTheme] = useState(false);
   const toggleTheme = () => {
@@ -23,10 +25,11 @@ function App() {
   console.log(darkTheme);
 
   return (
-    <div className="">
+    <div className={darkTheme ? "dark" : ""}>
+      <Nav theme={darkTheme} toggleTheme={toggleTheme} />
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home theme={darkTheme} />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/register" element={<Register />} />

@@ -3,10 +3,9 @@ import Nav from "../components/Nav";
 import Welcome from "../components/Welcome";
 import MobileNavMenu from "../components/MobileNavMenu";
 
-function Home() {
+function Home({ theme }) {
   return (
-    <div>
-      <Nav />
+    <div className={theme ? "dark" : ""}>
       <Welcome />
     </div>
   );

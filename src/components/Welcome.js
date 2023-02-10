@@ -18,24 +18,26 @@ function Welcome() {
       <div className="sc__main-container dark:bg-slate-700">
         <div className="flex flex-col md:flex-row justify-center">
           <div className="sc__main-container-info-text">
-            <h3>Build, Create, Connect</h3>
-            <h1>
+            <h3 className="text-green-600 dark:text-sky-300">
+              Build, Create, Connect
+            </h3>
+            <h1 className="dark:text-white">
               Ask the questions <br /> that matter
             </h1>
-            <p>
+            <p className="dark:text-slate-400">
               Connect with your customers. Get the answers you need with Survey
               Connect!
             </p>
             <div className="flex">
               <button
-                className=" bg-cyan-800 w-1/7 px-4 py-2 border rounded-3xl text-white mt-5 mx-2 hover:text-white hover:border-cyan-700 hover:cursor-pointer  hover:shadow-xl"
+                className="bg-green-600 w-1/7 px-4 py-2 border rounded-3xl text-white mt-5 mx-2 hover:text-white hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:border-sky-200 dark:hover:text-sky-200"
                 onClick={checkLogin}
               >
                 Get Started
               </button>
 
               <button
-                className=" border-cyan-900 w-1/7 px-4 py-2 border rounded-3xl text-cyan-800 mt-5 mx-2 hover:shadow-xl hover:cursor-pointer"
+                className="bg-green-600 border-sky-50 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:shadow-xl hover:cursor-pointer dark:bg-transparent dark:hover:border-sky-200 dark:hover:text-sky-200"
                 onClick={checkLogin}
               >
                 Take Survey
