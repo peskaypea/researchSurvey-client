@@ -6,19 +6,16 @@ import SurveyOverView from "components/SurveyOverView";
 function SurveyEdit() {
   const id = window.location.href.split("/").pop();
   const baseURL_development = "http://localhost:5000";
-  const token = localStorage.getItem("token");
-  // const { data, loading, error } = useFetch(
-  //   `${baseURL_development}/survey/${id}`,
-  //   token
-  // );
   const [data, setData] = useState({});
   console.log(data);
-  const requestHeaders = {
-    "Content-Type": "application/json",
-    authorization: `Bearer ${token}`,
-    type: "edit",
-  };
+
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const requestHeaders = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+      type: "edit",
+    };
     fetch(`${baseURL_development}/survey/${id}`, {
       method: "GET",
       headers: requestHeaders,
@@ -27,7 +24,7 @@ function SurveyEdit() {
       .then((data) => {
         setData(data);
       });
-  }, []);
+  }, [id]);
 
   const changeTab = (e) => {
     setTab(e.target.value);
