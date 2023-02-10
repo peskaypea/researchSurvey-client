@@ -2,7 +2,6 @@ import "./App.css";
 
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
 import Contact from "components/Contact";
 import About from "components/About";
 import Dashboard from "pages/Dashboard";
@@ -14,6 +13,7 @@ import ASLSurvey from "pages/ASLSurvey";
 import AccessCode from "pages/AccessCode";
 import SurveyEdit from "pages/SurveyEdit";
 import UserProfile from "pages/UserProfile";
+import SurveyResponse from "pages/SurveyResponse";
 import Pricing from "../src/pages/Pricing";
 import Nav from "components/Nav";
 
@@ -41,6 +41,7 @@ function App() {
           <Route path="/verify" element={<AccessCode />} />
           <Route path="/user/" element={<UserProfile />} />
           <Route path="/pricing" element={<Pricing />} />
+          <Route path="/responses" element={<SurveyResponse />} />
         </Routes>
       </Router>
     </div>
