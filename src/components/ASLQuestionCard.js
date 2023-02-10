@@ -4,15 +4,20 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 const home = <FontAwesomeIcon icon={faHome} />;
+const token = localStorage.getItem("token");
+const baseURL_development = "http://localhost:5000";
+const emailFormatRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 function QuestionCard({ survey }) {
+  const [error, setError] = useState({ message: "", valid: true });
   const [questionNum, setQuestionNum] = useState(0);
   const questions = survey.questions.map((q) => {
     return q.question;
   });
+  const surveyID = survey._id;
   const initialResponse = {};
   for (const question of questions) {
-    initialResponse[question] = "";
+    initialResponse[question] = {};
   }
 
   //Survey response
@@ -20,10 +25,9 @@ function QuestionCard({ survey }) {
   const start = Date.now();
   const currentQuestion = survey.questions[questionNum].question;
 
-  console.log(response);
-
   const navigate = useNavigate();
-  const nextQuestion = (action) => {
+
+  const nextQuestion = () => {
     const time = (Date.now() - start) / 1000;
     const obj = {
       ...response,
@@ -37,18 +41,11 @@ function QuestionCard({ survey }) {
       },
     };
 
-    if (action === "next") {
-      if (questionNum < survey.questions.length - 1) setResponse(obj);
-      setQuestionNum((oldQIndex) => (oldQIndex += 1));
-    } else if (action === "prev") {
-      if (questionNum > 0) setQuestionNum((oldQIndex) => (oldQIndex -= 1));
-    }
+    if (questionNum < survey.questions.length - 1) setResponse(obj);
+    setQuestionNum((oldQIndex) => (oldQIndex += 1));
   };
 
   const saveResponse = (e) => {
-    console.log(currentQuestion);
-    console.log({ [e.target.name]: e.target.value });
-
     const obj = {
       ...response,
       [currentQuestion]: {
@@ -63,7 +60,20 @@ function QuestionCard({ survey }) {
 
     setResponse(obj);
   };
-
+  const submitResponse = async () => {
+    const requestHeaders = {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+      surveyID: surveyID,
+    };
+    const res = await fetch(`${baseURL_development}/response/submitresponse`, {
+      method: "POST",
+      headers: requestHeaders,
+      body: JSON.stringify(response),
+    });
+    const data = await res.json();
+    console.log(data);
+  };
   const navigateHome = () => {
     const res = window.confirm(
       "Are you sure you want to return? All your progress will be lost."
@@ -72,6 +82,49 @@ function QuestionCard({ survey }) {
       navigate("/dashboard");
     }
   };
+  const verifyEmail = async () => {
+    const email = { email: response[currentQuestion]["Question 1"].email };
+
+    if (emailFormatRegex.test(email.email)) {
+      const res = await fetch(
+        `${baseURL_development}/response/submitresponse/verifyemail`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(email),
+        }
+      );
+      const data = await res.json();
+      console.log(data);
+      if (data.message === "Email OK") {
+        setQuestionNum((oldQNum) => (oldQNum += 1));
+        setError((oldData) => {
+          return {
+            ...oldData,
+            message: data.message,
+            valid: true,
+          };
+        });
+      } else {
+        setError((oldData) => {
+          return {
+            ...oldData,
+            message: data.message,
+            valid: false,
+          };
+        });
+      }
+    } else {
+      setError((oldData) => {
+        return {
+          ...oldData,
+          message: "Please enter a valid email",
+          valid: false,
+        };
+      });
+    }
+  };
+
   return (
     <div className="w-full text-center h-screen bg-cyan-900">
       <div className="mb-8 pt-8 text-sky-100">
@@ -98,8 +151,6 @@ function QuestionCard({ survey }) {
           {survey.questions[questionNum].questionType === "MC" && (
             <div className="ml-5">
               {survey.questions[questionNum].options.map((option, index) => {
-                let id = Math.random();
-
                 return (
                   <div key={index} className="flex items-center  mb-5">
                     <input
@@ -109,11 +160,17 @@ function QuestionCard({ survey }) {
                       className=" w-4 h-4 mr-3"
                       name={"type"}
                       onChange={(e) => saveResponse(e)}
+                      required
                     />
                     <label htmlFor={option}>{option}</label>
                   </div>
                 );
               })}
+              {!error.valid && (
+                <p className="text-start text-sm text-red-400">
+                  {error.message}
+                </p>
+              )}
             </div>
           )}
 
@@ -127,7 +184,13 @@ function QuestionCard({ survey }) {
                 id="fullName"
                 className="mb-5 rounded-lg h-8 px-3 outline-0"
                 onChange={(e) => saveResponse(e)}
+                required
               />
+              {!error.valid && (
+                <p className="text-red-500  text-sm">
+                  <i>*{error.message}*</i>
+                </p>
+              )}
               <label htmlFor="email">Email Address</label>
               <input
                 type="email"
@@ -135,6 +198,7 @@ function QuestionCard({ survey }) {
                 id="email"
                 className="mb-5 rounded-lg h-8 px-3 outline-0"
                 onChange={(e) => saveResponse(e)}
+                required
               />
             </div>
           )}
@@ -186,12 +250,18 @@ function QuestionCard({ survey }) {
                             survey.questions[questionNum].question[index]
                           ]
                         }
+                        required
                         onChange={(e) => saveResponse(e)}
                       />
                     )}
                   </div>
                 );
               })}
+              {!error.valid && (
+                <p className="text-red-400 text-sm">
+                  <i>*{error.message}*</i>
+                </p>
+              )}
             </div>
           )}
         </div>
@@ -205,17 +275,31 @@ function QuestionCard({ survey }) {
           >
             Previous
           </button> */}
-          {questionNum < survey.questions.length - 1 ? (
+          {questionNum === 0 && (
             <button
-              onClick={() => nextQuestion("next")}
+              className="bg-cyan-900 w-24 text-sm px-4 py-2 border rounded-3xl text-white mt-5 active:bg-cyan-900/75"
+              onClick={() => {
+                verifyEmail();
+              }}
+            >
+              Verify
+            </button>
+          )}
+          {questionNum < survey.questions.length - 1 && questionNum !== 0 && (
+            <button
+              onClick={() => nextQuestion()}
               className="bg-cyan-900 w-24 text-sm px-4 py-2 border rounded-3xl text-white mt-5 active:bg-cyan-900/75"
             >
               Next
             </button>
-          ) : (
+          )}
+          {questionNum === survey.questions.length - 1 && (
             <button
               type="button"
               className="bg-cyan-900 w-24 text-sm px-4 py-2 border rounded-3xl text-white mt-5 active:bg-cyan-900/75"
+              onClick={() => {
+                submitResponse();
+              }}
             >
               Submit
             </button>

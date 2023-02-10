@@ -7,14 +7,14 @@ import {
   faEllipsisV,
   faLock,
 } from "@fortawesome/free-solid-svg-icons";
-function SurveyItem({ survey, deleteSurvey, id }) {
+function SurveyItem({ survey, deleteSurvey }) {
   const del = <FontAwesomeIcon icon={faX} />;
   const edit = <FontAwesomeIcon icon={faEdit} />;
   const view = <FontAwesomeIcon icon={faEye} />;
   const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
   const lock = <FontAwesomeIcon icon={faLock} size={"sm"} />;
   return (
-    <div className="mb-2 " key={id}>
+    <div className="mb-2 ">
       <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg shadow-2xl">
         <div className="md:flex md:justify-around  w-20 md:w-72">
           <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">

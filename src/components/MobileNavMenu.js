@@ -21,14 +21,12 @@ function MobileNavMenu() {
       <div
         className={
           collapse
-            ? "flex justify-between md:hidden fixed text-end w-full -right-5 -top-5  items-center "
-            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  -top-5 items-center bg-cyan-900/[0.9] text-white"
+            ? "flex justify-end md:hidden fixed text-end w-1/2 -right-5 -top-5  items-center "
+            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center bg-cyan-900/[0.9] text-white "
         }
       >
         <div
-          className={
-            collapse ? "invisible" : "h-screen text-start ml-10 pt-16 "
-          }
+          className={collapse ? "hidden" : "h-screen text-start ml-10 pt-16 "}
         >
           {/* Mobile Nav Items */}
           <div className="flex flex-col pb-2">
@@ -65,10 +63,22 @@ function MobileNavMenu() {
             )}
           </div>
         </div>
-        <div className=" h-screen ">
-          <button className=" pt-8 pr-16 w-1/6" onClick={() => collapseMenu()}>
-            {collapse ? mobileMenu : menuCloseBtn}
-          </button>
+        <div className=" h-screen">
+          {collapse ? (
+            <button
+              className=" pt-8 pr-16 w-full"
+              onClick={() => collapseMenu()}
+            >
+              {mobileMenu}
+            </button>
+          ) : (
+            <button
+              className=" pt-4 pr-16 w-1/6"
+              onClick={() => collapseMenu()}
+            >
+              {menuCloseBtn}
+            </button>
+          )}
         </div>
       </div>
     </div>

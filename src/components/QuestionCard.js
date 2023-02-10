@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-const baseURL_development = "http://localhost:5000/response/submitresponse";
+const baseURL_development = "http://localhost:5000";
 const home = <FontAwesomeIcon icon={faHome} />;
 const surveyID = window.location.href.split("/").pop();
 const token = localStorage.getItem("token");
@@ -75,7 +75,7 @@ function QuestionCard({ survey }) {
       authorization: `Bearer ${token}`,
       surveyID: surveyID,
     };
-    const res = await fetch(`${baseURL_development}`, {
+    const res = await fetch(`${baseURL_development}/response/submitresponse`, {
       method: "POST",
       headers: requestHeaders,
       body: JSON.stringify(response),

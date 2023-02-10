@@ -6,8 +6,8 @@ function Nav2() {
   const token = localStorage.getItem("token");
   return (
     <div className="h-26 flex justify-between items-center px-10 py-2 border-b-2 shadow-2xl mb:5 md:mb-10">
-      <a href="/" className="md:w-60 w-1/2">
-        <img src={Logo} alt="SurveyConnect" className="w-full" />
+      <a href="/" className="md:w-60 w-1/2 z-100">
+        <img src={Logo} alt="SurveyConnect" className="w-full " />
       </a>
       <div className="w-full hidden md:flex justify-end items-center">
         <div className="flex md:w-1/2 xl:w-1/3 justify-evenly">

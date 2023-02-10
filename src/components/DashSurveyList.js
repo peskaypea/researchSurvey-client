@@ -50,6 +50,7 @@ function DashSurveyList() {
   };
 
   const deleteSurvey = async (e) => {
+    console.log(e.target.id);
     let id = "";
     if (e.target.id) {
       id = e.target.id;
@@ -236,7 +237,7 @@ function DashSurveyList() {
           <SurveyItem
             survey={surveyList[0]}
             deleteSurvey={deleteSurvey}
-            id={surveyList[0]._id}
+            key={surveyList[0]._id}
           />
         )}
 
@@ -253,7 +254,7 @@ function DashSurveyList() {
                     <SurveyItem
                       survey={survey}
                       deleteSurvey={deleteSurvey}
-                      id={survey._id}
+                      key={survey._id}
                     />
                   );
               })}
@@ -273,7 +274,7 @@ function DashSurveyList() {
                     <SurveyItem
                       survey={survey}
                       deleteSurvey={deleteSurvey}
-                      id={survey._id}
+                      key={survey._id}
                     />
                   );
                 }
@@ -293,7 +294,7 @@ function DashSurveyList() {
                   <SurveyItem
                     survey={survey}
                     deleteSurvey={deleteSurvey}
-                    id={survey._id}
+                    key={survey._id}
                   />
                 );
               })}
