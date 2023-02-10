@@ -3,10 +3,9 @@ import "./About.css";
 import Navbar from "./Nav";
 import aboutImage from "../assets/SuveryConnect.png";
 
-const About = () => {
+const About = ({ theme }) => {
   return (
-    <div>
-      <Navbar />
+    <div className={theme ? "dark" : ""}>
       <div className="">
         <div className="flex justify-center">
           <h1 className="text-4xl text-cyan-800 ">

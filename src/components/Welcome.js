@@ -15,8 +15,8 @@ function Welcome() {
   };
   return (
     <div>
-      <div className="sc__main-container dark:bg-slate-700">
-        <div className="flex flex-col md:flex-row justify-center">
+      <div className="sc__main-container dark:bg-slate-700 ">
+        <div className="flex flex-col md:flex-row justify-center h-screen dark:h-screen">
           <div className="sc__main-container-info-text">
             <h3 className="text-green-600 dark:text-sky-300">
               Build, Create, Connect

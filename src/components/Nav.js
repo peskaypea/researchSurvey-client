@@ -3,7 +3,7 @@ import Logo from "../assets/SC.svg";
 import MobileNavMenu from "./MobileNavMenu";
 import Switch from "./Switch";
 
-function Nav2({ theme, toggleTheme }) {
+function Nav2({ theme, toggleTheme, tab, navigateTab }) {
   const token = localStorage.getItem("token");
 
   return (
@@ -14,21 +14,42 @@ function Nav2({ theme, toggleTheme }) {
         </a>
         <div className="w-full hidden md:flex justify-end items-center">
           <div className="flex md:w-1/2 xl:w-1/3 justify-evenly">
-            <a href="/" className="hover:text-green-600 dark:text-white">
-              Product
-            </a>
-            <a href="/" className=" hover:text-green-600 dark:text-white">
-              Solutions
-            </a>
-            <a
-              href="/Pricing"
+            <button
+              className="hover:text-green-600 dark:text-white"
+              value={"Products"}
+              onClick={(e) => {
+                navigateTab(e);
+              }}
+            >
+              Products
+            </button>
+            <button
               className=" hover:text-green-600 dark:text-white"
+              value={"Solutions"}
+              onClick={(e) => {
+                navigateTab(e);
+              }}
+            >
+              Solutions
+            </button>
+            <button
+              className=" hover:text-green-600 dark:text-white"
+              value={"Pricing"}
+              onClick={(e) => {
+                navigateTab(e);
+              }}
             >
               Pricing
-            </a>
-            <a href="/about" className=" hover:text-green-600 dark:text-white">
+            </button>
+            <button
+              className=" hover:text-green-600 dark:text-white"
+              value={"About"}
+              onClick={(e) => {
+                navigateTab(e);
+              }}
+            >
               About
-            </a>
+            </button>
             <button onClick={toggleTheme}>
               <Switch />
             </button>
