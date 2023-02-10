@@ -15,7 +15,7 @@ function Welcome() {
   };
   return (
     <div>
-      <div className="sc__main-container">
+      <div className="sc__main-container dark:bg-slate-700">
         <div className="flex flex-col md:flex-row justify-center">
           <div className="sc__main-container-info-text">
             <h3>Build, Create, Connect</h3>

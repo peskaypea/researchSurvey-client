@@ -1,6 +1,6 @@
 import "./App.css";
 
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Contact from "components/Contact";
@@ -16,6 +16,12 @@ import SurveyEdit from "pages/SurveyEdit";
 import UserProfile from "pages/UserProfile";
 import Pricing from "../src/pages/Pricing";
 function App() {
+  const [darkTheme, setDarkTheme] = useState(false);
+  const toggleTheme = () => {
+    setDarkTheme(!darkTheme);
+  };
+  console.log(darkTheme);
+
   return (
     <div className="">
       <Router>
