@@ -1,12 +1,17 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Welcome from "../components/Welcome";
-import MobileNavMenu from "../components/MobileNavMenu";
 import Pricing from "../components/Pricing";
 import About from "../components/About";
-function Home({ theme, tab }) {
+function Home({ theme, tab, darkTheme, toggleTheme, navigateTab }) {
   return (
-    <div className={theme ? "dark" : ""}>
+    <div className={theme ? "h-screen bg-slate-700 " : "h-screen"}>
+      <Nav
+        theme={darkTheme}
+        toggleTheme={toggleTheme}
+        tab={tab}
+        navigateTab={navigateTab}
+      />
       {tab === "Welcome" && <Welcome theme={theme} />}
       {tab === "Pricing" && <Pricing theme={theme} />}
       {tab === "About" && <About theme={theme} />}

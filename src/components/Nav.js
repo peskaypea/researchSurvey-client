@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Logo from "../assets/SC.svg";
 import MobileNavMenu from "./MobileNavMenu";
 import Switch from "./Switch";
@@ -12,7 +12,7 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
         <a href="/" className="md:w-60 w-1/2 z-100">
           <img src={Logo} alt="SurveyConnect" className="w-full " />
         </a>
-        <div className="w-full hidden md:flex justify-end items-center">
+        <div className="w-full hidden md:flex md:justify-center lg:justify-end items-center">
           <div className="flex md:w-1/2 xl:w-1/3 justify-evenly">
             <button
               className="hover:text-green-600 dark:text-white"
@@ -50,11 +50,12 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
             >
               About
             </button>
+          </div>
+          <div>
             <button onClick={toggleTheme}>
               <Switch />
             </button>
           </div>
-
           <div className="md:ml-4">
             {token ? (
               <div>
@@ -66,16 +67,22 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
                 </a>
               </div>
             ) : (
-              <div className="w-48 flex  items-center">
+              <div
+                className={
+                  theme
+                    ? "w-48 flex items-center text-sky-50"
+                    : "w-48 flex items-center"
+                }
+              >
                 <a
                   href="/login"
-                  className="w-20 text-center py-1 px-4 rounded-3xl   "
+                  className="w-20 text-center py-1 px-4 rounded-3xl"
                 >
                   Login
                 </a>
                 <a
                   href="/register"
-                  className="w-24 text-center py-1 px-4 rounded-3xl text-sky-50 bg-green-600 hover:border hover:border-green-600 hover:bg-white hover:text-green-600"
+                  className="w-24 text-center py-1 px-4 rounded-3xl text-sky-50 bg-green-600 hover:border hover:border-green-600 hover:bg-white hover:text-green-600 dark:bg-slate-800 dark:hover:text-slate-700 dark:hover:border-sky-50 dark:hover:bg-sky-50"
                 >
                   Sign Up
                 </a>

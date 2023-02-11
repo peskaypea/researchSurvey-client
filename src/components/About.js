@@ -1,6 +1,6 @@
 import React from "react";
 import "./About.css";
-import Navbar from "./Nav";
+
 import aboutImage from "../assets/SuveryConnect.png";
 
 const About = ({ theme }) => {

@@ -44,6 +44,18 @@ function SurveyEditNav({ tab, changeTab }) {
             Questions
           </button>
         </div>
+        <div className="mr-3 text-gray-400">{arrowRight}</div>
+        <div
+          className={
+            tab === "Data"
+              ? "mr-3 w-20 border-b-4 border-cyan-900 h-full flex items-center justify-center text-cyan-900 font-bold"
+              : "mr-3 w-20 border-b-4 border-transparent h-full flex items-center justify-center "
+          }
+        >
+          <button value={"Data"} onClick={(e) => changeTab(e)}>
+            Data
+          </button>
+        </div>
       </div>
     </div>
   );

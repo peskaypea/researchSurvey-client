@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Moon from "../assets/Moon.svg";
 import Sun from "../assets/Sun.svg";
 

@@ -10,7 +10,7 @@ const Pricing = ({ theme }) => {
           Choose a plan that works for you
         </h1>
       </div>
-      <div className="flex justify-center dark:bg-slate-700 dark:h-screen">
+      <div className="flex justify-center ">
         <PricingCard theme={theme} />
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-function SurveyEditForm({ survey }) {
-  const [formBody, setFormBody] = useState(survey);
+function SurveyEditForm({ data }) {
+  const [formBody, setFormBody] = useState(data);
 
   const updateForm = (e) => {
     if (e.target.name === "public") {
@@ -32,7 +32,7 @@ function SurveyEditForm({ survey }) {
           type="text"
           name="surveyName"
           id="surveyName"
-          value={formBody.surveyName}
+          value={formBody.survey.surveyName}
           onChange={(e) => {
             updateForm(e);
           }}
@@ -44,7 +44,7 @@ function SurveyEditForm({ survey }) {
         <input
           className="h-8 rounded-lg px-3 outline-none  mb-5"
           type="text"
-          value={formBody.organization}
+          value={formBody.survey.organization}
           name="organization"
           id="organization"
           onChange={(e) => {
@@ -60,7 +60,7 @@ function SurveyEditForm({ survey }) {
               className="h-8 rounded-lg px-3 outline-none  mb-5"
               type="text"
               name="surveyType"
-              value={formBody.surveyType}
+              value={formBody.survey.surveyType}
               id="surveyType"
               onChange={(e) => {
                 updateForm(e);
@@ -74,7 +74,7 @@ function SurveyEditForm({ survey }) {
             <input
               className="h-8 rounded-lg px-3 outline-none"
               type="date"
-              value={formBody.dateEnd.toString().slice(0, 10)}
+              value={formBody.survey.dateEnd.toString().slice(0, 10)}
               name="dateEnd"
               id="dateEnd"
               onChange={(e) => {
@@ -97,14 +97,14 @@ function SurveyEditForm({ survey }) {
                 updateForm(e);
               }}
             >
-              <option value={Number(formBody.public)}>
-                {formBody.public ? "--Public--" : "--Private--"}
+              <option value={Number(formBody.survey.public)}>
+                {formBody.survey.public ? "--Public--" : "--Private--"}
               </option>
               <option value={1}>Public</option>
               <option value={0}>Private</option>
             </select>
           </div>
-          {!formBody.public && (
+          {!formBody.survey.public && (
             <div className="flex flex-col w-1/2 pl-4 gap-2">
               <label htmlFor="surveyType " className="font-bold ">
                 Access Code
@@ -129,7 +129,7 @@ function SurveyEditForm({ survey }) {
           className="rounded-lg p-3 resize-none outline-none mb-5 h-32"
           name="description"
           id="description"
-          value={formBody.description}
+          value={formBody.survey.description}
           onChange={(e) => {
             updateForm(e);
           }}

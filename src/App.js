@@ -1,9 +1,6 @@
 import "./App.css";
-
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Contact from "components/Contact";
-import About from "components/About";
 import Dashboard from "pages/Dashboard";
 import Home from "pages/Home";
 import Register from "pages/Register";
@@ -14,30 +11,41 @@ import AccessCode from "pages/AccessCode";
 import SurveyEdit from "pages/SurveyEdit";
 import UserProfile from "pages/UserProfile";
 import SurveyResponse from "pages/SurveyResponse";
-import Pricing from "./components/Pricing";
-import Nav from "components/Nav";
 
 function App() {
-  const [darkTheme, setDarkTheme] = useState(false);
+  //Set theme to light by default if user hasn't set theme
+  const theme = JSON.parse(localStorage.getItem("darkTheme")) ?? false;
+  const [darkTheme, setDarkTheme] = useState(theme);
+  //Toggle b/w dark/light
   const toggleTheme = () => {
-    setDarkTheme(!darkTheme);
+    setDarkTheme((oldTheme) => {
+      //Save user theme preference
+      localStorage.setItem("darkTheme", JSON.stringify(!oldTheme));
+      return !oldTheme;
+    });
   };
-  const [tab, setTab] = useState("Welcome");
 
+  const [tab, setTab] = useState("Welcome");
+  //Change tab
   const navigateTab = (e) => {
     setTab(e.target.value);
   };
   return (
     <div className={darkTheme ? "dark" : ""}>
-      <Nav
-        theme={darkTheme}
-        toggleTheme={toggleTheme}
-        tab={tab}
-        navigateTab={navigateTab}
-      />
       <Router>
         <Routes>
-          <Route path="/" element={<Home theme={darkTheme} tab={tab} />} />
+          <Route
+            path="/"
+            element={
+              <Home
+                theme={darkTheme}
+                tab={tab}
+                toggleTheme={toggleTheme}
+                navigateTab={navigateTab}
+                darkTheme={darkTheme}
+              />
+            }
+          />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<Dashboard />} />
