@@ -35,7 +35,7 @@ const Activity = (
 
 function UserCard({ user, loading }) {
   const [tab, setTab] = useState("Profile");
-  console.log(user);
+
   const changeTab = (e) => {
     if (e.target.value) {
       setTab(e.target.value);

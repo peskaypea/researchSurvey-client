@@ -2,3 +2,8 @@
     background: rgb(29, 103, 119);
     background: linear-gradient(90deg, rgba(29, 103, 119, 1) 33%, rgba(33, 142, 97, 1) 66%, rgba(19, 136, 93, 1) 80%);
 }
+
+.dark-background {
+    background: rgb(49, 63, 82);
+    background: linear-gradient(90deg, rgba(49, 63, 82, 1) 33%, rgba(79, 109, 149, 1) 66%, rgba(92, 126, 172, 1) 80%);
+}

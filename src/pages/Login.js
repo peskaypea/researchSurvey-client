@@ -3,7 +3,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faEye } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import "./GradientBG.css";
-function Login() {
+import Spinner from "../assets/loading-gif.gif";
+
+function Login({ theme }) {
   const HomeIcon = <FontAwesomeIcon icon={faHome} />;
   const EyeReveal = <FontAwesomeIcon icon={faEye} />;
   const baseURL_development = "http://localhost:5000";
@@ -23,6 +25,7 @@ function Login() {
   const [rememberLogin, setRememberLogin] = useState(false);
   const [authErrorMsg, setAuthErrorMsg] = useState("");
   const [revealPass, setRevealPass] = useState(false);
+  const [loading, setLoading] = useState(false);
   const inputOnChange = (e) => {
     setLoginInfo((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -30,7 +33,7 @@ function Login() {
   };
 
   const logUserIn = async (userInfo, e) => {
-    e.preventDefault();
+    setLoading(true);
     const response = await fetch(`${baseURL_development}/user/login`, {
       method: "POST",
       headers: {
@@ -51,7 +54,13 @@ function Login() {
     setAuthErrorMsg("");
   };
   return (
-    <div className="w-full h-screen flex items-center justify-center background pb-1">
+    <div
+      className={
+        theme
+          ? "w-full h-screen flex items-center justify-center dark-background pb-1"
+          : "w-full h-screen flex items-center justify-center background pb-1"
+      }
+    >
       <div className="w-96 xl:w-1/4 flex flex-col h-5/7 border-transparet rounded-2xl p-10 bg-slate-800/50">
         <form action="" className="flex flex-col w-full">
           <p className="text-end text-sky-100 text-sm">
@@ -161,13 +170,16 @@ function Login() {
             />
             <p className="text-sm text-sky-100">Remember Me</p>
           </div>
-          <button
-            type="submit"
-            className="w-full w-full bg-zinc-900/75 h-10 text-sky-100"
+          <div
+            className="w-full w-full bg-zinc-900/75 h-10 text-sky-100 flex justify-center items-center hover:cursor-pointer"
             onClick={(e) => logUserIn(loginInfo, e)}
           >
-            Log In
-          </button>
+            {!loading ? (
+              <span>Log In</span>
+            ) : (
+              <img src={Spinner} alt="Spinner" className="h-1/2"></img>
+            )}
+          </div>
         </form>
         <a href="/" className="text-white text-center mt-5">
           {HomeIcon}

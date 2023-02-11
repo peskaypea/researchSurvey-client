@@ -46,8 +46,8 @@ function App() {
               />
             }
           />
-          <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register theme={darkTheme} />} />
+          <Route path="/login" element={<Login theme={darkTheme} />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/survey/asl" element={<ASLSurvey />} />
           <Route path="/survey/:id" element={<Survey />} />

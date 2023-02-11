@@ -3,10 +3,10 @@ import "./GradientBG.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-
+import Spinner from "../assets/loading-gif.gif";
 const emailFormatRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-function Register() {
+function Register({ theme }) {
   const HomeIcon = <FontAwesomeIcon icon={faHome} />;
   const navigate = useNavigate();
   useEffect(() => {
@@ -22,7 +22,7 @@ function Register() {
   const [termsOfUse, setTermsOfUse] = useState(false);
   const [promotionEmailAgree, setPromotionEmailAgree] = useState(false);
   const [emailFormat, setEmailFormat] = useState(true);
-
+  const [loading, setLoading] = useState(false);
   const inputOnChange = (e) => {
     setUserInfo((prev) => {
       return { ...prev, [e.target.name]: e.target.value };
@@ -32,6 +32,7 @@ function Register() {
 
   const registerUser = async (user, e) => {
     e.preventDefault();
+    setLoading(true);
     if (emailFormatRegex.test(user.email)) {
       const response = await fetch(
         "https://surveyconnect-server.onrender.com/user/register",
@@ -43,10 +44,9 @@ function Register() {
           body: JSON.stringify(user),
         }
       );
-
       const data = await response.json();
-
       if (data.token) {
+        console.log("in");
         localStorage.setItem("token", data.token);
         navigate("/dashboard");
       } else {
@@ -66,7 +66,13 @@ function Register() {
     }
   };
   return (
-    <div className="w-full h-screen flex items-center justify-center background pb-1">
+    <div
+      className={
+        theme
+          ? "w-full h-screen flex items-center justify-center dark-background pb-1"
+          : "w-full h-screen flex items-center justify-center background pb-1"
+      }
+    >
       <div className="w-96 xl:w-1/4 h-5/7  border-transparent rounded-2xl p-10 bg-slate-800/50">
         <form action="" className="flex flex-col w-full">
           {card === 1 && (
@@ -221,13 +227,16 @@ function Register() {
             </button>
           )}
           {card === 1 && (
-            <button
-              type="submit"
-              className="w-full w-full bg-zinc-900/75 h-10 text-sky-100"
+            <div
+              className="w-full w-full bg-zinc-900/75 h-10 text-sky-100 hover:cursor-pointer flex justify-center items-center"
               onClick={(e) => registerUser(userInfo, e)}
             >
-              Create Account
-            </button>
+              {!loading ? (
+                <span>Create Account</span>
+              ) : (
+                <img src={Spinner} alt="Spinner" className="h-1/2"></img>
+              )}
+            </div>
           )}
           <a href="/" className="text-white text-center mt-5">
             {HomeIcon}
