@@ -37,7 +37,7 @@ function Welcome() {
               </button>
 
               <button
-                className="bg-green-600 border-sky-50 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:shadow-xl hover:cursor-pointer dark:bg-transparent dark:hover:border-sky-200 dark:hover:text-sky-200"
+                className="bg-green-600 border-sky-50 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:shadow-xl hover:cursor-pointer dark:bg-transparent dark:hover:border-sky-200 dark:hover:text-sky-200 "
                 onClick={checkLogin}
               >
                 Take Survey
