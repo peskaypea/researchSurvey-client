@@ -15,7 +15,7 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
         <div className="w-full hidden md:flex md:justify-center lg:justify-end items-center">
           <div className="flex md:w-1/2 xl:w-1/3 justify-evenly">
             <button
-              className="hover:text-green-600 dark:text-white"
+              className="hover:text-green-600 dark:text-white dark:hover:text-sky-200"
               value={"Products"}
               onClick={(e) => {
                 navigateTab(e);
@@ -24,7 +24,7 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
               Products
             </button>
             <button
-              className=" hover:text-green-600 dark:text-white"
+              className=" hover:text-green-600 dark:text-white dark:hover:text-sky-200"
               value={"Solutions"}
               onClick={(e) => {
                 navigateTab(e);
@@ -33,7 +33,7 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
               Solutions
             </button>
             <button
-              className=" hover:text-green-600 dark:text-white"
+              className=" hover:text-green-600 dark:text-white dark:hover:text-sky-200"
               value={"Pricing"}
               onClick={(e) => {
                 navigateTab(e);
@@ -42,7 +42,7 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
               Pricing
             </button>
             <button
-              className=" hover:text-green-600 dark:text-white"
+              className=" hover:text-green-600 dark:text-white dark:hover:text-sky-200"
               value={"About"}
               onClick={(e) => {
                 navigateTab(e);
@@ -61,7 +61,7 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
               <div>
                 <a
                   href="/dashboard"
-                  className="w-28 text-center py-2 px-4 rounded-3xl text-white bg-green-600 dark:bg-slate-400"
+                  className="w-28 text-center py-2 px-4 rounded-3xl text-white bg-green-600 dark:bg-sky-400 dark:hover:bg-sky-600"
                 >
                   Dashboard
                 </a>
