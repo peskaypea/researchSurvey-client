@@ -3,7 +3,16 @@ import Logo from "../assets/SC.svg";
 import MobileNavMenu from "./MobileNavMenu";
 import Switch from "./Switch";
 
-function Nav2({ theme, toggleTheme, tab, navigateTab }) {
+function Nav2({
+  theme,
+  toggleTheme,
+  tab,
+  navigateTab,
+  active,
+  handleChangeActive,
+  toggle,
+  setToggle,
+}) {
   const token = localStorage.getItem("token");
 
   return (
@@ -53,7 +62,12 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
           </div>
           <div>
             <button onClick={toggleTheme}>
-              <Switch />
+              <Switch
+                active={active}
+                handleChangeActive={handleChangeActive}
+                toggle={toggle}
+                setToggle={setToggle}
+              />
             </button>
           </div>
           <div className="md:ml-4">
@@ -91,7 +105,14 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
           </div>
         </div>
         <div className="w-full md:w-0">
-          <MobileNavMenu />
+          <MobileNavMenu
+            theme={theme}
+            toggleTheme={toggleTheme}
+            active={active}
+            handleChangeActive={handleChangeActive}
+            toggle={toggle}
+            setToggle={setToggle}
+          />
         </div>
       </div>
     </div>

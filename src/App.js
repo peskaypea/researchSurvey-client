@@ -16,6 +16,15 @@ function App() {
   //Set theme to light by default if user hasn't set theme
   const theme = JSON.parse(localStorage.getItem("darkTheme")) ?? false;
   const [darkTheme, setDarkTheme] = useState(theme);
+  const [active, setActive] = useState(true);
+
+  const handleChangeActive = () => {
+    setActive((previousIcon) => {
+      return !previousIcon;
+    });
+  };
+
+  const [toggle, setToggle] = useState(true);
   //Toggle b/w dark/light
   const toggleTheme = () => {
     setDarkTheme((oldTheme) => {
@@ -43,6 +52,10 @@ function App() {
                 toggleTheme={toggleTheme}
                 navigateTab={navigateTab}
                 darkTheme={darkTheme}
+                active={active}
+                handleChangeActive={handleChangeActive}
+                toggle={toggle}
+                setToggle={setToggle}
               />
             }
           />
