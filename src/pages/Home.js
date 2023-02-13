@@ -3,7 +3,17 @@ import Nav from "../components/Nav";
 import Welcome from "../components/Welcome";
 import Pricing from "../components/Pricing";
 import About from "../components/About";
-function Home({ theme, tab, darkTheme, toggleTheme, navigateTab }) {
+function Home({
+  theme,
+  tab,
+  darkTheme,
+  toggleTheme,
+  navigateTab,
+  active,
+  handleChangeActive,
+  toggle,
+  setToggle,
+}) {
   return (
     <div className={theme ? "h-screen bg-slate-700 " : "h-screen"}>
       <Nav
@@ -11,6 +21,10 @@ function Home({ theme, tab, darkTheme, toggleTheme, navigateTab }) {
         toggleTheme={toggleTheme}
         tab={tab}
         navigateTab={navigateTab}
+        active={active}
+        handleChangeActive={handleChangeActive}
+        toggle={toggle}
+        setToggle={setToggle}
       />
       {tab === "Welcome" && <Welcome theme={theme} />}
       {tab === "Pricing" && <Pricing theme={theme} />}

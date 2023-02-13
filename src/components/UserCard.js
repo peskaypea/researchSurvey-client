@@ -170,6 +170,7 @@ function UserCard({ user, loading }) {
                 </div>
               </div>
             )}
+            {/* User Edit Profile Form */}
             {tab === "Edit Profile" && (
               <div className="w-full  w-full md:mr-5 ">
                 <table className="table-auto w-full mx-auto mb-10">

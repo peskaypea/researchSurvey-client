@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
-
-function MobileNavMenu() {
+import Switch from "./Switch";
+function MobileNavMenu({
+  theme,
+  toggleTheme,
+  active,
+  handleChangeActive,
+  toggle,
+  setToggle,
+}) {
   const token = localStorage.getItem("token");
 
   const mobileMenu = (
@@ -21,8 +28,10 @@ function MobileNavMenu() {
       <div
         className={
           collapse
-            ? "flex justify-end md:hidden fixed text-end w-1/2 -right-5 -top-5  items-center "
-            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center bg-slate-600/[0.9] text-white "
+            ? " md:hidden fixed text-end -right-5 -top-5 "
+            : theme
+            ? "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center bg-slate-800/[0.9] text-white "
+            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center bg-green-600/[0.9] text-white "
         }
       >
         <div
@@ -30,6 +39,16 @@ function MobileNavMenu() {
         >
           {/* Mobile Nav Items */}
           <div className="flex flex-col pb-2">
+            <div className="p-2 w-2/3">
+              <button onClick={toggleTheme} className="w-full">
+                <Switch
+                  active={active}
+                  handleChangeActive={handleChangeActive}
+                  toggle={toggle}
+                  setToggle={setToggle}
+                />
+              </button>
+            </div>
             <a href="/" className="p-2 hover:text-cyan-600">
               Product
             </a>
