@@ -91,7 +91,7 @@ function Nav2({ theme, toggleTheme, tab, navigateTab }) {
           </div>
         </div>
         <div className="w-full md:w-0">
-          <MobileNavMenu />
+          <MobileNavMenu theme={theme} />
         </div>
       </div>
     </div>

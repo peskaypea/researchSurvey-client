@@ -22,7 +22,7 @@ function MobileNavMenu() {
         className={
           collapse
             ? "flex justify-end md:hidden fixed text-end w-1/2 -right-5 -top-5  items-center "
-            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center bg-cyan-900/[0.9] text-white "
+            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center bg-slate-600/[0.9] text-white "
         }
       >
         <div
