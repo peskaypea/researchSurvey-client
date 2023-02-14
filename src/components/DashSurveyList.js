@@ -10,7 +10,7 @@ import SurveyItem from "./SurveyItem";
 const baseURL_development = "http://localhost:5000";
 const baseURL = "https://surveyconnect-server.onrender.com";
 
-function DashSurveyList() {
+function DashSurveyList({ theme }) {
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ function DashSurveyList() {
 
   //Return List of all surveys
   return (
-    <div className="flex flex-col justify-center ">
+    <div className="flex flex-col justify-center dark:bg-slate-600 dark:text-sky-50">
       {/*Survey List Search Utility Nav */}
       <div className="flex justify-between w-full xl:w-8/12 mx-auto border-b-2 h-20 items-center">
         {/* Survey Filter Desktop */}
@@ -129,8 +129,8 @@ function DashSurveyList() {
           <button
             className={
               tabActive === "All"
-                ? "w-1/3 align-middle h-full hover:text-cyan-700 border-b-4 border-cyan-700"
-                : "w-1/3 align-middle h-full hover:text-cyan-700 border-b-4 border-transparent"
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent"
             }
             value={"All"}
             onClick={(e) => {
@@ -143,8 +143,8 @@ function DashSurveyList() {
           <button
             className={
               tabActive === "Active"
-                ? "w-1/3 align-middle h-full hover:text-cyan-700 border-b-4 border-cyan-700 "
-                : "w-1/3 align-middle h-full hover:text-cyan-700 border-b-4 border-transparent "
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent "
             }
             value={"Active"}
             onClick={(e) => tabActivate(e)}
@@ -155,8 +155,8 @@ function DashSurveyList() {
           <button
             className={
               tabActive === "Past"
-                ? "w-1/3 align-middle h-full hover:text-cyan-700 border-b-4 border-cyan-700"
-                : "w-1/3 align-middle h-full hover:text-cyan-700 border-b-4 border-transparent"
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent "
             }
             value={"Past"}
             onClick={(e) => tabActivate(e)}
@@ -172,7 +172,7 @@ function DashSurveyList() {
           <select
             name="activeTab"
             id="activeTab"
-            className="outline-0 bg-transparent"
+            className="outline-0 bg-transparent dark:text-slate-600"
             onChange={(e) => tabActivate(e)}
           >
             <option value={"All"}>All</option>
@@ -183,7 +183,7 @@ function DashSurveyList() {
         {/* Search bar */}
         <div
           id="searchBar"
-          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200 mx-3 sm:mx-0"
+          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200 mx-3 sm:mx-0 dark:text-slate-600"
         >
           {searchIcon}
           <input
@@ -197,7 +197,7 @@ function DashSurveyList() {
         </div>
       </div>
       {/* List of all surveys */}
-      <div className=" bg-slate-200 min-h-screen">
+      <div className=" bg-slate-200 min-h-screen dark:bg-slate-900">
         <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
           {/* List of recent surveys*/}
           {tabActive === "All" && (
@@ -215,7 +215,7 @@ function DashSurveyList() {
             <select
               name=""
               id=""
-              className="p-1 md:py-2 border border-1 border-slate-200 rounded-3xl bg-slate-200 w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none"
+              className="p-1 md:py-2 border border-1 border-slate-200 rounded-3xl bg-slate-200 w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600"
             >
               <option>Type</option>
               <option value="Academic">Academic</option>
@@ -226,7 +226,7 @@ function DashSurveyList() {
             </select>
             <input
               type="date"
-              className="ml-1 border border-1 border-slate-200 rounded-3xl w-28 md:w-46 bg-slate-200 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none "
+              className="ml-1 border border-1 border-slate-200 rounded-3xl w-28 md:w-46 bg-slate-200 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600"
               onChange={(e) => {
                 searchSurvey(e.target.value);
               }}

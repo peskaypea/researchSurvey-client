@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Moon from "../assets/Moon.svg";
 import Sun from "../assets/Sun.svg";
 
@@ -7,7 +7,7 @@ function Switch({ active, handleChangeActive, toggle, setToggle }) {
   return (
     <div>
       <div
-        className="md:w-11 md:h-6 w-full h-5 flex items-center bg-gray-200 rounded-full p-1 cursor-pointer dark:bg-slate-400"
+        className="md:w-11 md:h-6 w-full h-5 flex items-center bg-gray-200 rounded-full p-1 cursor-pointer dark:bg-slate-700"
         onClick={() => {
           setToggle(!toggle);
           handleChangeActive();

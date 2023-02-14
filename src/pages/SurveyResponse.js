@@ -1,6 +1,6 @@
 import React from "react";
 
-function SurveyResponse() {
+function SurveyResponse({ theme }) {
   return <div>SurveyResponse</div>;
 }
 

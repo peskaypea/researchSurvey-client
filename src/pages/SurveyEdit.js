@@ -3,7 +3,7 @@ import DashNav from "../components/DashNav";
 import SurveyEditForm from "../components/SurveyEditForm";
 import SurveyEditNav from "components/SurveyEditNav";
 import SurveyOverView from "components/SurveyOverView";
-function SurveyEdit() {
+function SurveyEdit({ theme }) {
   const id = window.location.href.split("/").pop();
   const baseURL_development = "http://localhost:5000";
   const [data, setData] = useState({});
@@ -32,7 +32,7 @@ function SurveyEdit() {
   const [tab, setTab] = useState("Over View");
   return (
     <div className="bg-white h-screen">
-      <DashNav></DashNav>
+      <DashNav theme={theme}></DashNav>
       <SurveyEditNav tab={tab} changeTab={changeTab} />
       {/* Over View Tab */}
       {Object.keys(data).length !== 0 && tab === "Over View" && (

@@ -15,7 +15,7 @@ function SurveyItem({ survey, deleteSurvey }) {
   const lock = <FontAwesomeIcon icon={faLock} size={"sm"} />;
   return (
     <div className="mb-2 ">
-      <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg shadow-2xl">
+      <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg shadow-2xl dark:bg-slate-500 dark:text-slate-100">
         <div className="md:flex md:justify-around  w-20 md:w-72">
           <h6 className="text-center text-xs sm:text-sm font-semibold truncate md:hidden w-24 ">
             <div> {survey.surveyName}</div>
@@ -52,19 +52,19 @@ function SurveyItem({ survey, deleteSurvey }) {
 
         <div className="flex ">
           <a
-            className="border h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-cyan-800 hover:opacity-90 hover:cursor-pointer w-20  sm:w-36 "
+            className="border dark:border-0 h-10 py-1 sm:py-2 px-5 rounded-3xl text-white bg-green-600 hover:bg-green-500 hover:cursor-pointer w-20  sm:w-36 dark:bg-sky-700 dark:hover:bg-sky-600"
             href={`/survey/${survey._id}`}
           >
             <p className="w-full text-xs text-center">Take Survey</p>
           </a>
           <a
             href={`/surveyedit/${survey._id}`}
-            className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
+            className="border dark:border-slate-600 h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
           >
             {edit}
           </a>
           <div
-            className="border h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
+            className="border dark:border-slate-600 h-10 p-3 rounded-2xl hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
             id={survey._id}
             onClick={(e) => {
               deleteSurvey(e);
@@ -72,7 +72,7 @@ function SurveyItem({ survey, deleteSurvey }) {
           >
             {del}
           </div>
-          <div className="border h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
+          <div className="border dark:border-slate-600 h-10 p-3 rounded-2xl mx-2 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
             {view}
           </div>
         </div>

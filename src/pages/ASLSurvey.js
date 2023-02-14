@@ -9,7 +9,7 @@ const home = <FontAwesomeIcon icon={faHome} />;
 const id = window.location.href.split("/").pop();
 const token = localStorage.getItem("token");
 
-function ASLSurvey() {
+function ASLSurvey({ theme }) {
   const location = useLocation();
   const data = location.state.survey;
 

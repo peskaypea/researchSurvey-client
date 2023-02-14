@@ -10,7 +10,7 @@ const home = <FontAwesomeIcon icon={faHome} />;
 const id = window.location.href.split("/").pop();
 const token = localStorage.getItem("token");
 
-function Survey() {
+function Survey({ theme }) {
   const navigate = useNavigate();
   const baseURL_development = "http://localhost:5000";
 

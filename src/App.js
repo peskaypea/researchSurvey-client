@@ -15,16 +15,18 @@ import SurveyResponse from "pages/SurveyResponse";
 function App() {
   //Set theme to light by default if user hasn't set theme
   const theme = JSON.parse(localStorage.getItem("darkTheme")) ?? false;
+  const themeIcon = JSON.parse(localStorage.getItem("themeIcon")) ?? true;
   const [darkTheme, setDarkTheme] = useState(theme);
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(themeIcon);
 
   const handleChangeActive = () => {
-    setActive((previousIcon) => {
-      return !previousIcon;
+    setActive((oldIcon) => {
+      localStorage.setItem("themeIcon", JSON.stringify(!oldIcon));
+      return !oldIcon;
     });
   };
 
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(themeIcon);
   //Toggle b/w dark/light
   const toggleTheme = () => {
     setDarkTheme((oldTheme) => {
@@ -61,13 +63,16 @@ function App() {
           />
           <Route path="/register" element={<Register theme={darkTheme} />} />
           <Route path="/login" element={<Login theme={darkTheme} />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/survey/asl" element={<ASLSurvey />} />
-          <Route path="/survey/:id" element={<Survey />} />
-          <Route path="/surveyedit/:id" element={<SurveyEdit />} />
-          <Route path="/verify" element={<AccessCode />} />
-          <Route path="/user/" element={<UserProfile />} />
-          <Route path="/responses" element={<SurveyResponse />} />
+          <Route path="/dashboard" element={<Dashboard theme={theme} />} />
+          <Route path="/survey/asl" element={<ASLSurvey theme={theme} />} />
+          <Route path="/survey/:id" element={<Survey theme={theme} />} />
+          <Route
+            path="/surveyedit/:id"
+            element={<SurveyEdit theme={theme} />}
+          />
+          <Route path="/verify" element={<AccessCode theme={theme} />} />
+          <Route path="/user/" element={<UserProfile theme={theme} />} />
+          <Route path="/responses" element={<SurveyResponse theme={theme} />} />
         </Routes>
       </Router>
     </div>

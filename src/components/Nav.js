@@ -3,7 +3,7 @@ import Logo from "../assets/SC.svg";
 import MobileNavMenu from "./MobileNavMenu";
 import Switch from "./Switch";
 
-function Nav2({
+function Nav({
   theme,
   toggleTheme,
   tab,
@@ -119,4 +119,4 @@ function Nav2({
   );
 }
 
-export default Nav2;
+export default Nav;
