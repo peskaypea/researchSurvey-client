@@ -16,9 +16,10 @@ function SurveyItem({ survey, deleteSurvey }) {
   const ellipsis = <FontAwesomeIcon icon={faEllipsisV} size={"lg"} />;
   const lock = <FontAwesomeIcon icon={faLock} size={"sm"} />;
   const dots = <FontAwesomeIcon icon={faEllipsisH} size={"lg"} />;
+
   return (
-    <div className="mb-2 hover:cursor-pointer">
-      <div className="flex justify-around  bg-white w-11/12 xl:w-8/12 mx-auto h-24 rounded-lg shadow-md hover:shadow-xl">
+    <div className="mb-2 ">
+      <div className="flex justify-around  bg-white w-11/12 xl:w-8/12 mx-auto h-24 rounded-lg shadow-md hover:shadow-xl dark:bg-slate-700">
         <div className="flex w-1/12 h-full pl-5 items-center ">
           <div className="flex w-4/6 h-3/6 bg-gradient-to-r from-green-400 to-sky-400 rounded-md justify-center items-center">
             {!survey.public && (
@@ -64,8 +65,9 @@ function SurveyItem({ survey, deleteSurvey }) {
                 </button>
               </a>
             </div>
-            <div className="flex justify-center items-start w-1/12 h-full pt-5  ">
-              <SurveySettings survey={survey} />
+
+            <div className="flex justify-center items-start w-1/12 h-full pt-5 hover:text-green-500  dark:hover:text-sky-500  ">
+              <SurveySettings survey={survey} deleteSurvey={deleteSurvey} />
             </div>
           </div>
         </div>

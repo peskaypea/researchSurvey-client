@@ -118,7 +118,7 @@ function DashSurveyList({ theme }) {
 
   //Return List of all surveys
   return (
-    <div className="flex flex-col justify-center dark:bg-slate-900 dark:text-slate-600">
+    <div className="flex flex-col justify-center dark:bg-slate-900 dark:text-slate-200 ">
       {/*Survey List Search Utility Nav */}
       <div className="flex justify-between w-full xl:w-8/12 mx-auto border-b-2 h-20 items-center">
         {/* Survey Filter Desktop */}
@@ -129,8 +129,8 @@ function DashSurveyList({ theme }) {
           <button
             className={
               tabActive === "All"
-                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200"
-                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent"
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200 dark:hover:text-sky-500"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:text-sky-500"
             }
             value={"All"}
             onClick={(e) => {
@@ -143,8 +143,8 @@ function DashSurveyList({ theme }) {
           <button
             className={
               tabActive === "Active"
-                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200"
-                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent "
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200  dark:hover:text-sky-500"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:text-sky-500 "
             }
             value={"Active"}
             onClick={(e) => tabActivate(e)}
@@ -155,8 +155,8 @@ function DashSurveyList({ theme }) {
           <button
             className={
               tabActive === "Past"
-                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200"
-                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent "
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200  dark:hover:text-sky-500"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:text-sky-500"
             }
             value={"Past"}
             onClick={(e) => tabActivate(e)}
@@ -183,7 +183,7 @@ function DashSurveyList({ theme }) {
         {/* Search bar */}
         <div
           id="searchBar"
-          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200 mx-3 sm:mx-0 dark:text-slate-600 dark:bg-slate-900"
+          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200 mx-3 sm:mx-0 dark:text-slate-200 dark:bg-slate-900"
         >
           {searchIcon}
           <input
