@@ -118,7 +118,7 @@ function DashSurveyList({ theme }) {
 
   //Return List of all surveys
   return (
-    <div className="flex flex-col justify-center dark:bg-slate-600 dark:text-sky-50">
+    <div className="flex flex-col justify-center dark:bg-slate-900 dark:text-slate-600">
       {/*Survey List Search Utility Nav */}
       <div className="flex justify-between w-full xl:w-8/12 mx-auto border-b-2 h-20 items-center">
         {/* Survey Filter Desktop */}
@@ -183,7 +183,7 @@ function DashSurveyList({ theme }) {
         {/* Search bar */}
         <div
           id="searchBar"
-          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200 mx-3 sm:mx-0 dark:text-slate-600"
+          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200 mx-3 sm:mx-0 dark:text-slate-600 dark:bg-slate-900"
         >
           {searchIcon}
           <input
@@ -215,7 +215,7 @@ function DashSurveyList({ theme }) {
             <select
               name=""
               id=""
-              className="p-1 md:py-2 border border-1 border-slate-200 rounded-3xl bg-slate-200 w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600"
+              className="p-1 md:py-2 border border-1 border-slate-200 rounded-3xl bg-slate-200 w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600 dark:bg-slate-900"
             >
               <option>Type</option>
               <option value="Academic">Academic</option>
@@ -226,7 +226,7 @@ function DashSurveyList({ theme }) {
             </select>
             <input
               type="date"
-              className="ml-1 border border-1 border-slate-200 rounded-3xl w-28 md:w-46 bg-slate-200 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600"
+              className="ml-1 border border-1 border-slate-200 rounded-3xl w-28 md:w-46 bg-slate-200 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600 dark:bg-slate-900"
               onChange={(e) => {
                 searchSurvey(e.target.value);
               }}

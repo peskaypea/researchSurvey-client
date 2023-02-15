@@ -17,7 +17,7 @@ function DashNav({ theme }) {
 
   return (
     <div>
-      <div className="bg-green-600 text-white h-16 shadow-xl dark:bg-slate-700 dark:text-sky-50">
+      <div className="bg-green-600 text-white h-16 shadow-xl dark:bg-sky-400 dark:text-sky-50">
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">
             <a href="/">
@@ -29,7 +29,7 @@ function DashNav({ theme }) {
           <div className="flex dash-ul-font items-center w-56 justify-end">
             <button
               className={
-                "px-2 py-2 w-36   mr-3 text-center border rounded-3xl border-sky-50 dark:border-0 hover:bg-sky-50 hover:text-green-600  dark:bg-sky-700 focus:ring focus:ring-slate-400 focus:outline-none dark:hover:bg-sky-600 dark:hover:text-sky-50 "
+                "px-2 py-2 w-36   mr-3 text-center border rounded-3xl border-sky-50 dark:border-0 hover:bg-sky-50 hover:text-green-600  dark:bg-sky-500 focus:ring focus:ring-slate-400 focus:outline-none dark:hover:bg-sky-600 dark:hover:text-sky-50 "
               }
             >
               <div className="flex justify-center focus:ring focus:white ">
