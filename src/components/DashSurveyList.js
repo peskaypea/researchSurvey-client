@@ -24,6 +24,7 @@ function DashSurveyList({ theme }) {
   const [surveyList, setSurveyList] = useState([]);
   const [tabActive, setTabActive] = useState("All");
   const [filteredSurveys, setFilteredSurveys] = useState([]);
+  const [invisibleDiv, setInvisibleDiv] = useState(true);
 
   const tabActivate = (e) => {
     setTabActive(e.target.value);
@@ -44,7 +45,7 @@ function DashSurveyList({ theme }) {
         survey.dateCreated.toString().slice(0, 10) === value
       );
     });
-    console.log(filteredSurvey);
+
     setTabActive("Custom");
     setFilteredSurveys(filteredSurvey);
   };
@@ -119,6 +120,14 @@ function DashSurveyList({ theme }) {
   //Return List of all surveys
   return (
     <div className="flex flex-col justify-center dark:bg-slate-900 dark:text-slate-200 ">
+      {!invisibleDiv && (
+        <div
+          className="absolute w-screen h-screen top-32"
+          onClick={() => setInvisibleDiv(!invisibleDiv)}
+        >
+          invisible
+        </div>
+      )}
       {/*Survey List Search Utility Nav */}
       <div className="flex justify-between w-full xl:w-8/12 mx-auto border-b-2 h-20 items-center">
         {/* Survey Filter Desktop */}
@@ -238,6 +247,8 @@ function DashSurveyList({ theme }) {
             survey={surveyList[0]}
             deleteSurvey={deleteSurvey}
             key={surveyList[0]._id}
+            invisibleDiv={invisibleDiv}
+            setInvisibleDiv={setInvisibleDiv}
           />
         )}
 
@@ -255,6 +266,8 @@ function DashSurveyList({ theme }) {
                       survey={survey}
                       deleteSurvey={deleteSurvey}
                       key={survey._id}
+                      invisibleDiv={invisibleDiv}
+                      setInvisibleDiv={setInvisibleDiv}
                     />
                   );
               })}
@@ -275,6 +288,8 @@ function DashSurveyList({ theme }) {
                       survey={survey}
                       deleteSurvey={deleteSurvey}
                       key={survey._id}
+                      invisibleDiv={invisibleDiv}
+                      setInvisibleDiv={setInvisibleDiv}
                     />
                   );
                 }
@@ -295,6 +310,8 @@ function DashSurveyList({ theme }) {
                     survey={survey}
                     deleteSurvey={deleteSurvey}
                     key={survey._id}
+                    invisibleDiv={invisibleDiv}
+                    setInvisibleDiv={setInvisibleDiv}
                   />
                 );
               })}

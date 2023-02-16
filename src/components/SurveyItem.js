@@ -9,7 +9,7 @@ import {
   faLock,
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
-function SurveyItem({ survey, deleteSurvey }) {
+function SurveyItem({ survey, deleteSurvey, invisibleDiv, setInvisibleDiv }) {
   const del = <FontAwesomeIcon icon={faX} />;
   const edit = <FontAwesomeIcon icon={faEdit} />;
   const view = <FontAwesomeIcon icon={faEye} />;
@@ -19,7 +19,7 @@ function SurveyItem({ survey, deleteSurvey }) {
 
   return (
     <div className="mb-2 ">
-      <div className="flex justify-around  bg-white w-11/12 xl:w-8/12 mx-auto h-24 rounded-lg shadow-md hover:shadow-xl dark:bg-slate-700">
+      <div className="flex justify-around  bg-white w-11/12 xl:w-8/12 mx-auto h-24 rounded-lg shadow-md hover:shadow-lg dark:bg-slate-700">
         <div className="flex w-1/12 h-full pl-5 items-center ">
           <div className="flex w-4/6 h-3/6 bg-gradient-to-r from-green-400 to-sky-400 rounded-md justify-center items-center">
             {!survey.public && (
@@ -66,8 +66,13 @@ function SurveyItem({ survey, deleteSurvey }) {
               </a>
             </div>
 
-            <div className="flex justify-center items-start w-1/12 h-full pt-5 hover:text-green-500  dark:hover:text-sky-500  ">
-              <SurveySettings survey={survey} deleteSurvey={deleteSurvey} />
+            <div className="relative flex justify-center items-start w-1/12 h-full pt-5 hover:text-green-500  dark:hover:text-sky-500  ">
+              <SurveySettings
+                survey={survey}
+                deleteSurvey={deleteSurvey}
+                invisibleDiv={invisibleDiv}
+                setInvisibleDiv={setInvisibleDiv}
+              />
             </div>
           </div>
         </div>
