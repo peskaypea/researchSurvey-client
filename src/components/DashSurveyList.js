@@ -7,6 +7,7 @@ import ErrorImg from "../assets/error.jpg";
 import Spinner from "../assets/loading-gif.gif";
 import { useNavigate } from "react-router-dom";
 import SurveyItem from "./SurveyItem";
+import "./DashSurveyList.css";
 const baseURL_development = "http://localhost:5000";
 const baseURL = "https://surveyconnect-server.onrender.com";
 
@@ -24,7 +25,7 @@ function DashSurveyList({ theme }) {
   const [surveyList, setSurveyList] = useState([]);
   const [tabActive, setTabActive] = useState("All");
   const [filteredSurveys, setFilteredSurveys] = useState([]);
-  const [invisibleDiv, setInvisibleDiv] = useState(true);
+  const [subMenu, setSubMenu] = useState(true);
 
   const tabActivate = (e) => {
     setTabActive(e.target.value);
@@ -119,14 +120,9 @@ function DashSurveyList({ theme }) {
 
   //Return List of all surveys
   return (
-    <div className="flex flex-col justify-center dark:bg-slate-900 dark:text-slate-200 ">
-      {!invisibleDiv && (
-        <div
-          className="absolute w-screen h-screen top-32"
-          onClick={() => setInvisibleDiv(!invisibleDiv)}
-        >
-          invisible
-        </div>
+    <div className="flex flex-col justify-center dark:bg-slate-900 dark:text-slate-200 h-max">
+      {!subMenu && (
+        <div className="modal" onClick={() => setSubMenu(!subMenu)}></div>
       )}
       {/*Survey List Search Utility Nav */}
       <div className="flex justify-between w-full xl:w-8/12 mx-auto border-b-2 h-20 items-center">
@@ -247,8 +243,8 @@ function DashSurveyList({ theme }) {
             survey={surveyList[0]}
             deleteSurvey={deleteSurvey}
             key={surveyList[0]._id}
-            invisibleDiv={invisibleDiv}
-            setInvisibleDiv={setInvisibleDiv}
+            subMenu={subMenu}
+            setSubMenu={setSubMenu}
           />
         )}
 
@@ -266,8 +262,8 @@ function DashSurveyList({ theme }) {
                       survey={survey}
                       deleteSurvey={deleteSurvey}
                       key={survey._id}
-                      invisibleDiv={invisibleDiv}
-                      setInvisibleDiv={setInvisibleDiv}
+                      subMenu={subMenu}
+                      setSubMenu={setSubMenu}
                     />
                   );
               })}
@@ -288,8 +284,8 @@ function DashSurveyList({ theme }) {
                       survey={survey}
                       deleteSurvey={deleteSurvey}
                       key={survey._id}
-                      invisibleDiv={invisibleDiv}
-                      setInvisibleDiv={setInvisibleDiv}
+                      subMenu={subMenu}
+                      setSubMenu={setSubMenu}
                     />
                   );
                 }
@@ -310,8 +306,8 @@ function DashSurveyList({ theme }) {
                     survey={survey}
                     deleteSurvey={deleteSurvey}
                     key={survey._id}
-                    invisibleDiv={invisibleDiv}
-                    setInvisibleDiv={setInvisibleDiv}
+                    subMenu={subMenu}
+                    setSubMenu={setSubMenu}
                   />
                 );
               })}

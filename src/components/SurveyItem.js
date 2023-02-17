@@ -9,7 +9,7 @@ import {
   faLock,
   faEllipsisH,
 } from "@fortawesome/free-solid-svg-icons";
-function SurveyItem({ survey, deleteSurvey, invisibleDiv, setInvisibleDiv }) {
+function SurveyItem({ survey, deleteSurvey, subMenu, setSubMenu }) {
   const del = <FontAwesomeIcon icon={faX} />;
   const edit = <FontAwesomeIcon icon={faEdit} />;
   const view = <FontAwesomeIcon icon={faEye} />;
@@ -70,8 +70,8 @@ function SurveyItem({ survey, deleteSurvey, invisibleDiv, setInvisibleDiv }) {
               <SurveySettings
                 survey={survey}
                 deleteSurvey={deleteSurvey}
-                invisibleDiv={invisibleDiv}
-                setInvisibleDiv={setInvisibleDiv}
+                subMenu={subMenu}
+                setSubMenu={setSubMenu}
               />
             </div>
           </div>

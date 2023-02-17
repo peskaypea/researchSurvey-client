@@ -1,26 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
-
-const SurveySettings = ({
-  survey,
-  deleteSurvey,
-  invisibleDiv,
-  setInvisibleDiv,
-}) => {
+import "./SurveySettings.css";
+const SurveySettings = ({ survey, deleteSurvey, subMenu, setSubMenu }) => {
   const dots = <FontAwesomeIcon icon={faEllipsisH} size={"lg"} />;
 
   const [linkCopied, setLinkCopied] = useState("Copy Link");
-  const [collapse, setCollapse] = useState(true);
-
+  const [collapse, setCollapse] = useState(subMenu);
+  //if user click anywhere on page, close all survey settings buttons
+  useEffect(() => {
+    if (subMenu) {
+      setCollapse(subMenu);
+    }
+  }, [subMenu]);
   const collapseMenu = (e) => {
     if (e.target.id === "copy") {
       return;
     }
 
     setCollapse((oldState) => {
-      setInvisibleDiv(!invisibleDiv);
+      setSubMenu(!subMenu);
       return !oldState;
     });
   };
