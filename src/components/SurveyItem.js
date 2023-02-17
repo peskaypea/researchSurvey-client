@@ -33,26 +33,34 @@ function SurveyItem({ survey, deleteSurvey, subMenu, setSubMenu }) {
           <div className="flex items-end">
             <div className="flex pl-4 w-2/4 h-3/6 ">
               <div className="flex items-end ">
-                <h2 className="text-sm font-light underline ">
+                <h2 className="hidden md:visable text-sm font-light underline ">
                   created by {survey.organization}
                 </h2>
               </div>
             </div>
             <div className="flex  w-2/2 h-3/6 justify-center ">
               <div className="flex items-end ">
-                <h2 className="font-bold">{survey.surveyName}</h2>
+                <h2 className="font-bold ">{survey.surveyName}</h2>
               </div>
             </div>
           </div>
           <div className=" w-full h-5/6 mt-2 flex">
             <div className="flex  justify-around items-center w-2/6 h-full ">
               <div>
-                <h6 className="text-xs sm:text-sm font-semibold">Start Date</h6>
-                <p className="text-xs">{survey.dateCreated.slice(0, 10)}</p>
+                <h6 className="invisible  md:visible text-xs sm:text-sm md:font-semibold">
+                  Start Date
+                </h6>
+                <p className="invisible  md:visible text-xs">
+                  {survey.dateCreated.slice(0, 10)}
+                </p>
               </div>
               <div>
-                <h6 className="text-xs sm:text-sm font-semibold">End Date</h6>
-                <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
+                <h6 className="invisible  md:visible text-xs sm:text-sm font-semibold">
+                  End Date
+                </h6>
+                <p className="invisible  md:visible text-xs">
+                  {survey.dateEnd.slice(0, 10)}
+                </p>
               </div>
             </div>
             <div className="flex justify-center w-full h-full  items-center">

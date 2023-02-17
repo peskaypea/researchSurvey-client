@@ -30,14 +30,14 @@ const SurveySettings = ({ survey, deleteSurvey, subMenu, setSubMenu }) => {
 
   return (
     <div
-      className="flex relative cursor-pointer"
+      className="flex relative cursor-pointer pr-3"
       onClick={(e) => collapseMenu(e)}
     >
       {dots}
       {collapse ? (
         <div className="w-1/2 h-1/2"></div>
       ) : (
-        <div className="absolute rounded-lg pt-3 w-24 h-32 text-black bg-green-600/[0.75] border-white border-2 dark:bg-slate-900 dark:border-slate-400 dark:border-2 dark:text-white">
+        <div className="absolute right-3 rounded-lg pt-3 w-24 h-32 text-black bg-green-600/[0.75] border-white border-2 dark:bg-slate-900 dark:border-slate-400 dark:border-2 dark:text-white">
           <div className="flex flex-col text-sm ">
             <CopyToClipboard
               text={`http://localhost:3000/survey/${survey._id}`}
