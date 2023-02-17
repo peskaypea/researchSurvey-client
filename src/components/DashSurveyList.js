@@ -24,7 +24,7 @@ function DashSurveyList({ theme }) {
   const [surveyList, setSurveyList] = useState([]);
   const [tabActive, setTabActive] = useState("All");
   const [filteredSurveys, setFilteredSurveys] = useState([]);
-
+  console.log(surveyList);
   const tabActivate = (e) => {
     setTabActive(e.target.value);
   };
@@ -249,7 +249,7 @@ function DashSurveyList({ theme }) {
             </div>
             {surveyList.length > 0 &&
               surveyList.map((survey) => {
-                if (survey.status === true)
+                if (survey.activeStatus === true)
                   return (
                     <SurveyItem
                       survey={survey}
@@ -269,7 +269,7 @@ function DashSurveyList({ theme }) {
             </div>
             {surveyList.length > 0 &&
               surveyList.map((survey) => {
-                if (survey.status === false) {
+                if (survey.activeStatus === false) {
                   return (
                     <SurveyItem
                       survey={survey}
