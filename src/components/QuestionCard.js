@@ -7,7 +7,7 @@ const baseURL_development = "http://localhost:5000";
 const home = <FontAwesomeIcon icon={faHome} />;
 const surveyID = window.location.href.split("/").pop();
 const token = localStorage.getItem("token");
-function QuestionCard({ survey }) {
+function QuestionCard({ survey, ownerView }) {
   const [questionNum, setQuestionNum] = useState(0);
   const questions = survey.questions.map((q) => {
     return q.question;
@@ -81,10 +81,12 @@ function QuestionCard({ survey }) {
       body: JSON.stringify(response),
     });
     const data = await res.json();
-    console.log(data);
+    if (data.status === "Success") {
+      navigate("/success");
+    }
   };
   const navigateHome = () => {
-    if (survey.status) {
+    if (survey.activeStatus) {
       const res = window.confirm(
         "Are you sure you want to return? All your progress will be lost."
       );
@@ -99,7 +101,7 @@ function QuestionCard({ survey }) {
     <div className="w-full text-center h-screen bg-cyan-900">
       <div className="mb-8 pt-8 text-sky-100">
         <h1 className="font-bold text-xl mb-4">{survey.surveyName}</h1>
-        {survey.status ? (
+        {survey.activeStatus ? (
           <p className="text-sm mb-2">Please answer the question below</p>
         ) : (
           <p className="text-sm mb-2">
@@ -142,7 +144,7 @@ function QuestionCard({ survey }) {
                         className=" w-4 h-4 mr-3"
                         name={`value-${questionNum}`}
                         onChange={(e) => saveResponse(e)}
-                        disabled={!survey.status}
+                        disabled={!survey.activeStatus}
                       />
                       <label htmlFor={option}>{option}</label>
                     </div>
@@ -157,7 +159,7 @@ function QuestionCard({ survey }) {
                         className=" w-4 h-4 mr-3"
                         name={`value-${questionNum}`}
                         onChange={(e) => saveResponse(e)}
-                        disabled={!survey.status}
+                        disabled={!survey.activeStatus}
                       />
                       <label htmlFor={option}>{option}</label>
                     </div>
@@ -186,7 +188,7 @@ function QuestionCard({ survey }) {
                         className=" w-4 h-4 mr-3"
                         name="value"
                         onChange={(e) => saveResponse(e)}
-                        disabled={!survey.status}
+                        disabled={!survey.activeStatus}
                       />
                       <label htmlFor={option}>{option}</label>
                     </div>
@@ -201,7 +203,7 @@ function QuestionCard({ survey }) {
                         className=" w-4 h-4 mr-3"
                         name="value"
                         onChange={(e) => saveResponse(e)}
-                        disabled={!survey.status}
+                        disabled={!survey.activeStatus}
                       />
                       <label htmlFor={option}>{option}</label>
                     </div>
@@ -220,7 +222,7 @@ function QuestionCard({ survey }) {
                 id="fullName"
                 className="mb-5 rounded-lg h-8 px-3 outline-0"
                 onChange={(e) => saveResponse(e)}
-                disabled={!survey.status}
+                disabled={!survey.activeStatus}
               />
               <label htmlFor="email">Email Address</label>
               <input
@@ -229,7 +231,7 @@ function QuestionCard({ survey }) {
                 id="email"
                 className="mb-5 rounded-lg h-8 px-3 outline-0"
                 onChange={(e) => saveResponse(e)}
-                disabled={!survey.status}
+                disabled={!survey.activeStatus}
               />
             </div>
           )}
@@ -263,7 +265,7 @@ function QuestionCard({ survey }) {
                       type="text"
                       placeholder="Enter your answer"
                       className="mb-5 rounded-lg h-8 text-center px-5"
-                      disabled={!survey.status}
+                      disabled={!survey.activeStatus}
                     />
                   </div>
                 )}
@@ -295,7 +297,7 @@ function QuestionCard({ survey }) {
                             ]
                           }
                           onChange={(e) => saveResponse(e)}
-                          disabled={!survey.status}
+                          disabled={!survey.activeStatus}
                         />
                       )}
                     </div>
@@ -310,7 +312,7 @@ function QuestionCard({ survey }) {
                         className="mb-5 rounded-lg h-8 text-center px-5"
                         value={response[survey.questions[questionNum].question]}
                         onChange={(e) => saveResponse(e)}
-                        disabled={!survey.status}
+                        disabled={!survey.activeStatus}
                       />
                     </div>
                   );
@@ -329,7 +331,7 @@ function QuestionCard({ survey }) {
                       className="mb-5 w-full rounded-lg px-5 py-3 outline-0"
                       value={response[survey.questions[questionNum].question]}
                       onChange={(e) => saveResponse(e)}
-                      disabled={!survey.status}
+                      disabled={!survey.activeStatus}
                     />
                   </div>
                 )}
@@ -358,7 +360,7 @@ function QuestionCard({ survey }) {
                             response[survey.questions[questionNum].question]
                           }
                           onChange={(e) => saveResponse(e)}
-                          disabled={!survey.status}
+                          disabled={!survey.activeStatus}
                         />
                       )}
                     </div>
@@ -372,7 +374,7 @@ function QuestionCard({ survey }) {
                         className="mb-5 rounded-lg text-center px-5"
                         value={response[survey.questions[questionNum].question]}
                         onChange={(e) => saveResponse(e)}
-                        disabled={!survey.status}
+                        disabled={!survey.activeStatus}
                       />
                     </div>
                   );
@@ -400,8 +402,13 @@ function QuestionCard({ survey }) {
           ) : (
             <button
               type="button"
-              className="bg-cyan-900 w-24 text-sm px-4 py-2 border rounded-3xl text-white mt-5 active:bg-cyan-900/75"
+              className={
+                ownerView
+                  ? "bg-slate-400 w-24 text-sm px-4 py-2 border rounded-3xl text-white mt-5"
+                  : "bg-cyan-900 w-24 text-sm px-4 py-2 border rounded-3xl text-white mt-5 active:bg-cyan-900/75"
+              }
               onClick={() => submitResponse()}
+              disabled={ownerView}
             >
               Submit
             </button>

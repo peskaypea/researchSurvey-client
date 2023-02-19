@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function useFetch(url, token) {
+function useFetch(url, token, ownerView) {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setErr] = useState(false);
@@ -8,6 +8,7 @@ function useFetch(url, token) {
     ? {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
+        ownerView: ownerView,
       }
     : {
         "Content-Type": "application/json",
