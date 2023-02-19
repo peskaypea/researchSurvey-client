@@ -13,10 +13,10 @@ function UserProfile({ theme }) {
   } = useFetch(`${baseURL_development}/user/userprofile`, token);
 
   return (
-    <div className="bg-slate-100 h-screen">
-      <div className="bg-cyan-800 h-80">
-        <DashNav theme={theme}></DashNav>
-        <UserCard user={data} loading={loading}></UserCard>
+    <div className="">
+      <div className=" h-screen dark:bg-slate-800">
+        <DashNav></DashNav>
+        <UserCard user={data} loading={loading} theme={theme}></UserCard>
       </div>
     </div>
   );

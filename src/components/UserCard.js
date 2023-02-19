@@ -33,7 +33,7 @@ const Activity = (
   ></FontAwesomeIcon>
 );
 
-function UserCard({ user, loading }) {
+function UserCard({ user, loading, theme }) {
   const [tab, setTab] = useState("Profile");
 
   const changeTab = (e) => {
@@ -42,30 +42,30 @@ function UserCard({ user, loading }) {
     }
   };
   return (
-    <div>
+    <div className="  dark:bg-slate-800 ">
       {!loading && (
         <div className="w-11/12 sm:w-5/6 lg:w-3/5 2xl:w-1/2 mx-auto">
-          <div className="mb-10">
-            <h1 className="text-sky-50 text-2xl">
+          <div className="mt-5 mb-10">
+            <h1 className="text-black dark:text-sky-50 text-2xl">
               {User}{" "}
               {user.firstName
                 ? `${user.firstName} ${user.lastName}`
                 : "User Profile"}
             </h1>
-            <h6 className="text-sky-50 flex gap-2 text-sm">
+            <h6 className="text-black dark:text-sky-50 flex gap-2 text-sm">
               <a href="/dashboard">Survey Connect</a>
               <span>{Arrow} </span>
               <span>{tab}</span>
             </h6>
           </div>
-          <div className="flex flex-col bg-white rounded-3xl">
+          <div className="flex flex-col bg-slate-200 rounded-3xl">
             {/* UserDash Nav */}
             <div className="flex rounded-t-3xl border-b border-neutral-200">
               <div className="ml-4 flex justify-start w-full sm:w-3/5 md:1/3 h-20 items-center text-slate-700 ">
                 <button
                   className={
                     tab === "Profile"
-                      ? "border-b-2 border-cyan-900 h-full flex items-center hover:cursor-pointer "
+                      ? "border-b-2 border-green-500 dark:border-sky-500 h-full flex items-center hover:cursor-pointer "
                       : "h-full flex items-center hover:cursor-pointer "
                   }
                   value="Profile"
@@ -78,7 +78,7 @@ function UserCard({ user, loading }) {
                 <button
                   className={
                     tab === "Edit Profile"
-                      ? "border-b-2 border-cyan-900 h-full flex items-center hover:cursor-pointer mx-5"
+                      ? "border-b-2 border-green-500 dark:border-sky-500 h-full flex items-center hover:cursor-pointer mx-5"
                       : "h-full flex items-center hover:cursor-pointer mx-5"
                   }
                   value="Edit Profile"
@@ -91,7 +91,7 @@ function UserCard({ user, loading }) {
                 <button
                   className={
                     tab === "Activity"
-                      ? "border-b-2 border-cyan-900 h-full flex items-center hover:cursor-pointer"
+                      ? "border-b-2 border-green-500 dark:border-sky-500 h-full flex items-center hover:cursor-pointer"
                       : "h-full flex items-center hover:cursor-pointer"
                   }
                   value="Activity"
@@ -108,7 +108,7 @@ function UserCard({ user, loading }) {
               <div className="md:flex md:flex-row justify-center items-start flex flex-col mt-10">
                 {/* Profile image */}
                 <div className="md:w-1/2 mx-auto md:mx-5 mb-2">
-                  <div className=" bg-sky-50 rounded-xl">
+                  <div className=" bg-slate-200 rounded-xl">
                     <img
                       src={UserImage}
                       alt=""
@@ -126,7 +126,7 @@ function UserCard({ user, loading }) {
                   </div>
                 </div>
                 {/* Profile Info */}
-                <div className="w-full  md:w-1/2 md:mr-5 ">
+                <div className="w-full  md:w-1/2 md:mr-5  ">
                   <table className="table-auto w-full mx-auto mb-10  md:text-sm lg:text-md">
                     <tbody>
                       <tr className="bg-sky-50 h-14">
@@ -135,7 +135,7 @@ function UserCard({ user, loading }) {
                           {user.firstName ? user.firstName : "-"}
                         </td>
                       </tr>
-                      <tr className="h-14">
+                      <tr className="bg-sky-50 h-14">
                         <td className="pl-4">Last Name</td>
                         <td className="font-bold">
                           {user.lastName ? user.lastName : "-"}
@@ -147,7 +147,7 @@ function UserCard({ user, loading }) {
                           {user.role ? user.role : "-"}
                         </td>
                       </tr>
-                      <tr className="h-14">
+                      <tr className="bg-sky-50 h-14">
                         <td className="pl-4">Email</td>
                         <td className="font-bold">
                           {user.email ? user.email : "-"}
@@ -159,7 +159,7 @@ function UserCard({ user, loading }) {
                           {user.phone ? user.phone : "-"}
                         </td>
                       </tr>
-                      <tr className="h-14">
+                      <tr className="bg-sky-50 h-14">
                         <td className="pl-4">Location</td>
                         <td className="font-bold">
                           {user.location ? user.location : "-"}

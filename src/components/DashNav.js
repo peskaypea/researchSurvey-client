@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./DashNav.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../assets/SC.svg";
 
-function DashNav({ theme }) {
+function DashNav({}) {
   const bell = <FontAwesomeIcon icon={faBell} size={"xl"} />;
   const user = <FontAwesomeIcon icon={faUserCircle} size={"2xl"} />;
   const add = <FontAwesomeIcon icon={faPlus} size={"xs"} />;
