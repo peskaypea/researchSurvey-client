@@ -32,8 +32,8 @@ function SurveyItem({ survey, deleteSurvey, subMenu, setSubMenu }) {
           )}
         </div>
         <div className="flex w-11/12 h-full flex-col ">
-          <div className="flex items-end">
-            <div className="flex pl-4 w-2/4 h-3/6 ">
+          <div className="flex items-end justify-start">
+            <div className="hidden md:flex md:pl-4 md:w-2/4 md:h-3/6 ">
               <div className="flex items-end ">
                 <h2 className="invisible  md:visible text-sm font-light underline ">
                   created by {survey.organization}
@@ -41,8 +41,8 @@ function SurveyItem({ survey, deleteSurvey, subMenu, setSubMenu }) {
               </div>
             </div>
             <div className="flex  w-2/2 h-3/6 ">
-              <div className="flex items-end  ">
-                <h2 className=" font-bold  ">{survey.surveyName}</h2>
+              <div className="flex items-end text-center  ">
+                <h2 className=" font-bold ">{survey.surveyName}</h2>
               </div>
             </div>
           </div>
