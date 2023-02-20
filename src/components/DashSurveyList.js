@@ -52,28 +52,30 @@ function DashSurveyList({ theme }) {
   };
 
   const deleteSurvey = async (e) => {
-    console.log(e.target.id);
-    let id = "";
-    if (e.target.id) {
-      id = e.target.id;
-    } else if (e.target.parentNode.id) {
-      id = e.target.parentNode.id;
-    } else {
-      id = e.target.parentNode.parentNode.id;
+    const confirm = window.confirm(
+      "Are you sure you want to delete this survey?"
+    );
+    if (confirm) {
+      let id = "";
+      if (e.target.id) {
+        id = e.target.id;
+      } else if (e.target.parentNode.id) {
+        id = e.target.parentNode.id;
+      } else {
+        id = e.target.parentNode.parentNode.id;
+      }
+
+      await fetch(`${baseURL}/survey/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
+      }).then((res) => {
+        const newData = surveyList.filter((survey) => survey._id !== id);
+        setSurveyList(newData);
+      });
     }
-
-    await fetch(`${baseURL}/survey/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-      },
-    }).then((res) => {
-      const newData = surveyList.filter((survey) => survey._id !== id);
-      setSurveyList(newData);
-
-      console.log(res);
-    });
   };
 
   useEffect(() => {
@@ -188,7 +190,7 @@ function DashSurveyList({ theme }) {
         {/* Search bar */}
         <div
           id="searchBar"
-          className="p-2 border border-1 border-slate-200 rounded-3xl w-80 bg-slate-200 mx-3 sm:mx-0 dark:text-slate-200 dark:bg-slate-900"
+          className="p-2 border border-gray-200  bg-slate-50 rounded-3xl w-80  mx-3 sm:mx-0 dark:text-slate-200 dark:bg-slate-900"
         >
           {searchIcon}
           <input
@@ -202,7 +204,7 @@ function DashSurveyList({ theme }) {
         </div>
       </div>
       {/* List of all surveys */}
-      <div className=" bg-slate-200 min-h-screen dark:bg-slate-900">
+      <div className=" bg-slate-50 min-h-screen dark:bg-slate-900">
         <div className="flex justify-between h-16 items-center  w-11/12 xl:w-8/12 mx-auto">
           {/* List of recent surveys*/}
           {tabActive === "All" && (
@@ -220,7 +222,7 @@ function DashSurveyList({ theme }) {
             <select
               name=""
               id=""
-              className="p-1 md:py-2 border border-1 border-slate-200 rounded-3xl bg-slate-200 w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600 dark:bg-slate-900"
+              className="p-1 md:py-2 border border-gray-200  bg-slate-50 rounded-3xl  w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600 dark:bg-slate-900"
             >
               <option>Type</option>
               <option value="Academic">Academic</option>
@@ -231,7 +233,7 @@ function DashSurveyList({ theme }) {
             </select>
             <input
               type="date"
-              className="ml-1 border border-1 border-slate-200 rounded-3xl w-28 md:w-46 bg-slate-200 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600 dark:bg-slate-900"
+              className="ml-1 border border-gray-200  bg-slate-50 rounded-3xl w-28 md:w-46 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600 dark:bg-slate-900"
               onChange={(e) => {
                 searchSurvey(e.target.value);
               }}

@@ -17,7 +17,7 @@ function Nav({
 
   return (
     <div className={theme ? "dark" : ""}>
-      <div className="h-26 flex justify-between items-center px-10 py-2  shadow-2xl   dark:bg-slate-600">
+      <div className="h-26 flex justify-between items-center px-10 py-2  shadow-2xl dark:bg-slate-600">
         <a href="/" className="md:w-60 w-1/2 z-100">
           <img src={Logo} alt="SurveyConnect" className="w-full " />
         </a>
