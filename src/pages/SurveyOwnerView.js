@@ -10,7 +10,7 @@ const home = <FontAwesomeIcon icon={faHome} />;
 const id = window.location.href.split("/").pop();
 const token = localStorage.getItem("token");
 
-function Survey({ theme }) {
+function SurveyOwnerView({ theme }) {
   const navigate = useNavigate();
   const baseURL_development = "http://localhost:5000";
 
@@ -18,7 +18,11 @@ function Survey({ theme }) {
     data = { errorMessage: "", _id: "", surveyName: "" },
     loading = true,
     error = false,
-  } = useFetch(`${baseURL_development}/survey/${id}`, token);
+  } = useFetch(
+    `${baseURL_development}/survey/surveyOwnerView/${id}`,
+    token,
+    true
+  );
 
   if (loading) {
     return (
@@ -26,10 +30,6 @@ function Survey({ theme }) {
         <img src={LoadingSpinner} alt="loading" className="w-8" />
       </div>
     );
-  } else if (data.errorMessage === "verifyAccess") {
-    navigate("/verify", {
-      state: { id: `${id}`, surveyName: data.surveyName },
-    });
   } else if (error) {
     return (
       <div className="w-full flex flex-col justify-center items-center h-screen bg-cyan-900 text-sky-100">
@@ -43,10 +43,10 @@ function Survey({ theme }) {
   } else if (data._id) {
     return (
       <div>
-        <QuestionCard survey={data} ownerView={false} />
+        <QuestionCard survey={data} ownerView={true} />
       </div>
     );
   }
 }
 
-export default Survey;
+export default SurveyOwnerView;

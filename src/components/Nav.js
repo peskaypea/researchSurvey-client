@@ -18,7 +18,7 @@ function Nav({
 
   return (
     <div className={theme ? "dark" : ""}>
-      <div className="h-26 flex justify-between items-center px-10 py-2  shadow-2xl   dark:bg-slate-600">
+      <div className="h-26 flex justify-between items-center px-10 py-2  shadow-2xl dark:bg-[#142641]">
         <a href="/" className="md:w-60 w-1/2 z-100">
           <img
             src={theme ? LogoWhite : Logo}
@@ -27,25 +27,7 @@ function Nav({
           />
         </a>
         <div className="w-full hidden md:flex md:justify-center lg:justify-end items-center">
-          <div className="flex md:w-1/2 xl:w-1/3 justify-evenly">
-            <button
-              className="hover:text-green-600 dark:text-white dark:hover:text-sky-200"
-              value={"Products"}
-              onClick={(e) => {
-                navigateTab(e);
-              }}
-            >
-              Products
-            </button>
-            {/* <button
-              className=" hover:text-green-600 dark:text-white dark:hover:text-sky-200"
-              value={"Solutions"}
-              onClick={(e) => {
-                navigateTab(e);
-              }}
-            >
-              Solutions
-            </button> */}
+          <div className="flex md:w-1/2 xl:w-1/5 justify-evenly">
             <button
               className=" hover:text-green-600 dark:text-white dark:hover:text-sky-200"
               value={"Pricing"}
@@ -80,7 +62,7 @@ function Nav({
               <div>
                 <a
                   href="/dashboard"
-                  className="w-28 text-center py-2 px-4 rounded-3xl text-white bg-green-600 dark:bg-sky-400 dark:hover:bg-sky-600"
+                  className="w-28 text-center py-2 px-4 rounded-3xl text-white bg-green-600 dark:bg-transparent dark:border dark:hover:bg-sky-50 dark:hover:text-black"
                 >
                   Dashboard
                 </a>
