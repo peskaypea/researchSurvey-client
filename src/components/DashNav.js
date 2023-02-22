@@ -8,8 +8,9 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 import Logo from "../assets/SC.svg";
+import LogoWhite from "../assets/SCWhite.svg";
 
-function DashNav({}) {
+function DashNav({ theme }) {
   const bell = <FontAwesomeIcon icon={faBell} size={"xl"} />;
   const user = <FontAwesomeIcon icon={faUserCircle} size={"2xl"} />;
   const add = <FontAwesomeIcon icon={faPlus} size={"xs"} />;
@@ -21,7 +22,7 @@ function DashNav({}) {
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">
             <a href="/">
-              <img src={Logo} alt="" className="w-100 " />
+              <img src={theme ? LogoWhite : Logo} alt="" className="w-100 " />
             </a>
           </div>
           <div className="sm:hidden hover:cursor-pointer">{menu}</div>

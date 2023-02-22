@@ -5,7 +5,7 @@ import DashSurveyList from "../components/DashSurveyList";
 function Dashboard({ theme }) {
   return (
     <div>
-      <DashNav />
+      <DashNav theme={theme} />
       <DashSurveyList theme={theme} />
     </div>
   );
