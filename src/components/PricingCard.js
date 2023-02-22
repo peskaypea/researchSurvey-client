@@ -3,8 +3,8 @@ import React from "react";
 const PricingCard = ({ theme }) => {
   return (
     <div className={theme ? "dark" : ""}>
-      <div className="flex md:flex-row flex-col justify-center dark:bg-slate-700">
-        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8  m-4 justify-center dark:bg-slate-800">
+      <div className="flex md:flex-row flex-col justify-center dark:bg-[#0F172A]">
+        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8  m-4 justify-center dark:bg-[#0F172A]">
           <h5 className="mb-4 text-xl font-medium dark:text-white">Basic</h5>
           <div className="flex items-baseline">
             <span className="text-3xl font-semibold dark:text-white">$</span>

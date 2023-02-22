@@ -10,7 +10,7 @@ import {
 import Logo from "../assets/SC.svg";
 import LogoWhite from "../assets/SCWhite.svg";
 
-function DashNav({}) {
+function DashNav({ theme }) {
   const bell = (
     <FontAwesomeIcon icon={faBell} size={"xl"} style={{ color: "gray" }} />
   );

@@ -21,14 +21,14 @@ const About = ({ theme }) => {
             efficient.
           </p>
         </div>
-        <div className="flex flex-col-reverse md:flex-row md:justify-around dark:bg-slate-700">
+        <div className="flex flex-col-reverse md:flex-row md:justify-around dark:bg-[#0F172A]">
           <div className="flex h-96 mt-5">
             <img
               src={theme === false ? greenMountain : blueMountain}
               alt="mountain"
             />
           </div>
-          <div className="flex md:flex-row  justify-center dark:bg-slate-700 ">
+          <div className="flex md:flex-row  justify-center dark:bg-[#0F172A] ">
             <div className="w-full max-w-sm p-7 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8  m-4 justify-center dark:bg-slate-800">
               <div className="flex w-96 pt-15 pr-20  ">
                 <p className="flex justify-center center text-sm italic dark:text-white">
