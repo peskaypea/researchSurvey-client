@@ -10,27 +10,14 @@ import {
 import UserImage from "../assets/empty_img.svg";
 import Spinner from "../assets/loading-gif.gif";
 
-const User = (
-  <FontAwesomeIcon
-    icon={faUser}
-    style={{ paddingRight: "5px" }}
-  ></FontAwesomeIcon>
-);
-const Arrow = <FontAwesomeIcon icon={faPlay} size={"xs"}></FontAwesomeIcon>;
-const ArrowDown = (
-  <FontAwesomeIcon icon={faArrowDown} size={"xs"}></FontAwesomeIcon>
-);
+const User = <FontAwesomeIcon icon={faUser} style={{ paddingRight: "5px" }} />;
+const Arrow = <FontAwesomeIcon icon={faPlay} size={"xs"} />;
+const ArrowDown = <FontAwesomeIcon icon={faArrowDown} size={"xs"} />;
 const UserEdit = (
-  <FontAwesomeIcon
-    icon={faUserEdit}
-    style={{ paddingRight: "5px" }}
-  ></FontAwesomeIcon>
+  <FontAwesomeIcon icon={faUserEdit} style={{ paddingRight: "5px" }} />
 );
 const Activity = (
-  <FontAwesomeIcon
-    icon={faNetworkWired}
-    style={{ paddingRight: "5px" }}
-  ></FontAwesomeIcon>
+  <FontAwesomeIcon icon={faNetworkWired} style={{ paddingRight: "5px" }} />
 );
 
 function UserCard({ user, loading, theme }) {
@@ -61,7 +48,7 @@ function UserCard({ user, loading, theme }) {
           <div className="flex flex-col bg-slate-200 rounded-3xl">
             {/* UserDash Nav */}
             <div className="flex rounded-t-3xl border-b border-neutral-200">
-              <div className="ml-4 flex justify-start w-full sm:w-3/5 md:1/3 h-20 items-center text-slate-700 ">
+              <div className="ml-5 flex justify-around  md:justify-start w-full sm:w-3/5 md:1/3 h-20 items-center text-slate-700 ">
                 <button
                   className={
                     tab === "Profile"
@@ -75,24 +62,12 @@ function UserCard({ user, loading, theme }) {
                 >
                   {User} Profile
                 </button>
-                <button
-                  className={
-                    tab === "Edit Profile"
-                      ? "border-b-2 border-green-500 dark:border-sky-500 h-full flex items-center hover:cursor-pointer mx-5"
-                      : "h-full flex items-center hover:cursor-pointer mx-5"
-                  }
-                  value="Edit Profile"
-                  onClick={(e) => {
-                    changeTab(e);
-                  }}
-                >
-                  {UserEdit} Edit Profile
-                </button>
+
                 <button
                   className={
                     tab === "Activity"
-                      ? "border-b-2 border-green-500 dark:border-sky-500 h-full flex items-center hover:cursor-pointer"
-                      : "h-full flex items-center hover:cursor-pointer"
+                      ? "border-b-2 border-green-500 dark:border-sky-500 h-full flex items-center hover:cursor-pointer ml-8"
+                      : "h-full flex items-center hover:cursor-pointer ml-8"
                   }
                   value="Activity"
                   onClick={(e) => {
@@ -105,73 +80,6 @@ function UserCard({ user, loading, theme }) {
             </div>
             {/*User Card Main Content */}
             {tab === "Profile" && (
-              <div className="md:flex md:flex-row justify-center items-start flex flex-col mt-10">
-                {/* Profile image */}
-                <div className="md:w-1/2 mx-auto md:mx-5 mb-2">
-                  <div className=" bg-slate-200 rounded-xl">
-                    <img
-                      src={UserImage}
-                      alt=""
-                      className="w-3/5 mx-auto rounded-full p-3"
-                    />
-                    <div className="text-center mt-2">
-                      <h3 className="text-lg font-bold">
-                        {user.firstName ? user.firstName : "User"}
-                      </h3>
-                      <p className="text-sm">{user.email ? user.email : "-"}</p>
-                      <p className="text-sm">
-                        {user.location ? user.location : "N/A"}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                {/* Profile Info */}
-                <div className="w-full  md:w-1/2 md:mr-5  ">
-                  <table className="table-auto w-full mx-auto mb-10  md:text-sm lg:text-md">
-                    <tbody>
-                      <tr className="bg-sky-50 h-14">
-                        <td className="pl-4">First Name</td>
-                        <td className="font-bold">
-                          {user.firstName ? user.firstName : "-"}
-                        </td>
-                      </tr>
-                      <tr className="bg-sky-50 h-14">
-                        <td className="pl-4">Last Name</td>
-                        <td className="font-bold">
-                          {user.lastName ? user.lastName : "-"}
-                        </td>
-                      </tr>
-                      <tr className="bg-sky-50 h-14">
-                        <td className="pl-4">Role</td>
-                        <td className="font-bold">
-                          {user.role ? user.role : "-"}
-                        </td>
-                      </tr>
-                      <tr className="bg-sky-50 h-14">
-                        <td className="pl-4">Email</td>
-                        <td className="font-bold">
-                          {user.email ? user.email : "-"}
-                        </td>
-                      </tr>
-                      <tr className="bg-sky-50 h-14">
-                        <td className="pl-4">Phone</td>
-                        <td className="font-bold">
-                          {user.phone ? user.phone : "-"}
-                        </td>
-                      </tr>
-                      <tr className="bg-sky-50 h-14">
-                        <td className="pl-4">Location</td>
-                        <td className="font-bold">
-                          {user.location ? user.location : "-"}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
-            {/* User Edit Profile Form */}
-            {tab === "Edit Profile" && (
               <form>
                 <div className="p-3">
                   <div className="grid md:grid-cols-2 md:gap-6">
@@ -180,9 +88,8 @@ function UserCard({ user, loading, theme }) {
                         type="text"
                         name="floating_first_name"
                         id="floating_first_name"
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-slate-600 dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" "
-                        required
                       />
                       <label
                         htmlFor="floating_first_name"
@@ -196,9 +103,8 @@ function UserCard({ user, loading, theme }) {
                         type="text"
                         name="floating_last_name"
                         id="floating_last_name"
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-slate-600 dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" "
-                        required
                       />
                       <label
                         htmlFor="floating_last_name"
@@ -215,9 +121,8 @@ function UserCard({ user, loading, theme }) {
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                         name="floating_phone"
                         id="floating_phone"
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-slate-600 dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" "
-                        required
                       />
                       <label
                         htmlFor="floating_phone"
@@ -231,7 +136,7 @@ function UserCard({ user, loading, theme }) {
                         type="text"
                         name="floating_role"
                         id="floating_role"
-                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                        className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-slate-600 dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                         placeholder=" "
                         readOnly
                       />
@@ -248,9 +153,8 @@ function UserCard({ user, loading, theme }) {
                       type="email"
                       name="floating_email"
                       id="floating_email"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-slate-600 dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                       placeholder=" "
-                      required
                     />
                     <label
                       htmlFor="floating_email"
@@ -264,7 +168,7 @@ function UserCard({ user, loading, theme }) {
                       type="password"
                       name="floating_password"
                       id="floating_password"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-slate-600 dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                       placeholder=" "
                       required
                     />
@@ -280,7 +184,7 @@ function UserCard({ user, loading, theme }) {
                       type="password"
                       name="repeat_password"
                       id="floating_repeat_password"
-                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
+                      className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-slate-600 dark:border-gray-600 dark:focus:border-sky-500 focus:outline-none focus:ring-0 focus:border-green-600 peer"
                       placeholder=" "
                       required
                     />
@@ -299,80 +203,8 @@ function UserCard({ user, loading, theme }) {
                   </button>
                 </div>
               </form>
-
-              // <div className="w-full  md:mr-5 ">
-              //   <table className="table-auto w-full mx-auto mb-10">
-              //     <tbody>
-              //       <tr className="bg-slate-200 h-14">
-              //         <td className="pl-4 ">First Name</td>
-              //         <td className="font-bold">
-              //           <input
-              //             type="text"
-              //             placeholder={user.firstName ? user.firstName : "-"}
-              //             className="h-8 rounded-xl px-3 border w-5/6"
-              //           />
-              //         </td>
-              //       </tr>
-              //       <tr className="h-14">
-              //         <td className="pl-4">Last Name</td>
-              //         <td className="font-bold">
-              //           <input
-              //             type="text"
-              //             placeholder={user.lastName ? user.lastName : "-"}
-              //             className="h-8 rounded-xl px-3 bg-sky-50 border w-5/6"
-              //           />
-              //         </td>
-              //       </tr>
-              //       <tr className="bg-sky-50 h-14">
-              //         <td className="pl-4">Role</td>
-              //         <td className="font-bold ">
-              //           <input
-              //             type="text"
-              //             placeholder={user.role ? user.role : "-"}
-              //             className="h-8 rounded-xl px-3 w-5/6 bg-sky-50 border"
-              //             disabled
-              //           />
-              //         </td>
-              //       </tr>
-              //       <tr className="h-14">
-              //         <td className="pl-4">Email</td>
-              //         <td className="font-bold ">
-              //           <input
-              //             type="text"
-              //             placeholder={user.email ? user.email : "-"}
-              //             className="h-8 rounded-xl px-3 w-5/6 bg-sky-50 border"
-              //           />
-              //         </td>
-              //       </tr>
-              //       <tr className="bg-sky-50 h-14">
-              //         <td className="pl-4">Phone</td>
-              //         <td className="font-bold">
-              //           <input
-              //             type="text"
-              //             placeholder={user.phone ? user.phone : "-"}
-              //             className="h-8 rounded-xl px-3 w-5/6 border"
-              //           />
-              //         </td>
-              //       </tr>
-              //       <tr className="h-14">
-              //         <td className="pl-4">Location</td>
-              //         <td className="font-bold">
-              //           <input
-              //             type="text"
-              //             placeholder={user.location ? user.location : "-"}
-              //             className="h-8 rounded-xl px-3 w-5/6 border"
-              //           />
-              //         </td>
-              //       </tr>
-              //     </tbody>
-              //   </table>
-              //   <div className=" w-full flex justify-center text-sky-50">
-              //     <button className="w-3/4 sm:w-1/3 h-8 rounded-xl mb-5 bg-cyan-800 active:bg-cyan-900/75 ">
-              //       Save
-              //     </button>
-              //   </div>
-              // </div>
             )}
+
             {tab === "Activity" && (
               <div className="w-full   md:mr-5 ">
                 <table className="table-auto w-full mx-auto mb-10">
