@@ -27,7 +27,7 @@ function DashNav({}) {
 
   return (
     <div>
-      <div className="bg-gradient-to-r bg-white shadow-2xl  text-white h-16 shadow-xl dark:bg-sky-500 dark:text-sky-50">
+      <div className="bg-gradient-to-r bg-white shadow-2xl  text-white h-16 shadow-xl dark:bg-gradient-to-r dark:from-[#09192F] dark:to-[#172A46] dark:text-sky-50">
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">
             <a href="/">
@@ -39,11 +39,9 @@ function DashNav({}) {
           <div className="flex dash-ul-font items-center w-56 justify-end">
             <button
               className={
-<<<<<<< HEAD
-                "px-2 py-2 w-36 mr-3 text-center rounded-3xl  dark:border-0 bg-gradient-to-tr from-green-600 to-sky-900 hover:bg-gradient-to-bl text-sm dark:bg-sky-500 active:border active:border-green-600 dark:hover:bg-sky-600 dark:hover:text-sky-50 "
-=======
-                "px-2 py-2 w-36   mr-3 text-center border rounded-3xl border-sky-50 dark:border-0 hover:bg-green-200 hover:text-green-600  dark:bg-sky-500 focus:ring focus:ring-slate-400 focus:outline-none dark:hover:bg-sky-600 dark:hover:text-sky-50 "
->>>>>>> 55a95cd65c26097d716240c33f8fbdc12f952916
+                "px-2 py-2 w-36   mr-3 text-center border rounded-3xl border-sky-50 dark:border-0 hover:bg-green-200  bg-gradient-to-tr from-green-600 to-sky-900  hover:bg-gradient-to-bl hover:cursor-pointer"
+
+                // border dark:border-0 h-8 md:h-10 w-16 py-1 sm:py-2 px-5 rounded-3xl text-white bg-gradient-to-tr from-green-600 to-sky-900 hover:bg-gradient-to-bl hover:cursor-pointer w-28 flex justify-center items-center md:w-28 dark:bg-sky-700 dark:hover:bg-sky-600
               }
             >
               <div className="flex justify-center focus:ring focus:white">

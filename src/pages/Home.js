@@ -15,7 +15,7 @@ function Home({
   setToggle,
 }) {
   return (
-    <div className={theme ? "h-screen bg-slate-700 " : "h-screen"}>
+    <div className={theme ? "h-screen bg-[#0F172A] " : "h-screen"}>
       <Nav
         theme={darkTheme}
         toggleTheme={toggleTheme}

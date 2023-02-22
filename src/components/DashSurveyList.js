@@ -222,7 +222,7 @@ function DashSurveyList({ theme }) {
             <select
               name=""
               id=""
-              className="p-1 md:py-2 border border-gray-200  bg-slate-50 rounded-3xl  w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600 dark:bg-slate-900"
+              className="p-1 md:py-2 border border-gray-200  bg-slate-50 rounded-3xl  w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-200 dark:bg-slate-900"
             >
               <option>Type</option>
               <option value="Academic">Academic</option>
@@ -233,7 +233,7 @@ function DashSurveyList({ theme }) {
             </select>
             <input
               type="date"
-              className="ml-1 border border-gray-200  bg-slate-50 rounded-3xl w-28 md:w-46 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-600 dark:bg-slate-900"
+              className="ml-1 border border-gray-200  bg-slate-50 rounded-3xl w-28 md:w-46 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-200 dark:bg-slate-900"
               onChange={(e) => {
                 searchSurvey(e.target.value);
               }}

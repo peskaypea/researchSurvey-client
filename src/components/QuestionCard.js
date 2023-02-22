@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
-const baseURL_development = "http://localhost:5000";
-const home = <FontAwesomeIcon icon={faHome} />;
-const surveyID = window.location.href.split("/").pop();
-const token = localStorage.getItem("token");
 function QuestionCard({ survey, ownerView }) {
+  const baseURL_development = "http://localhost:5000";
+  const home = <FontAwesomeIcon icon={faHome} />;
+  const surveyID = window.location.href.split("/").pop();
+  const token = localStorage.getItem("token");
   const [questionNum, setQuestionNum] = useState(0);
   const questions = survey.questions.map((q) => {
     return q.question;
@@ -19,8 +19,6 @@ function QuestionCard({ survey, ownerView }) {
 
   //Survey response
   const [response, setReseponse] = useState(initialResponse);
-
-  console.log(response);
 
   const navigate = useNavigate();
   const nextQuestion = (action) => {
