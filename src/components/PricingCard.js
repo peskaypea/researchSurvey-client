@@ -104,7 +104,7 @@ const PricingCard = ({ theme }) => {
           </button>
         </div>
 
-        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8   m-4 dark:bg-slate-800">
+        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8   m-4 dark:bg-[#0F172A]">
           <h5 className="mb-4 text-xl font-medium dark:text-white">Standard</h5>
           <div className="flex items-baseline">
             <span className="text-3xl font-semibold dark:text-white">$</span>
@@ -203,7 +203,7 @@ const PricingCard = ({ theme }) => {
             Sign Up
           </button>
         </div>
-        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8   m-4 dark:bg-slate-800">
+        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8   m-4 dark:bg-[#0F172A]">
           <h5 className="mb-4 text-xl font-medium dark:text-white ">
             Enterprise
           </h5>
