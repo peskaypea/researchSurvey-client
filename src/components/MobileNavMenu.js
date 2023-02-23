@@ -9,6 +9,7 @@ function MobileNavMenu({
   handleChangeActive,
   toggle,
   setToggle,
+  navigateTab,
 }) {
   const token = localStorage.getItem("token");
 
@@ -49,18 +50,25 @@ function MobileNavMenu({
                 />
               </button>
             </div>
-            <a href="/" className="p-2 hover:text-cyan-600">
-              Product
-            </a>
-            <a href="/" className="p-2 hover:text-cyan-600">
-              Solutions
-            </a>
-            <a href="/pricing" className=" p-2 hover:text-cyan-600">
+
+            <button
+              value={"Pricing"}
+              onClick={(e) => {
+                navigateTab(e);
+              }}
+              className=" p-2 hover:text-cyan-600"
+            >
               Pricing
-            </a>
-            <a href="/about" className="p-2 hover:text-cyan-600">
+            </button>
+            <button
+              value={"About"}
+              onClick={(e) => {
+                navigateTab(e);
+              }}
+              className="p-2 hover:text-cyan-600"
+            >
               About
-            </a>
+            </button>
           </div>
           {/* Dashboard/Login/Signup */}
           <div>

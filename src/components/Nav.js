@@ -99,6 +99,7 @@ function Nav({
             handleChangeActive={handleChangeActive}
             toggle={toggle}
             setToggle={setToggle}
+            navigateTab={navigateTab}
           />
         </div>
       </div>

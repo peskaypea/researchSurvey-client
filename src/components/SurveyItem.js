@@ -70,7 +70,7 @@ function SurveyItem({
 
         <div className="flex ">
           <a
-            className="border dark:border-0 h-8 md:h-10 w-16 py-1 sm:py-2 px-5 rounded-3xl text-white bg-green-700 hover:bg-green-600 dark:border-2 dark:border-[#51D1B4]  dark:text-[#51D1B4] w-28 flex justify-center items-center md:w-24 lg:w-28 hover:cursor-pointer  dark:hover:bg-[#0A192F] dark:hover:text-cyan-100
+            className="border dark:border-0 h-8 md:h-10 w-16 py-1 sm:py-2 px-5 rounded-3xl text-white bg-green-600 hover:bg-green-500 dark:border-2 dark:border-[#51D1B4]  dark:text-[#51D1B4] w-28 flex justify-center items-center md:w-24 lg:w-28 hover:cursor-pointer  dark:hover:bg-[#0A192F] dark:hover:text-cyan-100
             dark:bg-transparent"
             href={`/survey/${survey._id}`}
           >
