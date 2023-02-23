@@ -2,81 +2,26 @@ import React from "react";
 import SurveySettings from "./SurveySettings";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faX,
   faEdit,
-  faEllipsisV,
   faLock,
-  faEllipsisH,
   faShareAlt,
   faTrashAlt,
+  faLockOpen,
 } from "@fortawesome/free-solid-svg-icons";
-function SurveyItem({ survey, deleteSurvey, subMenu, setSubMenu }) {
+function SurveyItem({
+  survey,
+  deleteSurvey,
+  subMenu,
+  setSubMenu,
+  selectLockSurvey,
+}) {
   const del = <FontAwesomeIcon icon={faTrashAlt} size={"sm"} />;
   const edit = <FontAwesomeIcon icon={faEdit} size={"sm"} />;
   const share = <FontAwesomeIcon icon={faShareAlt} size={"sm"} />;
   const lock = <FontAwesomeIcon icon={faLock} size={"sm"} />;
+  const unlock = <FontAwesomeIcon icon={faLockOpen} size={"sm"} />;
 
   return (
-    // <div className="mb-2 ">
-    //   <div className="flex justify-around  bg-white w-11/12 xl:w-8/12 mx-auto h-24 rounded-lg shadow-md hover:shadow-lg dark:bg-slate-700">
-    //     <div className="flex w-1/12 h-full pl-5 items-center ">
-    //       <div className="flex w-4/6 h-3/6 bg-gradient-to-r from-green-400 to-sky-400 rounded-md justify-center items-center">
-    //         {!survey.public && (
-    //           <div className="flex justify-center text-lg opacity-70">
-    //             {lock}
-    //           </div>
-    //         )}
-    //       </div>
-    //     </div>
-    //     <div className="flex w-11/12 h-full flex-col ">
-    //       <div className="flex items-end">
-    //         <div className="flex pl-4 w-2/4 h-3/6 ">
-    //           <div className="flex items-end ">
-    //             <h2 className="text-sm font-light underline ">
-    //               created by {survey.organization}
-    //             </h2>
-    //           </div>
-    //         </div>
-    //         <div className="flex  w-2/2 h-3/6 justify-center ">
-    //           <div className="flex items-end ">
-    //             <h2 className="font-bold">{survey.surveyName}</h2>
-    //           </div>
-    //         </div>
-    //       </div>
-    //       <div className=" w-full h-5/6 mt-2 flex">
-    //         <div className="flex  justify-around items-center w-2/6 h-full ">
-    //           <div>
-    //             <h6 className="text-xs sm:text-sm font-semibold">Start Date</h6>
-    //             <p className="text-xs">{survey.dateCreated.slice(0, 10)}</p>
-    //           </div>
-    //           <div>
-    //             <h6 className="text-xs sm:text-sm font-semibold">End Date</h6>
-    //             <p className="text-xs">{survey.dateEnd.slice(0, 10)}</p>
-    //           </div>
-    //         </div>
-    //         <div className="flex justify-center w-full h-full  items-center">
-    //           <a href={`/survey/${survey._id}`}>
-    //             <button
-    //               type="button"
-    //               className="text-black  bg-gradient-to-r from-green-400 to-sky-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-7 mb-2 flex "
-    //             >
-    //               Take Survey
-    //             </button>
-    //           </a>
-    //         </div>
-
-    //         <div className="relative flex justify-center items-start w-1/12 h-full pt-5 hover:text-green-500  dark:hover:text-sky-500  ">
-    //           <SurveySettings
-    //             survey={survey}
-    //             deleteSurvey={deleteSurvey}
-    //             subMenu={subMenu}
-    //             setSubMenu={setSubMenu}
-    //           />
-    //         </div>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
     <div className="mb-2">
       <div className="flex justify-around pt-5 bg-white w-11/12 xl:w-8/12 mx-auto h-24 text-sm  text-gray-500 rounded-lg shadow-2xl dark:bg-[#172A46] dark:text-slate-100">
         <div className="md:flex md:justify-around  full md:w-56">
@@ -125,22 +70,28 @@ function SurveyItem({ survey, deleteSurvey, subMenu, setSubMenu }) {
 
         <div className="flex ">
           <a
-            className="border dark:border-0 h-8 md:h-10 w-16 py-1 sm:py-2 px-5 rounded-3xl text-white bg-gradient-to-tr from-green-600 to-sky-900 hover:bg-gradient-to-bl hover:cursor-pointer w-28 flex justify-center items-center md:w-28 dark:bg-sky-700 dark:hover:bg-sky-600"
+            className="border dark:border-0 h-8 md:h-10 w-16 py-1 sm:py-2 px-5 rounded-3xl text-white bg-green-700 hover:bg-green-600 dark:border-2 dark:border-[#51D1B4]  dark:text-[#51D1B4] w-28 flex justify-center items-center md:w-24 lg:w-28 hover:cursor-pointer  dark:hover:bg-[#0A192F] dark:hover:text-cyan-100
+            dark:bg-transparent"
             href={`/survey/${survey._id}`}
           >
             <p className="w-full text-xs text-center">View </p>
           </a>
           <a
             href={`/surveyedit/${survey._id}`}
-            className="border dark:border-slate-600 h-10 p-3 rounded-2xl ml-4  mr-1 hover:bg-slate-200 hover:cursor-pointer hidden sm:block"
+            className="border dark:border-slate-600 h-10 p-3 rounded-2xl ml-4  mr-1 hover:bg-slate-300 dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block"
           >
             {edit}
           </a>
 
-          <div className="border dark:border-slate-600 h-10 p-3 rounded-2xl mx-1  hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
-            {lock}
+          <div
+            className="border dark:border-slate-600 h-10 p-3 rounded-2xl mx-1 hover:bg-slate-300  dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block"
+            onClick={() => {
+              selectLockSurvey(survey._id);
+            }}
+          >
+            {survey.public ? <span>{lock}</span> : <span>{unlock}</span>}
           </div>
-          <div className="border dark:border-slate-600 h-10 p-3 rounded-2xl  mx-1 hover:bg-slate-200 hover:cursor-pointer hidden sm:block">
+          <div className="border dark:border-slate-600 h-10 p-3 rounded-2xl  mx-1 hover:bg-slate-300  dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block">
             {share}
           </div>
         </div>
@@ -150,10 +101,11 @@ function SurveyItem({ survey, deleteSurvey, subMenu, setSubMenu }) {
             deleteSurvey={deleteSurvey}
             subMenu={subMenu}
             setSubMenu={setSubMenu}
+            selectLockSurvey={selectLockSurvey}
           ></SurveySettings>
         </div>
         <div
-          className="border dark:border-slate-600 h-10 p-3 rounded-2xl hover:bg-red-300 hover:cursor-pointer hidden sm:block md:mr-2"
+          className="border dark:border-slate-600 h-10 p-3 rounded-2xl hover:bg-red-300 hover:cursor-pointer hover:border-red-200 hidden sm:block md:mr-2"
           id={survey._id}
           onClick={(e) => {
             deleteSurvey(e);

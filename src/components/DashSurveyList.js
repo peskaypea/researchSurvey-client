@@ -31,6 +31,25 @@ function DashSurveyList({ theme }) {
     setTabActive(e.target.value);
   };
 
+  const selectLockSurvey = async (id) => {
+    const selectedSurvey = surveyList.filter((survey) => survey._id === id);
+
+    selectedSurvey[0] = {
+      ...selectedSurvey[0],
+      public: !selectedSurvey[0].public,
+    };
+    await fetch(`${baseURL_development}/survey/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(selectedSurvey[0]),
+    })
+      .then((res) => res.json())
+      .then((data) => setSurveyList(data));
+  };
+
   //Set tab in surveyList navbar
   const searchSurvey = (value) => {
     if (value === "") {
@@ -136,8 +155,8 @@ function DashSurveyList({ theme }) {
           <button
             className={
               tabActive === "All"
-                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200 dark:hover:text-sky-500"
-                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:text-sky-500"
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200 dark:hover:text-[#51D1B4]"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:[#51D1B4]"
             }
             value={"All"}
             onClick={(e) => {
@@ -150,8 +169,8 @@ function DashSurveyList({ theme }) {
           <button
             className={
               tabActive === "Active"
-                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200  dark:hover:text-sky-500"
-                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:text-sky-500 "
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200  dark:hover:text-[#51D1B4]"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:text-[#51D1B4] "
             }
             value={"Active"}
             onClick={(e) => tabActivate(e)}
@@ -162,8 +181,8 @@ function DashSurveyList({ theme }) {
           <button
             className={
               tabActive === "Past"
-                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200  dark:hover:text-sky-500"
-                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:text-sky-500"
+                ? "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-green-700 dark:border-slate-200  dark:hover:text-[#51D1B4]"
+                : "w-1/3 align-middle h-full hover:text-green-700 border-b-4 border-transparent  dark:hover:text-[#51D1B4]"
             }
             value={"Past"}
             onClick={(e) => tabActivate(e)}
@@ -174,23 +193,29 @@ function DashSurveyList({ theme }) {
         {/* Survey Filter Mobile*/}
         <div
           id="selectMenu"
-          className="sm:hidden flex border border-1 p-2 rounded-3xl bg-slate-200 mx-3 sm:mx-0"
+          className="sm:hidden flex   p-2 rounded-3xl bg-[#172A46] mx-3 sm:mx-0"
         >
           <select
             name="activeTab"
             id="activeTab"
-            className="outline-0 bg-transparent dark:text-slate-600"
+            className="outline-0 bg-transparent dark:text-slate-50 "
             onChange={(e) => tabActivate(e)}
           >
-            <option value={"All"}>All</option>
-            <option value={"Active"}>Active</option>
-            <option value={"Past"}>Past</option>
+            <option className=" bg-[#172A46]" value={"All"}>
+              All
+            </option>
+            <option className=" bg-[#172A46]" value={"Active"}>
+              Active
+            </option>
+            <option className=" bg-[#172A46]" value={"Past"}>
+              Past
+            </option>
           </select>
         </div>
         {/* Search bar */}
         <div
           id="searchBar"
-          className="p-2 border border-gray-200  bg-slate-50 rounded-3xl w-80  mx-3 sm:mx-0 dark:text-slate-200 dark:bg-slate-900"
+          className="p-2   bg-slate-50 rounded-3xl w-80  mx-3 sm:mx-0 dark:text-slate-200 dark:bg-[#172A46]"
         >
           {searchIcon}
           <input
@@ -222,7 +247,7 @@ function DashSurveyList({ theme }) {
             <select
               name=""
               id=""
-              className="p-1 md:py-2 border border-gray-200  bg-slate-50 rounded-3xl  w-20 md:w-36 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-200 dark:bg-slate-900"
+              className="p-1 md:py-2 border bg-slate-50 rounded-3xl  w-20 md:w-36 text-center text-sm  dark:text-slate-200 dark:bg-[#172A46] dark:border-none"
             >
               <option>Type</option>
               <option value="Academic">Academic</option>
@@ -233,7 +258,7 @@ function DashSurveyList({ theme }) {
             </select>
             <input
               type="date"
-              className="ml-1 border border-gray-200  bg-slate-50 rounded-3xl w-28 md:w-46 text-center text-sm focus:ring focus:ring-slate-400 focus:outline-none dark:text-slate-200 dark:bg-slate-900"
+              className="ml-1    bg-slate-50 border rounded-3xl w-28 md:w-46 text-center text-sm   dark:text-slate-200 dark:bg-[#172A46] dark:border-none"
               onChange={(e) => {
                 searchSurvey(e.target.value);
               }}
@@ -247,6 +272,7 @@ function DashSurveyList({ theme }) {
             key={surveyList[0]._id}
             subMenu={subMenu}
             setSubMenu={setSubMenu}
+            selectLockSurvey={selectLockSurvey}
           />
         )}
 
@@ -266,6 +292,7 @@ function DashSurveyList({ theme }) {
                       key={survey._id}
                       subMenu={subMenu}
                       setSubMenu={setSubMenu}
+                      selectLockSurvey={selectLockSurvey}
                     />
                   );
               })}
@@ -288,6 +315,7 @@ function DashSurveyList({ theme }) {
                       key={survey._id}
                       subMenu={subMenu}
                       setSubMenu={setSubMenu}
+                      selectLockSurvey={selectLockSurvey}
                     />
                   );
                 }
@@ -310,6 +338,7 @@ function DashSurveyList({ theme }) {
                     key={survey._id}
                     subMenu={subMenu}
                     setSubMenu={setSubMenu}
+                    selectLockSurvey={selectLockSurvey}
                   />
                 );
               })}

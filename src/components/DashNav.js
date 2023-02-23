@@ -12,13 +12,17 @@ import LogoWhite from "../assets/SCWhite.svg";
 
 function DashNav({ theme }) {
   const bell = (
-    <FontAwesomeIcon icon={faBell} size={"xl"} style={{ color: "gray" }} />
+    <FontAwesomeIcon
+      icon={faBell}
+      size={"xl"}
+      style={{ color: theme ? "white" : "gray" }}
+    />
   );
   const user = (
     <FontAwesomeIcon
       icon={faUserCircle}
       size={"2xl"}
-      style={{ color: "gray" }}
+      style={{ color: theme ? "white" : "gray" }}
     />
   );
   const add = <FontAwesomeIcon icon={faPlus} size={"xs"} />;
@@ -27,7 +31,7 @@ function DashNav({ theme }) {
   );
 
   return (
-    <div>
+    <div className={theme ? "dark" : ""}>
       <div className="bg-gradient-to-r bg-white   text-white h-16 shadow-xl dark:bg-gradient-to-r dark:from-[#09192F] dark:to-[#172A46] dark:text-sky-50">
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">
@@ -40,9 +44,7 @@ function DashNav({ theme }) {
           <div className="flex dash-ul-font items-center w-56 justify-end">
             <button
               className={
-                "px-2 py-2 w-36   mr-3 text-center border rounded-3xl border-sky-50 dark:border-0 hover:bg-green-200  bg-gradient-to-tr from-green-600 to-sky-900  hover:bg-gradient-to-bl hover:cursor-pointer"
-
-                // border dark:border-0 h-8 md:h-10 w-16 py-1 sm:py-2 px-5 rounded-3xl text-white bg-gradient-to-tr from-green-600 to-sky-900 hover:bg-gradient-to-bl hover:cursor-pointer w-28 flex justify-center items-center md:w-28 dark:bg-sky-700 dark:hover:bg-sky-600
+                "px-2 py-2 w-36   mr-3 text-center border rounded-3xl  dark:border-2 dark:border-[#51D1B4] bg-green-700 hover:bg-green-600 dark:bg-transparent dark:text-[#51D1B4] hover:cursor-pointer  dark:hover:bg-[#0A192F] dark:hover:text-cyan-100"
               }
             >
               <div className="flex justify-center focus:ring focus:white">

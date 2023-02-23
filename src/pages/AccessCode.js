@@ -62,7 +62,6 @@ function AccessCode({ theme }) {
           : "background h-screen flex jsutify-center"
       }
     >
-      {/* w-96 xl:w-1/4 h-5/7 border-transparet rounded-2xl p-10 bg-slate-800/50 */}
       <div className="w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-slate-800/50 text-white mx-auto my-auto h-1/2 rounded-xl p-5 bg-sky-50">
         <div className="text-center mt-16">
           <h3 className="font-bold text-xl">

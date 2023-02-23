@@ -29,7 +29,7 @@ function UserCard({ user, loading, theme }) {
     }
   };
   return (
-    <div className="  dark:bg-slate-800 ">
+    <div className="  dark:bg-slate-900 ">
       {!loading && (
         <div className="w-11/12 sm:w-5/6 lg:w-3/5 2xl:w-1/2 mx-auto">
           <div className="mt-5 mb-10">

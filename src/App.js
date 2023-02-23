@@ -11,7 +11,6 @@ import AccessCode from "pages/AccessCode";
 import SurveyEdit from "pages/SurveyEdit";
 import UserProfile from "pages/UserProfile";
 import SurveyResponse from "pages/SurveyResponse";
-import SurveyOwnerView from "pages/SurveyOwnerView";
 
 function App() {
   //Set theme to light by default if user hasn't set theme
@@ -67,10 +66,6 @@ function App() {
           <Route path="/dashboard" element={<Dashboard theme={theme} />} />
           <Route path="/survey/asl" element={<ASLSurvey theme={theme} />} />
           <Route path="/survey/:id" element={<Survey theme={theme} />} />
-          <Route
-            path="/survey/ownerview/:id"
-            element={<SurveyOwnerView theme={theme} />}
-          />
 
           <Route
             path="/surveyedit/:id"
