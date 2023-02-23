@@ -12,7 +12,7 @@ const About = ({ theme }) => {
         <div className="flex flex-col">
           <h1 className="flex justify-center text-4xl pt-6 dark:text-white">
             We are &nbsp;{" "}
-            <h1 className="text-green-600 dark:text-sky-400">
+            <h1 className="text-green-600 dark:text-[#51D1B4]">
               Survey Connect!
             </h1>
           </h1>
@@ -29,7 +29,7 @@ const About = ({ theme }) => {
             />
           </div>
           <div className="flex md:flex-row  justify-center dark:bg-[#0F172A] ">
-            <div className="w-full max-w-sm p-7 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8  m-4 justify-center dark:bg-slate-800">
+            <div className="w-full max-w-sm p-7 bg-white border border-gray-200 dark:border-[#51D1B4] rounded-lg shadow sm:p-8  m-4 justify-center dark:bg-slate-800">
               <div className="flex w-96 pt-15 pr-20  ">
                 <p className="flex justify-center center text-sm italic dark:text-white">
                   Our mission is to empower people with the tools they need to

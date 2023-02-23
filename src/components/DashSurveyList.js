@@ -83,8 +83,8 @@ function DashSurveyList({ theme }) {
       } else {
         id = e.target.parentNode.parentNode.id;
       }
-
-      await fetch(`${baseURL}/survey/${id}`, {
+      console.log("Deleting");
+      await fetch(`${baseURL_development}/survey/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

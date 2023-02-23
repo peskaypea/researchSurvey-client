@@ -18,7 +18,7 @@ function Welcome({ theme }) {
       <div>
         <div className="flex flex-col md:flex-row justify-center pt-32">
           <div className="sc__main-container-info-text">
-            <h3 className="text-green-600 dark:text-sky-300">
+            <h3 className="text-green-600 dark:text-[#51D1B4]">
               Build, Create, Connect
             </h3>
             <h1 className="dark:text-white">
@@ -30,14 +30,14 @@ function Welcome({ theme }) {
             </p>
             <div className="flex">
               <button
-                className="bg-green-600 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:bg-white dark:hover:text-slate-700 dark:hover:border-sky-50 hover:text-green-600 hover:bg-white hover:border-green-600 "
+                className="bg-green-600 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:text-slate-700 dark:border-[#51D1B4] hover:text-green-600 hover:bg-white dark:hover:bg-[#51D1B4] "
                 onClick={checkLogin}
               >
                 Get Started
               </button>
 
               <button
-                className="bg-green-600 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:bg-white dark:hover:text-slate-700 dark:hover:border-sky-50 hover:text-green-600 hover:bg-white hover:border-green-600 "
+                className="bg-green-600 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:text-slate-700 dark:border-[#51D1B4]  hover:text-green-600 dark:hover:bg-[#51D1B4] "
                 onClick={checkLogin}
               >
                 Take Survey

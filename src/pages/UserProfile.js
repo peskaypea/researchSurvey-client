@@ -16,7 +16,7 @@ function UserProfile({ theme }) {
     <div className="">
       <div className=" h-screen dark:bg-slate-900">
         <DashNav theme={theme} />
-        <UserCard user={data} loading={loading} theme={theme} />
+        <UserCard user={data} loading={loading} />
       </div>
     </div>
   );

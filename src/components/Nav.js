@@ -29,7 +29,7 @@ function Nav({
         <div className="w-full hidden md:flex md:justify-center lg:justify-end items-center">
           <div className="flex md:w-1/2 xl:w-1/5 justify-evenly">
             <button
-              className=" hover:text-green-600 dark:text-white dark:hover:text-sky-200"
+              className=" hover:text-green-600 dark:text-white dark:hover:text-[#51D1B4]"
               value={"Pricing"}
               onClick={(e) => {
                 navigateTab(e);
@@ -38,7 +38,7 @@ function Nav({
               Pricing
             </button>
             <button
-              className=" hover:text-green-600 dark:text-white dark:hover:text-sky-200"
+              className=" hover:text-green-600 dark:text-white dark:hover:text-[#51D1B4]"
               value={"About"}
               onClick={(e) => {
                 navigateTab(e);
@@ -62,7 +62,7 @@ function Nav({
               <div>
                 <a
                   href="/dashboard"
-                  className="w-28 text-center py-2 px-4 rounded-3xl text-white bg-green-600 dark:bg-transparent dark:border dark:hover:bg-sky-50 dark:hover:text-black"
+                  className="w-28 text-center py-2 px-4 rounded-3xl text-white bg-green-600 dark:bg-transparent dark:border dark:border-[#51D1B4]  dark:hover:bg-[#51D1B4] dark:hover:text-slate-700"
                 >
                   Dashboard
                 </a>

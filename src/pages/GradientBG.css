@@ -4,6 +4,6 @@
 }
 
 .dark-background {
-    background: rgb(49, 63, 82);
-    background: linear-gradient(90deg, rgba(49, 63, 82, 1) 33%, rgba(79, 109, 149, 1) 66%, rgba(92, 126, 172, 1) 80%);
+    background: rgb(23, 42, 70);
+    background: linear-gradient(30deg, rgba(23, 42, 70, 1) 33%, rgba(15, 39, 70, 1) 72%, rgba(17, 56, 110, 1) 99%);
 }

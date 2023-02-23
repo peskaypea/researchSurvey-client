@@ -4,7 +4,7 @@ const PricingCard = ({ theme }) => {
   return (
     <div className={theme ? "dark" : ""}>
       <div className="flex md:flex-row flex-col justify-center dark:bg-[#0F172A]">
-        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8  m-4 justify-center dark:bg-[#0F172A]">
+        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-[#51D1B4] rounded-lg shadow sm:p-8  m-4 justify-center dark:bg-[#0F172A]">
           <h5 className="mb-4 text-xl font-medium dark:text-white">Basic</h5>
           <div className="flex items-baseline">
             <span className="text-3xl font-semibold dark:text-white">$</span>
@@ -20,7 +20,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600   dark:text-sky-400"
+                className="flex-shrink-0 w-5 h-5 text-green-600   dark:text-[#51D1B4]"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400"
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4]"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +58,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400"
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4]"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -98,13 +98,13 @@ const PricingCard = ({ theme }) => {
           </ul>
           <button
             type="button"
-            className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center dark:bg-sky-400 dark:hover:bg-sky-300"
+            className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center dark:bg-[#51D1B4] dark:hover:bg-[#51D1B4]/[0.9]"
           >
             Sign Up
           </button>
         </div>
 
-        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8   m-4 dark:bg-[#0F172A]">
+        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-[#51D1B4] rounded-lg shadow sm:p-8   m-4 dark:bg-[#0F172A]">
           <h5 className="mb-4 text-xl font-medium dark:text-white">Standard</h5>
           <div className="flex items-baseline">
             <span className="text-3xl font-semibold dark:text-white">$</span>
@@ -120,7 +120,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400"
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4]"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -139,7 +139,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400"
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4]"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +158,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400"
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4]"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -198,12 +198,12 @@ const PricingCard = ({ theme }) => {
           </ul>
           <button
             type="button"
-            className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center dark:bg-sky-400 dark:hover:bg-sky-300"
+            className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center dark:bg-[#51D1B4] dark:hover:bg-[#51D1B4]/[0.9]"
           >
             Sign Up
           </button>
         </div>
-        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-sky-300 rounded-lg shadow sm:p-8   m-4 dark:bg-[#0F172A]">
+        <div className="w-full max-w-sm p-4 bg-white border border-gray-200 dark:border-[#51D1B4] rounded-lg shadow sm:p-8   m-4 dark:bg-[#0F172A]">
           <h5 className="mb-4 text-xl font-medium dark:text-white ">
             Enterprise
           </h5>
@@ -221,7 +221,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400"
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4]"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -240,7 +240,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400 "
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4] "
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -259,7 +259,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400 "
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4] "
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -278,7 +278,7 @@ const PricingCard = ({ theme }) => {
             <li className="flex space-x-3">
               <svg
                 aria-hidden="true"
-                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-sky-400 "
+                className="flex-shrink-0 w-5 h-5 text-green-600 dark:text-[#51D1B4] "
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -299,7 +299,7 @@ const PricingCard = ({ theme }) => {
           </ul>
           <button
             type="button"
-            className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center dark:bg-sky-400 dark:hover:bg-sky-300"
+            className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-200  font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center dark:bg-[#51D1B4] dark:hover:bg-[#51D1B4]/[0.9]"
           >
             Sign Up
           </button>
