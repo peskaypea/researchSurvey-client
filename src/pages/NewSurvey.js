@@ -16,15 +16,6 @@ function NewSurvey({ theme }) {
     instructionMessage: "",
     numResponse: 0,
   });
-  console.log(survey);
-  const updateSurveyDetail = (e) => {
-    setSurvey((oldData) => {
-      return {
-        ...oldData,
-        [e.target.name]: e.target.value,
-      };
-    });
-  };
 
   return (
     <div className="w-1/2 mx-auto">
@@ -34,8 +25,6 @@ function NewSurvey({ theme }) {
         id="surveyName"
         className="border border-black"
         name="surveyName"
-        onChange={(e) => updateSurveyDetail(e)}
-        value={survey.surveyName}
       />
       <br />
       <label htmlFor="Organization">Organization</label>
@@ -44,8 +33,6 @@ function NewSurvey({ theme }) {
         id="Organization"
         name="organization"
         className="border border-black"
-        onChange={(e) => updateSurveyDetail(e)}
-        value={survey.organization}
       />
       <br />
       <label htmlFor="Survey Type">Survey Type</label>
@@ -55,8 +42,6 @@ function NewSurvey({ theme }) {
         id="Survey Type"
         className="border border-black"
         name="surveyType"
-        onChange={(e) => updateSurveyDetail(e)}
-        value={survey.surveyType}
       />
       <br />
       <label htmlFor="Description">Description</label>
@@ -65,8 +50,6 @@ function NewSurvey({ theme }) {
         id="Description"
         className="border border-black"
         name="description"
-        onChange={(e) => updateSurveyDetail(e)}
-        value={survey.description}
       />
       <br />
 
@@ -97,8 +80,6 @@ function NewSurvey({ theme }) {
         name="dateEnd"
         id="endDate"
         className="border border-black"
-        onChange={(e) => updateSurveyDetail(e)}
-        value={survey.dateEnd}
       />
       <label htmlFor="endDate">No End Date</label>
       <input type="checkbox" name="noEndDate" id="noEndDate" />
