@@ -49,7 +49,7 @@ function DashNav({ theme }) {
             >
               <div className="flex justify-center focus:ring focus:white">
                 <div className="mr-1">{add}</div>
-                <div>New Survey</div>
+                <a href="/newsurvey">New Survey</a>
               </div>
             </button>
             <div className="flex justify-content-evenly ">
