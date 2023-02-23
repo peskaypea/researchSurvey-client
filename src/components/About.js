@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./About.css";
 
 import greenMountain from "../assets/GreenMountain.svg";
-import blueMountain from "../assets/BlueMountain.svg";
-import aboutImage from "../assets/SuveryConnect.png";
+
+import DarkMode from "../assets/greenDarkMode.svg";
 
 const About = ({ theme }) => {
   return (
@@ -11,8 +11,8 @@ const About = ({ theme }) => {
       <div className="">
         <div className="flex flex-col">
           <h1 className="flex justify-center text-4xl pt-6 dark:text-white">
-            We are &nbsp;{" "}
-            <h1 className="text-green-600 dark:text-[#51D1B4]">
+            We are &nbsp;
+            <h1 className="text-green-600 dark:text-sky-400">
               Survey Connect!
             </h1>
           </h1>
@@ -24,7 +24,7 @@ const About = ({ theme }) => {
         <div className="flex flex-col-reverse md:flex-row md:justify-around dark:bg-[#0F172A]">
           <div className="flex h-96 mt-5">
             <img
-              src={theme === false ? greenMountain : blueMountain}
+              src={theme === false ? greenMountain : DarkMode}
               alt="mountain"
             />
           </div>
