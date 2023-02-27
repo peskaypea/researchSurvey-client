@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 function NewSurvey({ theme }) {
   const [questionArray, setQuestionArray] = useState([]);
   const [publicAccess, setPublicAccess] = useState(true);
+  const [endDate, setEndDate] = useState(false);
   const [survey, setSurvey] = useState({
     surveyName: "",
     surveyOwner: "",
@@ -17,7 +18,7 @@ function NewSurvey({ theme }) {
     instructionMessage: "",
     numResponse: 0,
   });
-
+  console.log(survey);
   const updateSurveyDetail = (e) => {
     setSurvey((oldData) => {
       return {
@@ -26,8 +27,6 @@ function NewSurvey({ theme }) {
       };
     });
   };
-
-  useEffect(() => {}, [setPublicAccess]);
 
   return (
     <div className="w-1/2 mx-auto">
@@ -111,16 +110,30 @@ function NewSurvey({ theme }) {
 
       <label htmlFor="endDate">End Date</label>
       <input
-        type="date"
-        name="dateEnd"
-        id="endDate"
-        className="border border-black"
-        onChange={(e) => updateSurveyDetail(e)}
-        value={survey.dateEnd}
+        type="checkbox"
+        name="noEndDate"
+        id="noEndDate"
+        onClick={() => {
+          setEndDate(!endDate);
+        }}
       />
-      <label htmlFor="endDate">No End Date</label>
-      <input type="checkbox" name="noEndDate" id="noEndDate" />
-      <br />
+      {endDate === false ? (
+        <>{(survey.dateEnd = "")}</>
+      ) : (
+        <>
+          <br />
+          <label htmlFor="endDate">End Date</label>
+          <input
+            type="date"
+            name="dateEnd"
+            id="endDate"
+            className="border border-black"
+            onChange={(e) => updateSurveyDetail(e)}
+            value={survey.dateEnd}
+          />
+        </>
+      )}
+
       <br />
       <button className="btn border-black">Add Question</button>
       <form>
