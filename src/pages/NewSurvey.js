@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 function NewSurvey({ theme }) {
   const [questionArray, setQuestionArray] = useState([]);
+  const [publicAccess, setPublicAccess] = useState(true);
   const [survey, setSurvey] = useState({
     surveyName: "",
     surveyOwner: "",
@@ -9,14 +10,14 @@ function NewSurvey({ theme }) {
     surveyType: "",
     description: "",
     activeStatus: true,
-    public: true,
+    public: publicAccess,
     accessCode: "",
     dateCreated: "",
     dateEnd: "",
     instructionMessage: "",
     numResponse: 0,
   });
-  console.log(survey);
+
   const updateSurveyDetail = (e) => {
     setSurvey((oldData) => {
       return {
@@ -25,6 +26,8 @@ function NewSurvey({ theme }) {
       };
     });
   };
+
+  useEffect(() => {}, [setPublicAccess]);
 
   return (
     <div className="w-1/2 mx-auto">
@@ -75,6 +78,7 @@ function NewSurvey({ theme }) {
         id="Public"
         type="radio"
         className="border border-black"
+        onClick={() => setPublicAccess(true)}
       />
       <label htmlFor="Public">Public</label>
       <input
@@ -82,15 +86,29 @@ function NewSurvey({ theme }) {
         id="Private"
         type="radio"
         className="border border-black"
+        onClick={() => setPublicAccess(false)}
       />
       <label htmlFor="Private">Private</label>
       <br />
-      <label htmlFor="">Access Code</label>
-      <br />
-      <input type="text" className="border border-black" name="accessCode" />
-      <br />
-      <button className="btn border-black">Add Question</button>
-      <br />
+      {publicAccess === true ? (
+        <>{(survey.accessCode = "")}</>
+      ) : (
+        <>
+          <label htmlFor="">Access Code</label>
+          <br />
+          <input
+            type="number"
+            className="border border-black"
+            name="accessCode"
+            onChange={(e) => {
+              updateSurveyDetail(e);
+            }}
+            value={survey.accessCode}
+          />
+          <br />
+        </>
+      )}
+
       <label htmlFor="endDate">End Date</label>
       <input
         type="date"
@@ -102,7 +120,9 @@ function NewSurvey({ theme }) {
       />
       <label htmlFor="endDate">No End Date</label>
       <input type="checkbox" name="noEndDate" id="noEndDate" />
-
+      <br />
+      <br />
+      <button className="btn border-black">Add Question</button>
       <form>
         <label htmlFor="question">Question</label>
         <br></br>
