@@ -15,7 +15,7 @@ function NewSurvey({ theme }) {
   const [questionArray, setQuestionArray] = useState([]);
   const [questionInput, setQuestionInput] = useState("");
 
-  // const [surveyType, setSurveyType] = useState("Short Answer");
+  const [surveyType, setSurveyType] = useState("Short Answer");
 
   const [checked, setChecked] = useState(true);
   const [publicAccess, setPublicAccess] = useState(true);
@@ -34,7 +34,7 @@ function NewSurvey({ theme }) {
     instructionMessage: "",
     numResponse: 0,
   });
-  console.log(questionArray);
+  console.log(surveyType);
 
   const updateSurveyDetail = (e) => {
     setSurvey((oldData) => {
@@ -167,7 +167,7 @@ function NewSurvey({ theme }) {
         <select
           name="questionType"
           id="questionType"
-          // onChange={(e) => setSurveyType(e.target.value)}
+          onChange={(e) => setSurveyType(e.target.value)}
         >
           <option value="Short Answer">Short Answer</option>
           <option value="MC">Multiple Choice</option>
