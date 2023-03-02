@@ -1,4 +1,4 @@
-import Datepicker from "flowbite-datepicker/Datepicker";
+import McCheckBox from "components/McCheckBox";
 import React, { useState } from "react";
 import DashNav from "components/DashNav";
 
@@ -55,7 +55,7 @@ function NewSurvey({ theme }) {
     <>
       <DashNav theme={theme} />
 
-      <div className="bg-[#142641] h-screen flex ">
+      <div className="bg-[#142641] h-screen-vh flex ">
         <div className="w-full flex justify-center pt-10">
           <form className="w-2/6">
             <div className="mb-6">
@@ -215,44 +215,45 @@ function NewSurvey({ theme }) {
                 <br />
               </>
             )}
+            <label htmlFor="question">Question Type</label>
+            <br />
+            <select
+              name="questionType"
+              id="questionType"
+              onChange={(e) => setSurveyType(e.target.value)}
+            >
+              <option value="Short Answer">Short Answer</option>
+              <option value="MC">Multiple Choice</option>
+              <option value="Check Box">Check Box</option>
+              <option value="Long Feedback">Long Feedback</option>
+            </select>
+            <br />
+            {/* <button
+              className="bg-sky-300 p-1  ml-3 rounded-full"
+              onClick={() => handleChange(questionInput)}
+            >
+              Add Question
+            </button>
+            <br />
+
+            <form>
+              <br />
+              <label htmlFor="question">Question</label>
+              <br></br>
+              <textarea
+                className="border border-black"
+                placeholder="Enter Question Here..."
+                onChange={(e) => setQuestionInput(e.target.value)}
+              ></textarea>
+              <br />
+
+              <br></br>
+            </form>
+            <McCheckBox /> */}
           </form>
         </div>
 
-        {/* <br />
         <br />
-        <label htmlFor="question">Question Type</label>
-        <br />
-        <select
-          name="questionType"
-          id="questionType"
-          onChange={(e) => setSurveyType(e.target.value)}
-        >
-          <option value="Short Answer">Short Answer</option>
-          <option value="MC">Multiple Choice</option>
-          <option value="Check Box">Check Box</option>
-          <option value="Long Feedback">Long Feedback</option>
-        </select>
-        <br />
-        <button
-          className="bg-sky-300 p-1  ml-3 rounded-full"
-          onClick={() => handleChange(questionInput)}
-        >
-          Add Question
-        </button>
-        <form>
-          <br />
-          <label htmlFor="question">Question</label>
-          <br></br>
-          <textarea
-            className="border border-black"
-            placeholder="Enter Question Here..."
-            onChange={(e) => setQuestionInput(e.target.value)}
-          ></textarea>
-          <br />
-
-          <br></br>
-        </form>
-        <McCheckBox /> */}
       </div>
     </>
   );
