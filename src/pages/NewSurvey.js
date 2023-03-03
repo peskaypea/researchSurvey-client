@@ -55,7 +55,7 @@ function NewSurvey({ theme }) {
     <>
       <DashNav theme={theme} />
 
-      <div className="dark:bg-[#142641] h-screen-vh flex ">
+      <div className="dark:bg-[#142641] h-screen flex ">
         <div className="w-full flex justify-center pt-10">
           <form className="w-2/6">
             <div className="mb-6">
