@@ -4,6 +4,7 @@ import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 function QuestionCard({ survey, ownerView }) {
+  const darkTheme = localStorage.getItem("darkTheme");
   const baseURL_development = "http://localhost:5000";
   const home = <FontAwesomeIcon icon={faHome} />;
   const surveyID = window.location.href.split("/").pop();
@@ -80,7 +81,8 @@ function QuestionCard({ survey, ownerView }) {
     });
     const data = await res.json();
     if (data.status === "Success") {
-      navigate("/success");
+      window.open("/response-success");
+      window.close();
     }
   };
   const navigateHome = () => {
@@ -96,7 +98,13 @@ function QuestionCard({ survey, ownerView }) {
     }
   };
   return (
-    <div className="w-full text-center h-screen bg-cyan-900">
+    <div
+      className={
+        darkTheme
+          ? "w-full text-center h-screen dark-background"
+          : "w-full text-center h-screen bg-cyan-900 "
+      }
+    >
       <div className="mb-8 pt-8 text-sky-100">
         <h1 className="font-bold text-xl mb-4">{survey.surveyName}</h1>
         {survey.activeStatus ? (

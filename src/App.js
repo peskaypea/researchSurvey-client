@@ -12,6 +12,7 @@ import SurveyEdit from "pages/SurveyEdit";
 import UserProfile from "pages/UserProfile";
 import SurveyResponse from "pages/SurveyResponse";
 import NewSurvey from "pages/NewSurvey";
+import SurveyResponseSuccess from "pages/SurveyResponseSuccess";
 function App() {
   //Set theme to light by default if user hasn't set theme
   const theme = JSON.parse(localStorage.getItem("darkTheme")) ?? false;
@@ -74,6 +75,10 @@ function App() {
           <Route path="/verify" element={<AccessCode theme={theme} />} />
           <Route path="/user/" element={<UserProfile theme={theme} />} />
           <Route path="/responses" element={<SurveyResponse theme={theme} />} />
+          <Route
+            path="/response-success"
+            element={<SurveyResponseSuccess theme={theme} />}
+          />
           <Route path="/newsurvey" element={<NewSurvey theme={theme} />} />
         </Routes>
       </Router>

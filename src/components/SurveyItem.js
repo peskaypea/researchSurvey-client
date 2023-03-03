@@ -47,9 +47,10 @@ function SurveyItem({
           <div className="text-center text-xs  lg:text-sm  hidden md:block w-20 ">
             <h6 className="font-semibold">Owner</h6>
             <p
-              className={
-                survey.organization.length > 32 ? "text-xs truncate" : "text-xs"
-              }
+              // className={
+              //   survey.organization.length > 32 ? "text-xs truncate" : "text-xs"
+              // }
+              className="text-xs"
             >
               {survey.organization}
             </p>

@@ -59,7 +59,7 @@ function AccessCode({ theme }) {
       className={
         theme
           ? "dark-background h-screen flex jsutify-center"
-          : "background h-screen flex jsutify-center"
+          : "background h-screen flex justify-center"
       }
     >
       <div className="w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-slate-800/[0.5] dark:bg-transparent dark:border dark:border-slate-800 dark:shadow-2xl text-white mx-auto my-auto h-1/2 rounded-xl p-5 bg-sky-50">
