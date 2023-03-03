@@ -1,4 +1,5 @@
 import McCheckBox from "components/McCheckBox";
+import ShortLongAnswer from "components/ShortLongAnswer";
 import React, { useState } from "react";
 import DashNav from "components/DashNav";
 
@@ -124,15 +125,6 @@ function NewSurvey({ theme }) {
             </div>
             <div className="flex items-start mb-6">
               <div className="flex items-center h-5">
-                <input
-                  type="checkbox"
-                  name="noEndDate"
-                  className="w-4 h-4  border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                  id="noEndDate"
-                  onClick={() => {
-                    setEndDate(!endDate);
-                  }}
-                />
                 {endDate === false ? (
                   <>{(survey.dateEnd = "")}</>
                 ) : (
@@ -152,10 +144,19 @@ function NewSurvey({ theme }) {
               </div>
               <label
                 htmlFor="endDate"
-                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="px-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 End Date
               </label>
+              <input
+                type="checkbox"
+                name="noEndDate"
+                className="w-4 h-4  border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                id="noEndDate"
+                onClick={() => {
+                  setEndDate(!endDate);
+                }}
+              />
             </div>
             <input
               name="public"
@@ -215,19 +216,47 @@ function NewSurvey({ theme }) {
                 <br />
               </>
             )}
-            <label htmlFor="question">Question Type</label>
-            <br />
+            <label
+              htmlFor="question"
+              className="block mt-10 mb-5 text-m font-medium text-gray-900 dark:text-white"
+            >
+              Question Type
+            </label>
+
             <select
               name="questionType"
               id="questionType"
+              className="text-white bg-[#51D1B4] hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
               onChange={(e) => setSurveyType(e.target.value)}
             >
-              <option value="Short Answer">Short Answer</option>
-              <option value="MC">Multiple Choice</option>
-              <option value="Check Box">Check Box</option>
-              <option value="Long Feedback">Long Feedback</option>
+              <option
+                value="Short Answer"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Short Answer
+              </option>
+              <option
+                value="Long Feedback"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Long Feedback
+              </option>
+              <option
+                value="MC"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Multiple Choice
+              </option>
+              <option
+                value="Check Box"
+                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >
+                Check Box
+              </option>
             </select>
             <br />
+            <ShortLongAnswer />
+
             {/* <button
               className="bg-sky-300 p-1  ml-3 rounded-full"
               onClick={() => handleChange(questionInput)}
