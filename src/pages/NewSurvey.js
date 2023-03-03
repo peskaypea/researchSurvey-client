@@ -37,7 +37,6 @@ function NewSurvey({ theme }) {
     instructionMessage: "",
     numResponse: 0,
   });
-  console.log(survey);
 
   const updateSurveyDetail = (e) => {
     setSurvey((oldData) => {
@@ -226,7 +225,7 @@ function NewSurvey({ theme }) {
             <select
               name="questionType"
               id="questionType"
-              className="text-black bg-green-600 hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:text-white dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
+              className="text-white bg-green-600 hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center  dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
               onChange={(e) => setSurveyType(e.target.value)}
             >
               <option value="Short Answer">Short Answer</option>
@@ -235,7 +234,12 @@ function NewSurvey({ theme }) {
               <option value="Check Box">Check Box</option>
             </select>
             <br />
-            <ShortLongAnswer />
+
+            {surveyType === "Short Answer" || surveyType === "Long Feedback" ? (
+              <ShortLongAnswer />
+            ) : (
+              <McCheckBox />
+            )}
 
             {/* <button
               className="bg-sky-300 p-1  ml-3 rounded-full"
@@ -258,7 +262,7 @@ function NewSurvey({ theme }) {
 
               <br></br>
             </form>
-            <McCheckBox /> */}
+           */}
           </form>
         </div>
 
