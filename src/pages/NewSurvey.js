@@ -56,7 +56,7 @@ function NewSurvey({ theme }) {
     <>
       <DashNav theme={theme} />
 
-      <div className="bg-[#142641] h-screen-vh flex ">
+      <div className="dark:bg-[#142641] h-screen-vh flex ">
         <div className="w-full flex justify-center pt-10">
           <form className="w-2/6">
             <div className="mb-6">
@@ -69,7 +69,7 @@ function NewSurvey({ theme }) {
               <input
                 type="text"
                 id="surveyName"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  dark:shadow-sm-light"
                 name="surveyName"
                 onChange={(e) => updateSurveyDetail(e)}
                 value={survey.surveyName}
@@ -86,7 +86,7 @@ function NewSurvey({ theme }) {
                 type="text"
                 id="Organization"
                 name="organization"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  dark:shadow-sm-light"
                 onChange={(e) => updateSurveyDetail(e)}
                 value={survey.organization}
               />
@@ -101,7 +101,7 @@ function NewSurvey({ theme }) {
               <input
                 type="text"
                 id="Survey Type"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  dark:shadow-sm-light"
                 name="surveyType"
                 onChange={(e) => updateSurveyDetail(e)}
                 value={survey.surveyType}
@@ -117,7 +117,7 @@ function NewSurvey({ theme }) {
               <input
                 type="text"
                 id="Description"
-                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white  dark:shadow-sm-light"
                 name="description"
                 onChange={(e) => updateSurveyDetail(e)}
                 value={survey.description}
@@ -135,7 +135,7 @@ function NewSurvey({ theme }) {
                       type="date"
                       name="dateEnd"
                       id="endDate"
-                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full pl-5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                       onChange={(e) => updateSurveyDetail(e)}
                       value={survey.dateEnd}
                     />
@@ -151,7 +151,7 @@ function NewSurvey({ theme }) {
               <input
                 type="checkbox"
                 name="noEndDate"
-                className="w-4 h-4  border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                className="w-4 h-4  border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-green-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-green-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
                 id="noEndDate"
                 onClick={() => {
                   setEndDate(!endDate);
@@ -206,7 +206,7 @@ function NewSurvey({ theme }) {
 
                 <input
                   type="number"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full pl-5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
                   name="accessCode"
                   onChange={(e) => {
                     updateSurveyDetail(e);
@@ -226,33 +226,13 @@ function NewSurvey({ theme }) {
             <select
               name="questionType"
               id="questionType"
-              className="text-white bg-[#51D1B4] hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
+              className="text-black bg-green-600 hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:text-white dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
               onChange={(e) => setSurveyType(e.target.value)}
             >
-              <option
-                value="Short Answer"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Short Answer
-              </option>
-              <option
-                value="Long Feedback"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Long Feedback
-              </option>
-              <option
-                value="MC"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Multiple Choice
-              </option>
-              <option
-                value="Check Box"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-              >
-                Check Box
-              </option>
+              <option value="Short Answer">Short Answer</option>
+              <option value="Long Feedback">Long Feedback</option>
+              <option value="MC">Multiple Choice</option>
+              <option value="Check Box">Check Box</option>
             </select>
             <br />
             <ShortLongAnswer />
