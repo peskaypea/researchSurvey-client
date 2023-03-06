@@ -3,20 +3,16 @@ import ShortLongAnswer from "components/ShortLongAnswer";
 import React, { useState } from "react";
 import DashNav from "components/DashNav";
 
-//SurveyData storage
-// {
-//   questionType: "",
-//   question: "",
-//   options: [],
-//   correctOption: null,
-//   imgURL: [],
-//   imgDesc: [],
-//   _id: "",
-// },
-
 function NewSurvey({ theme }) {
-  const [questionArray, setQuestionArray] = useState([]);
-  const [questionInput, setQuestionInput] = useState("");
+  const [questionArray, setQuestionArray] = useState({
+    questionType: "",
+    question: "",
+    options: [],
+    correctOption: null,
+    imgURL: [],
+    imgDesc: [],
+    _id: "",
+  });
 
   const [surveyType, setSurveyType] = useState("Short Answer");
 
@@ -47,8 +43,13 @@ function NewSurvey({ theme }) {
     });
   };
 
-  const handleChange = (input) => {
-    setQuestionArray([...questionArray, input]);
+  const handleChange = (e) => {
+    setQuestionArray((oldData) => {
+      return {
+        ...oldData,
+        [e.target.name]: e.target.value,
+      };
+    });
   };
 
   return (
@@ -56,7 +57,7 @@ function NewSurvey({ theme }) {
       <DashNav theme={theme} />
 
       <div className="h-fit flex dark:bg-[#142641] ">
-        <div className=" w-full flex justify-center pt-10">
+        <div className=" w-full flex justify-center  pt-10">
           <form className="w-2/6">
             <div className="mb-6">
               <label
@@ -227,32 +228,42 @@ function NewSurvey({ theme }) {
               name="questionType"
               id="questionType"
               className="text-white bg-green-600 hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center  dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
-              onChange={(e) => setSurveyType(e.target.value)}
+              onChange={(e) => {
+                console.log(e.target.value);
+                handleChange(e);
+              }}
+              value={questionArray.questionType}
             >
-              <option value="Short Answer">Short Answer</option>
+              <option id="Short Answe" value="Short Answer">
+                Short Answer
+              </option>
               <option value="Long Feedback">Long Feedback</option>
               <option value="MC">Multiple Choice</option>
               <option value="Check Box">Check Box</option>
             </select>
             <br />
 
-            {surveyType === "Short Answer" || surveyType === "Long Feedback" ? (
-              <ShortLongAnswer />
+            {questionArray.questionType === "Short Answer" ||
+            questionArray.questionType === "Long Feedback" ? (
+              <ShortLongAnswer
+                questionArray={questionArray}
+                handleChange={handleChange}
+              />
             ) : (
-              <McCheckBox />
+              <McCheckBox
+                questionArray={questionArray}
+                handleChange={handleChange}
+              />
             )}
-
-            {/* <button
-              className="bg-sky-300 p-1  ml-3 rounded-full"
-              onClick={() => handleChange(questionInput)}
-            >
-              Add Question
-            </button>
+            {console.log(questionArray)}
             <br />
-
-    
-           */}
           </form>
+          <button
+            className="bg-sky-300 p-1  ml-3 rounded-full h-10 "
+            onClick={() => handleChange()}
+          >
+            Add Question
+          </button>
         </div>
 
         <br />
