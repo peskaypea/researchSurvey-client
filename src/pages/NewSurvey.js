@@ -55,8 +55,8 @@ function NewSurvey({ theme }) {
     <>
       <DashNav theme={theme} />
 
-      <div className="dark:bg-[#142641] h-screen flex ">
-        <div className="w-full flex justify-center pt-10">
+      <div className="h-fit flex dark:bg-[#142641] ">
+        <div className=" w-full flex justify-center pt-10">
           <form className="w-2/6">
             <div className="mb-6">
               <label
@@ -215,9 +215,10 @@ function NewSurvey({ theme }) {
                 <br />
               </>
             )}
+
             <label
               htmlFor="question"
-              className="block mt-10 mb-5 text-m font-medium text-gray-900 dark:text-white"
+              className="block mt-10 mb-5 text-m font-medium text-gray-900 dark:text-white "
             >
               Question Type
             </label>
@@ -249,19 +250,7 @@ function NewSurvey({ theme }) {
             </button>
             <br />
 
-            <form>
-              <br />
-              <label htmlFor="question">Question</label>
-              <br></br>
-              <textarea
-                className="border border-black"
-                placeholder="Enter Question Here..."
-                onChange={(e) => setQuestionInput(e.target.value)}
-              ></textarea>
-              <br />
-
-              <br></br>
-            </form>
+    
            */}
           </form>
         </div>

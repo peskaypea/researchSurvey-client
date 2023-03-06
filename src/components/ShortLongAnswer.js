@@ -2,7 +2,7 @@ import React from "react";
 
 const ShortLongAnswer = () => {
   return (
-    <div className="py-4">
+    <div className=" h-fit  dark:bg-[#142641]  py-4">
       <label
         htmlFor="question"
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

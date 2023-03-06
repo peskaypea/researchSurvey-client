@@ -2,7 +2,7 @@ import React from "react";
 
 const McCheckBox = () => {
   return (
-    <div className="py-4">
+    <div className="py-4 h-fit  dark:bg-[#142641]  ">
       <label
         htmlFor="question"
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
