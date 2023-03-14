@@ -5,7 +5,7 @@ import DashNav from "components/DashNav";
 
 function NewSurvey({ theme }) {
   const [questionArray, setQuestionArray] = useState({
-    questionType: "",
+    questionType: "Short Answer",
     question: "",
     options: [],
     correctOption: null,
@@ -14,7 +14,7 @@ function NewSurvey({ theme }) {
     _id: "",
   });
 
-  const [surveyType, setSurveyType] = useState("Short Answer");
+  console.log(questionArray);
 
   const [checked, setChecked] = useState(true);
   const [publicAccess, setPublicAccess] = useState(true);
@@ -32,6 +32,7 @@ function NewSurvey({ theme }) {
     dateEnd: "",
     instructionMessage: "",
     numResponse: 0,
+    questions: [],
   });
 
   const updateSurveyDetail = (e) => {
@@ -51,13 +52,13 @@ function NewSurvey({ theme }) {
       };
     });
   };
-
+  console.log(questionArray.questionType);
   return (
     <>
       <DashNav theme={theme} />
 
-      <div className="h-fit flex dark:bg-[#142641] ">
-        <div className=" w-full flex justify-center  pt-10">
+      <div className="h-100vh flex dark:bg-[#142641] ">
+        <div className=" w-full flex justify-around  pt-10">
           <form className="w-2/6">
             <div className="mb-6">
               <label
@@ -216,7 +217,9 @@ function NewSurvey({ theme }) {
                 <br />
               </>
             )}
+          </form>
 
+          <form className="w-2/6">
             <label
               htmlFor="question"
               className="block mt-10 mb-5 text-m font-medium text-gray-900 dark:text-white "
@@ -229,12 +232,11 @@ function NewSurvey({ theme }) {
               id="questionType"
               className="text-white bg-green-600 hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center  dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
               onChange={(e) => {
-                console.log(e.target.value);
                 handleChange(e);
               }}
               value={questionArray.questionType}
             >
-              <option id="Short Answe" value="Short Answer">
+              <option id="Short Answer" value="Short Answer">
                 Short Answer
               </option>
               <option value="Long Feedback">Long Feedback</option>
@@ -255,18 +257,16 @@ function NewSurvey({ theme }) {
                 handleChange={handleChange}
               />
             )}
-            {console.log(questionArray)}
-            <br />
-          </form>
-          <button
-            className="bg-sky-300 p-1  ml-3 rounded-full h-10 "
-            onClick={() => handleChange()}
-          >
-            Add Question
-          </button>
-        </div>
 
-        <br />
+            <br />
+            <button
+              className="bg-sky-300 p-1  ml-3 rounded-full h-10 "
+              onClick={() => handleChange()}
+            >
+              Add Question
+            </button>
+          </form>
+        </div>
       </div>
     </>
   );
