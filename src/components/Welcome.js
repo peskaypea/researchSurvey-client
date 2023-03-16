@@ -28,16 +28,16 @@ function Welcome({ theme }) {
               Connect with your customers. Get the answers you need with Survey
               Connect!
             </p>
-            <div className="flex">
+            <div className="flex mt-2">
               <button
-                className="bg-green-600 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:text-slate-700 dark:border-[#51D1B4] hover:text-green-600 hover:bg-white dark:hover:bg-[#51D1B4] "
+                className="bg-green-600 w-1/7 px-4 py-2 border  hover:border-green-600  rounded-3xl text-sky-50 mt-5 mx-2 hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:text-slate-700 dark:border-[#51D1B4] hover:text-green-600 hover:bg-white dark:hover:bg-[#51D1B4] transition-colors duration-300"
                 onClick={checkLogin}
               >
                 Get Started
               </button>
 
               <button
-                className="bg-green-600 w-1/7 px-4 py-2 border rounded-3xl text-sky-50 mt-5 mx-2 hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:text-slate-700 dark:border-[#51D1B4]  hover:text-green-600 dark:hover:bg-[#51D1B4] "
+                className="bg-green-600 w-1/7 px-4 py-2 border  hover:border-green-600 rounded-3xl text-sky-50 mt-5 mx-2 hover:cursor-pointer  hover:shadow-xl  dark:bg-transparent dark:hover:text-slate-700 dark:border-[#51D1B4]  hover:text-green-600 hover:bg-white dark:hover:bg-[#51D1B4] transition-colors duration-300"
                 onClick={checkLogin}
               >
                 Take Survey

@@ -71,7 +71,7 @@ function Nav({
               <div>
                 <a
                   href="/dashboard"
-                  className="w-28 text-center py-2 px-4 rounded-3xl text-white bg-green-600 dark:bg-transparent dark:border dark:border-[#51D1B4]  dark:hover:bg-[#51D1B4] dark:hover:text-slate-700"
+                  className="w-28 text-center py-2 px-4 rounded-3xl text-white border hover:bg-white hover:text-green-600 border-green-600 bg-green-600 dark:bg-transparent dark:border dark:border-[#51D1B4]  dark:hover:bg-[#51D1B4] dark:hover:text-slate-700 transition-colors duration-300"
                 >
                   Dashboard
                 </a>
@@ -86,7 +86,7 @@ function Nav({
                 </a>
                 <a
                   href="/register"
-                  className="w-24 text-center py-1 px-4 rounded-3xl text-sky-50 bg-green-600 hover:border hover:border-green-600 hover:bg-white hover:text-green-600 dark:bg-slate-800 dark:hover:text-slate-700 dark:hover:border-sky-50 dark:hover:bg-sky-50"
+                  className="w-24 text-center py-1 px-4 rounded-3xl text-sky-50 bg-green-600 hover:border hover:border-green-600 hover:bg-white hover:text-green-600 dark:bg-slate-800 dark:hover:text-slate-700 dark:hover:border-sky-50 dark:hover:bg-sky-50 transition-colors duration-300"
                 >
                   Sign Up
                 </a>
