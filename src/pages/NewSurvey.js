@@ -3,22 +3,18 @@ import ShortLongAnswer from "components/ShortLongAnswer";
 import React, { useState } from "react";
 import DashNav from "components/DashNav";
 
-//SurveyData storage
-// {
-//   questionType: "",
-//   question: "",
-//   options: [],
-//   correctOption: null,
-//   imgURL: [],
-//   imgDesc: [],
-//   _id: "",
-// },
-
 function NewSurvey({ theme }) {
-  const [questionArray, setQuestionArray] = useState([]);
-  const [questionInput, setQuestionInput] = useState("");
+  const [questionArray, setQuestionArray] = useState({
+    questionType: "Short Answer",
+    question: "",
+    options: [],
+    correctOption: null,
+    imgURL: [],
+    imgDesc: [],
+    _id: "",
+  });
 
-  const [surveyType, setSurveyType] = useState("Short Answer");
+  console.log(questionArray);
 
   const [checked, setChecked] = useState(true);
   const [publicAccess, setPublicAccess] = useState(true);
@@ -36,6 +32,7 @@ function NewSurvey({ theme }) {
     dateEnd: "",
     instructionMessage: "",
     numResponse: 0,
+    questions: [],
   });
 
   const updateSurveyDetail = (e) => {
@@ -47,17 +44,22 @@ function NewSurvey({ theme }) {
     });
   };
 
-  const handleChange = (input) => {
-    setQuestionArray([...questionArray, input]);
+  const handleChange = (e) => {
+    setQuestionArray((oldData) => {
+      return {
+        ...oldData,
+        [e.target.name]: e.target.value,
+      };
+    });
   };
-
+  console.log(questionArray.questionType);
   return (
     <>
       <DashNav theme={theme} />
 
-      <div className="dark:bg-[#142641] h-screen flex ">
-        <div className="w-full flex justify-center pt-10">
-          <form className="w-11/12 md:w-2/6">
+      <div className="h-100vh flex dark:bg-[#142641] ">
+        <div className=" w-full flex justify-around  pt-10">
+          <form className="w-2/6">
             <div className="mb-6">
               <label
                 htmlFor="surveyName"
@@ -215,9 +217,12 @@ function NewSurvey({ theme }) {
                 <br />
               </>
             )}
+          </form>
+
+          <form className="w-2/6">
             <label
               htmlFor="question"
-              className="block mt-10 mb-5 text-m font-medium text-gray-900 dark:text-white"
+              className="block mt-10 mb-5 text-m font-medium text-gray-900 dark:text-white "
             >
               Question Type
             </label>
@@ -226,47 +231,42 @@ function NewSurvey({ theme }) {
               name="questionType"
               id="questionType"
               className="text-white bg-green-600 hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center  dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
-              onChange={(e) => setSurveyType(e.target.value)}
+              onChange={(e) => {
+                handleChange(e);
+              }}
+              value={questionArray.questionType}
             >
-              <option value="Short Answer">Short Answer</option>
+              <option id="Short Answer" value="Short Answer">
+                Short Answer
+              </option>
               <option value="Long Feedback">Long Feedback</option>
               <option value="MC">Multiple Choice</option>
               <option value="Check Box">Check Box</option>
             </select>
             <br />
 
-            {surveyType === "Short Answer" || surveyType === "Long Feedback" ? (
-              <ShortLongAnswer />
+            {questionArray.questionType === "Short Answer" ||
+            questionArray.questionType === "Long Feedback" ? (
+              <ShortLongAnswer
+                questionArray={questionArray}
+                handleChange={handleChange}
+              />
             ) : (
-              <McCheckBox />
+              <McCheckBox
+                questionArray={questionArray}
+                handleChange={handleChange}
+              />
             )}
 
-            {/* <button
-              className="bg-sky-300 p-1  ml-3 rounded-full"
-              onClick={() => handleChange(questionInput)}
+            <br />
+            <button
+              className="bg-sky-300 p-1  ml-3 rounded-full h-10 "
+              onClick={() => handleChange()}
             >
               Add Question
             </button>
-            <br />
-
-            <form>
-              <br />
-              <label htmlFor="question">Question</label>
-              <br></br>
-              <textarea
-                className="border border-black"
-                placeholder="Enter Question Here..."
-                onChange={(e) => setQuestionInput(e.target.value)}
-              ></textarea>
-              <br />
-
-              <br></br>
-            </form>
-           */}
           </form>
         </div>
-
-        <br />
       </div>
     </>
   );
