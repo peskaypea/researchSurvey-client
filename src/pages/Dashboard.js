@@ -6,7 +6,7 @@ function Dashboard({ theme }) {
   return (
     <div>
       <DashNav theme={theme} />
-      <DashSurveyList theme={theme} />
+      <DashSurveyList />
     </div>
   );
 }

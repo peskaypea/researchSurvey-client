@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import "./GradientBG.css";
-function AccessCode({ theme }) {
+
+function AccessCode() {
   const location = useLocation();
   const navigate = useNavigate();
   const surveyId = location.state.id;
@@ -57,9 +57,7 @@ function AccessCode({ theme }) {
   return (
     <div
       className={
-        theme
-          ? "dark-background h-screen flex jsutify-center"
-          : "background h-screen flex justify-center"
+        " dark:bg-gradient-to-tr dark:from-[#172A46] dark:via-[#0F2746] dark:to-[#11386E] bg-gradient-to-r from-[#1D6777] via-[#218E61] to-[#13885D] h-screen flex justify-center"
       }
     >
       <div className="w-5/6 md:w-2/3 lg:w-1/2 xl:w-1/3 bg-slate-800/[0.5] dark:bg-transparent dark:border dark:border-slate-800 dark:shadow-2xl text-white mx-auto my-auto h-1/2 rounded-xl p-5 bg-sky-50">

@@ -11,7 +11,7 @@ import "./DashSurveyList.css";
 const baseURL_development = "http://localhost:5000";
 const baseURL = "https://surveyconnect-server.onrender.com";
 
-function DashSurveyList({ theme }) {
+function DashSurveyList() {
   const searchIcon = <FontAwesomeIcon icon={faSearch} />;
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
@@ -193,7 +193,7 @@ function DashSurveyList({ theme }) {
         {/* Survey Filter Mobile*/}
         <div
           id="selectMenu"
-          className="sm:hidden flex   p-2 rounded-3xl bg-[#172A46] mx-3 sm:mx-0"
+          className="sm:hidden flex   p-2 rounded-3xl dark:bg-[#172A46] mx-3 sm:mx-0"
         >
           <select
             name="activeTab"
@@ -201,13 +201,13 @@ function DashSurveyList({ theme }) {
             className="outline-0 bg-transparent dark:text-slate-50 "
             onChange={(e) => tabActivate(e)}
           >
-            <option className=" bg-[#172A46]" value={"All"}>
+            <option className=" dark:bg-[#172A46]" value={"All"}>
               All
             </option>
-            <option className=" bg-[#172A46]" value={"Active"}>
+            <option className=" dark:bg-[#172A46]" value={"Active"}>
               Active
             </option>
-            <option className=" bg-[#172A46]" value={"Past"}>
+            <option className=" dark:bg-[#172A46]" value={"Past"}>
               Past
             </option>
           </select>

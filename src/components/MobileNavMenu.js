@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import Switch from "./Switch";
 function MobileNavMenu({
-  theme,
   toggleTheme,
   active,
   handleChangeActive,
@@ -30,9 +29,7 @@ function MobileNavMenu({
         className={
           collapse
             ? " md:hidden fixed text-end -right-5 -top-5 "
-            : theme
-            ? "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center bg-slate-800/[0.9] text-white "
-            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center bg-green-600/[0.9] text-white "
+            : "flex justify-between md:hidden fixed text-end w-3/4 -right-5  top-0 items-center dark:bg-slate-800/[0.9] text-white  bg-green-600/[0.9] "
         }
       >
         <div
@@ -40,7 +37,7 @@ function MobileNavMenu({
         >
           {/* Mobile Nav Items */}
           <div className="flex flex-col pb-2">
-            <div className="p-2 w-2/3">
+            <div className="p-2 w-2/3 ">
               <button onClick={toggleTheme} className="w-full">
                 <Switch
                   active={active}
@@ -50,13 +47,21 @@ function MobileNavMenu({
                 />
               </button>
             </div>
-
+            <button
+              value={"Welcome"}
+              onClick={(e) => {
+                navigateTab(e);
+              }}
+              className=" p-2 hover:text-cyan-600 text-start"
+            >
+              Home
+            </button>
             <button
               value={"Pricing"}
               onClick={(e) => {
                 navigateTab(e);
               }}
-              className=" p-2 hover:text-cyan-600"
+              className=" p-2 hover:text-cyan-600 text-start"
             >
               Pricing
             </button>
@@ -65,7 +70,7 @@ function MobileNavMenu({
               onClick={(e) => {
                 navigateTab(e);
               }}
-              className="p-2 hover:text-cyan-600"
+              className="p-2 hover:text-cyan-600 text-start"
             >
               About
             </button>

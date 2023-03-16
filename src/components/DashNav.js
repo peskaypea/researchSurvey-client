@@ -27,11 +27,15 @@ function DashNav({ theme }) {
   );
   const add = <FontAwesomeIcon icon={faPlus} size={"xs"} />;
   const menu = (
-    <FontAwesomeIcon icon={faBars} size={"2xl"} style={{ color: "gray" }} />
+    <FontAwesomeIcon
+      icon={faBars}
+      size={"2xl"}
+      style={{ color: theme ? "white" : "gray" }}
+    />
   );
 
   return (
-    <div className={theme ? "dark" : ""}>
+    <div>
       <div className="bg-gradient-to-r bg-white   text-white h-16 shadow-xl dark:bg-gradient-to-r dark:from-[#09192F] dark:to-[#172A46] dark:text-sky-50">
         <header className="flex justify-between mx-4 h-full items-center  w-100">
           <div className="w-44 xl:w-6/12 hidden sm:block">

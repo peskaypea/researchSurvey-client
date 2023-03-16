@@ -7,22 +7,20 @@ import DarkMode from "../assets/greenDarkMode.svg";
 
 const About = ({ theme }) => {
   return (
-    <div className={theme ? "dark" : ""}>
-      <div className="">
-        <div className="flex flex-col">
-          <h1 className="flex justify-center text-4xl pt-6 dark:text-white">
-            We are &nbsp;
-            <h1 className="text-green-600 dark:text-sky-400">
-              Survey Connect!
-            </h1>
-          </h1>
-          <p className="flex justify-center pt-3 pb-15 text-md italic dark:text-white">
-            Collecting and analyzing survey data made easier, faster and more
-            efficient.
-          </p>
-        </div>
-        <div className="flex flex-col-reverse md:flex-row md:justify-around dark:bg-[#0F172A]">
-          <div className="flex h-96 mt-5">
+    <div>
+      <div className="flex flex-col">
+        <h1 className="flex justify-center text-4xl pt-6 dark:text-white">
+          We are &nbsp;
+          <h1 className="text-green-600 dark:text-sky-400">Survey Connect!</h1>
+        </h1>
+        <p className="flex justify-center p-3 pb-15 text-md italic dark:text-white text-center">
+          Collecting and analyzing survey data made easier, faster and more
+          efficient.
+        </p>
+      </div>
+      <div className="flex dark:bg-[#0F172A] justify-center ">
+        <div className="md:flex w-11/12 md:w-1/2 justify-between items-center">
+          <div className="flex h-96 mt-5 justify-center">
             <img
               src={theme === false ? greenMountain : DarkMode}
               alt="mountain"

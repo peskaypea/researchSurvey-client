@@ -44,7 +44,7 @@ function Welcome({ theme }) {
               </button>
             </div>
           </div>
-          <div className="w-1/2 sm:w-3/4 md:w-1/2 lg:w-1/4 mt-10 ml-40 sm:ml-28 md:m-0  flex justify-center items-center">
+          <div className="w-1/2 sm:w-3/4 md:w-1/2 lg:w-1/4 mt-10 ml-36 sm:ml-28 md:m-0  flex justify-center items-center">
             <img
               src={boyWithBook}
               alt="boy-with-book"

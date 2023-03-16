@@ -17,7 +17,7 @@ function Nav({
   const token = localStorage.getItem("token");
 
   return (
-    <div className={theme ? "dark" : ""}>
+    <div>
       <div className="h-26 flex justify-between items-center px-10 py-2  shadow-2xl dark:bg-[#142641]">
         <a href="/" className="md:w-60 w-1/2 z-100">
           <img
@@ -28,6 +28,15 @@ function Nav({
         </a>
         <div className="w-full hidden md:flex md:justify-center lg:justify-end items-center">
           <div className="flex md:w-1/2 xl:w-1/5 justify-evenly">
+            <button
+              className=" hover:text-green-600 dark:text-white dark:hover:text-[#51D1B4]"
+              value={"Welcome"}
+              onClick={(e) => {
+                navigateTab(e);
+              }}
+            >
+              Home
+            </button>
             <button
               className=" hover:text-green-600 dark:text-white dark:hover:text-[#51D1B4]"
               value={"Pricing"}
@@ -68,13 +77,7 @@ function Nav({
                 </a>
               </div>
             ) : (
-              <div
-                className={
-                  theme
-                    ? "w-48 flex items-center text-sky-50"
-                    : "w-48 flex items-center"
-                }
-              >
+              <div className={"w-48 flex items-center dark:text-sky-50"}>
                 <a
                   href="/login"
                   className="w-20 text-center py-1 px-4 rounded-3xl"
@@ -93,7 +96,6 @@ function Nav({
         </div>
         <div className="w-full md:w-0">
           <MobileNavMenu
-            theme={theme}
             toggleTheme={toggleTheme}
             active={active}
             handleChangeActive={handleChangeActive}

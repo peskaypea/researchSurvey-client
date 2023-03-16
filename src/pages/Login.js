@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faEye } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import "./GradientBG.css";
+
 import Spinner from "../assets/loading-gif.gif";
 
-function Login({ theme }) {
+function Login() {
   const HomeIcon = <FontAwesomeIcon icon={faHome} />;
   const EyeReveal = <FontAwesomeIcon icon={faEye} />;
   const baseURL_development = "http://localhost:5000";
@@ -56,9 +56,7 @@ function Login({ theme }) {
   return (
     <div
       className={
-        theme
-          ? "w-full h-screen flex items-center justify-center dark-background pb-1"
-          : "w-full h-screen flex items-center justify-center background pb-1"
+        "dark:bg-gradient-to-tr dark:from-[#172A46] dark:via-[#0F2746] dark:to-[#11386E] bg-gradient-to-r from-[#1D6777] via-[#218E61] to-[#13885D] w-full h-screen flex items-center justify-center background pb-1"
       }
     >
       <div className="w-96 xl:w-1/4 flex flex-col h-5/7 border-transparet rounded-2xl p-10 bg-slate-800/50">
@@ -171,7 +169,7 @@ function Login({ theme }) {
             <p className="text-sm text-sky-100">Remember Me</p>
           </div>
           <div
-            className="w-full w-full bg-zinc-900/75 h-10 text-sky-100 flex justify-center items-center hover:cursor-pointer"
+            className="w-full bg-zinc-900/75 h-10 text-sky-100 flex justify-center items-center hover:cursor-pointer"
             onClick={(e) => logUserIn(loginInfo, e)}
           >
             {!loading ? (

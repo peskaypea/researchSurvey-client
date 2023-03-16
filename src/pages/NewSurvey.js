@@ -57,7 +57,7 @@ function NewSurvey({ theme }) {
 
       <div className="dark:bg-[#142641] h-screen flex ">
         <div className="w-full flex justify-center pt-10">
-          <form className="w-2/6">
+          <form className="w-11/12 md:w-2/6">
             <div className="mb-6">
               <label
                 htmlFor="surveyName"
