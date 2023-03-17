@@ -48,7 +48,7 @@ function DashNav({ theme }) {
           <div className="flex dash-ul-font items-center w-56 justify-end">
             <button
               className={
-                "px-2 py-2 w-36   mr-3 text-center border rounded-3xl  dark:border-2 dark:border-[#51D1B4] bg-green-700 hover:bg-green-600 dark:bg-transparent dark:text-[#51D1B4] hover:cursor-pointer  dark:hover:bg-[#0A192F] dark:hover:text-cyan-100"
+                "px-2 py-2 w-36   mr-3 text-center border border-green-600 rounded-3xl  dark:border-2 dark:border-[#51D1B4] text-white bg-green-600 hover:bg-white hover:text-black dark:bg-transparent dark:text-[#51D1B4] hover:cursor-pointer dark:hover:text-black dark:hover:bg-[#51D1B4] transition-colors duration-200"
               }
             >
               <div className="flex justify-center focus:ring focus:white">

@@ -80,13 +80,13 @@ function Nav({
               <div className={"w-48 flex items-center dark:text-sky-50"}>
                 <a
                   href="/login"
-                  className="w-20 text-center py-1 px-4 rounded-3xl"
+                  className="w-24 text-center py-1 px-4 rounded-3xl text-sky-50 bg-green-600 hover:border hover:border-green-600 hover:bg-white hover:text-green-600 dark:bg-slate-800 dark:hover:text-slate-700 dark:hover:border-sky-50 dark:hover:bg-sky-50 transition-colors duration-300 mr-2"
                 >
                   Login
                 </a>
                 <a
                   href="/register"
-                  className="w-24 text-center py-1 px-4 rounded-3xl text-sky-50 bg-green-600 hover:border hover:border-green-600 hover:bg-white hover:text-green-600 dark:bg-slate-800 dark:hover:text-slate-700 dark:hover:border-sky-50 dark:hover:bg-sky-50 transition-colors duration-300"
+                  className="w-24 text-center py-1 px-4 rounded-3xl text-sky-50 bg-green-600 border dark:border-[#51D1B4]  hover:border-green-600 hover:bg-white hover:text-green-600 dark:bg-slate-800 dark:hover:text-slate-700 dark:hover:border-sky-50 dark:hover:bg-sky-50 transition-colors duration-300"
                 >
                   Sign Up
                 </a>

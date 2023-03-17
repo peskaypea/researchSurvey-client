@@ -71,28 +71,28 @@ function SurveyItem({
 
         <div className="flex ">
           <a
-            className="border dark:border-2 h-8 md:h-10 w-16 py-1 sm:py-2 px-5 rounded-3xl text-white bg-green-600 hover:bg-green-500  dark:border-[#51D1B4]  dark:text-[#51D1B4] w-28 flex justify-center items-center md:w-24 lg:w-28 hover:cursor-pointer  dark:hover:bg-[#0A192F] dark:hover:text-cyan-100
-            dark:bg-transparent"
+            className="border dark:border-2 h-8 md:h-10  py-1 sm:py-2 px-5 rounded-3xl text-white bg-green-600 hover:bg-white border-green-600 hover:text-black  dark:border-[#51D1B4]  dark:text-[#51D1B4] w-28 flex justify-center items-center md:w-24 lg:w-28 hover:cursor-pointer  dark:hover:bg-[#51D1B4] dark:hover:text-black dark:hover:border-[#51D1B4]
+            dark:bg-transparent transition-colors duration-200"
             href={`/survey/${survey._id}`}
           >
             <p className="w-full text-xs text-center">View </p>
           </a>
           <a
             href={`/surveyedit/${survey._id}`}
-            className="border dark:border-slate-600 h-10 p-3 rounded-2xl ml-4  mr-1 hover:bg-slate-300 dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block"
+            className="border dark:border-slate-600 h-10 p-3 rounded-2xl ml-4  mr-1 hover:bg-green-600 hover:text-white hover:border-green-600  dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block transition-colors duration-200"
           >
             {edit}
           </a>
 
           <div
-            className="border dark:border-slate-600 h-10 p-3 rounded-2xl mx-1 hover:bg-slate-300  dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block"
+            className="border dark:border-slate-600 h-10 p-3 rounded-2xl mx-1 hover:bg-green-600 hover:text-white hover:border-green-600   dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block transition-colors duration-200"
             onClick={() => {
               selectLockSurvey(survey._id);
             }}
           >
             {survey.public ? <span>{lock}</span> : <span>{unlock}</span>}
           </div>
-          <div className="border dark:border-slate-600 h-10 p-3 rounded-2xl  mx-1 hover:bg-slate-300  dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block">
+          <div className="border dark:border-slate-600 h-10 p-3 rounded-2xl  mx-1 hover:bg-green-600 hover:text-white hover:border-green-600  dark:hover:bg-[#51D1B4] hover:cursor-pointer hidden sm:block transition-colors duration-200">
             {share}
           </div>
         </div>
@@ -106,7 +106,7 @@ function SurveyItem({
           ></SurveySettings>
         </div>
         <div
-          className="border dark:border-slate-600 h-10 p-3 rounded-2xl hover:bg-red-300 hover:cursor-pointer hover:border-red-200 hidden sm:block md:mr-2"
+          className="border dark:border-slate-600 h-10 p-3 rounded-2xl hover:bg-red-300 hover:cursor-pointer hover:border-red-200 hidden sm:block md:mr-2 transition-colors duration-200"
           id={survey._id}
           onClick={(e) => {
             deleteSurvey(e);
