@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 const McCheckBox = ({ questionArray, handleChange }) => {
-  const [options, setOptions] = useState([[], [], [], [], []]);
-
   return (
     <div className="py-4 h-fit  dark:bg-[#142641]">
       <label
@@ -40,7 +38,7 @@ const McCheckBox = ({ questionArray, handleChange }) => {
         />
       </div>
       <br />
-      {/* <div className="flex">
+      <div className="flex">
         <input type="checkbox" name="answer2" className="mr-3" />
         <input
           type="text"
@@ -82,7 +80,7 @@ const McCheckBox = ({ questionArray, handleChange }) => {
           name="answer4"
           placeholder="Enter options"
         />
-      </div> */}
+      </div>
     </div>
   );
 };
