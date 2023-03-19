@@ -310,6 +310,16 @@ function NewSurvey({ theme }) {
                 <br />
               </>
             )}
+            {survey.questions.map((data) => (
+              <div className="w-full h-20 bg-green-500">
+                <label>{data.question}</label>
+                <ul className="pb-5">
+                  {data.options.map((x) => (
+                    <li>{x}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </form>
 
           <form className="w-2/6">
