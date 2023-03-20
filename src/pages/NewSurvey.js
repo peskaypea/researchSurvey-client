@@ -132,7 +132,7 @@ function NewSurvey({ theme }) {
     setSurvey((oldData) => {
       return {
         ...oldData,
-        [e.target.name]: e.target.value,
+        [e.target.name]: e.target.value.trim(),
       };
     });
   };
@@ -145,7 +145,7 @@ function NewSurvey({ theme }) {
       };
     });
   };
-  console.log(questionArray.questionType);
+
   return (
     <>
       <DashNav theme={theme} />
