@@ -2,6 +2,7 @@ import McCheckBox from "components/McCheckBox";
 import ShortLongAnswer from "components/ShortLongAnswer";
 import React, { useState } from "react";
 import DashNav from "components/DashNav";
+import DisplayQuestions from "../components/DisplayQuestions";
 
 function NewSurvey({ theme }) {
   const [questionArray, setQuestionArray] = useState({
@@ -310,14 +311,8 @@ function NewSurvey({ theme }) {
                 <br />
               </>
             )}
-            {/* {survey.questions.map((data) => (
-              <div className="w-full h-20 bg-green-500">
-                <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                  {data.question}
-                </label>
-                <ul>{data.options}</ul>
-              </div>
-            ))} */}
+
+            <DisplayQuestions survey={survey}></DisplayQuestions>
           </form>
 
           <form className="w-2/6">
