@@ -92,7 +92,7 @@ function NewSurvey({ theme }) {
         correctOption: null,
         imgURL: [],
         imgDesc: [],
-        _id: { $oid: "63f793344766c42fd9416a3d" },
+        _id: "63f793344766c42fd9416a3d",
       },
       {
         questionType: "MC",
@@ -107,7 +107,7 @@ function NewSurvey({ theme }) {
         correctOption: null,
         imgURL: [],
         imgDesc: [],
-        _id: { $oid: "63f793344766c42fd9416a3e" },
+        _id: "63f793344766c42fd9416a3e",
       },
       {
         questionType: "MC",
@@ -123,7 +123,7 @@ function NewSurvey({ theme }) {
         correctOption: null,
         imgURL: [],
         imgDesc: [],
-        _id: { $oid: "63f793344766c42fd9416a3f" },
+        _id: "63f793344766c42fd9416a3f",
       },
     ],
   });
@@ -310,16 +310,14 @@ function NewSurvey({ theme }) {
                 <br />
               </>
             )}
-            {survey.questions.map((data) => (
+            {/* {survey.questions.map((data) => (
               <div className="w-full h-20 bg-green-500">
-                <label>{data.question}</label>
-                <ul className="pb-5">
-                  {data.options.map((x) => (
-                    <li>{x}</li>
-                  ))}
-                </ul>
+                <label className="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                  {data.question}
+                </label>
+                <ul>{data.options}</ul>
               </div>
-            ))}
+            ))} */}
           </form>
 
           <form className="w-2/6">

@@ -1,6 +1,31 @@
 import React, { useState } from "react";
 
 const McCheckBox = ({ questionArray, handleChange }) => {
+  const [numOptions, setNumOptions] = useState(1);
+  const options = [];
+  const handleAddOptions = () => {
+    setNumOptions(numOptions + 1);
+  };
+
+  for (let i = 1; i <= numOptions; i++) {
+    options.push(
+      <div className="flex" key={i}>
+        <input type="checkbox" name="answer1" className="mr-3" />
+        <input
+          type="text"
+          id={`options${i}`}
+          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light mb-4"
+          name={`options${i}`}
+          placeholder={`Enter Options ${i}`}
+          onChange={(e) => {
+            console.log(e);
+            handleChange(e);
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="py-4 h-fit  dark:bg-[#142641]">
       <label
@@ -21,66 +46,15 @@ const McCheckBox = ({ questionArray, handleChange }) => {
         value={questionArray.question}
       />
       <br />
-
-      <div className="flex">
-        <input type="checkbox" name="answer1" className="mr-3" />
-        <input
-          type="text"
-          id="options"
-          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          name="options"
-          placeholder="Enter options"
-          onChange={(e) => {
-            console.log(e);
-            handleChange(e);
-          }}
-          // value={questionArray.options}
-        />
-      </div>
+      {options}
       <br />
-      <div className="flex">
-        <input type="checkbox" name="answer2" className="mr-3" />
-        <input
-          type="text"
-          id="answer2"
-          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          name="answer2"
-          placeholder="Enter options"
-        />
-      </div>
-      <br />
-      <div className="flex">
-        <input type="checkbox" name="answer3" className="mr-3" />
-        <input
-          type="text"
-          id="answer3"
-          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          name="answer3"
-          placeholder="Enter options"
-        />
-      </div>
-      <br />
-      <div className="flex">
-        <input type="checkbox" name="answer4" className="mr-3" />
-        <input
-          type="text"
-          id="answer4"
-          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          name="answer4"
-          placeholder="Enter options"
-        />
-      </div>
-      <br />
-      <div className="flex">
-        <input type="checkbox" name="answer4" className="mr-3" />
-        <input
-          type="text"
-          id="answer4"
-          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          name="answer4"
-          placeholder="Enter options"
-        />
-      </div>
+      <button
+        type="button"
+        className="bg-blue-500 text-white px-3 py-2 rounded-lg"
+        onClick={handleAddOptions}
+      >
+        Add Option
+      </button>
     </div>
   );
 };
