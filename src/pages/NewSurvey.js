@@ -15,8 +15,6 @@ function NewSurvey({ theme }) {
     _id: "",
   });
 
-  console.log(questionArray);
-
   const [checked, setChecked] = useState(true);
   const [publicAccess, setPublicAccess] = useState(true);
   const [endDate, setEndDate] = useState(false);
@@ -149,6 +147,7 @@ function NewSurvey({ theme }) {
 
   return (
     <>
+      {console.log(questionArray)}
       <DashNav theme={theme} />
 
       <div className="h-100vh flex dark:bg-[#142641] ">
