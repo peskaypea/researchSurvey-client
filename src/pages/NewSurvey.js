@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import DashNav from "components/DashNav";
 import DisplayQuestions from "../components/DisplayQuestions";
 import SurveryInfoInput from "components/newSurvey/SurveryInfoInput";
+import QuestionTypeSelect from "components/newSurvey/QuestionTypeSelect";
 
 function NewSurvey({ theme }) {
   const [questionArray, setQuestionArray] = useState({
@@ -152,17 +153,20 @@ function NewSurvey({ theme }) {
 
       <div className="h-100vh flex dark:bg-[#142641] ">
         <div className=" w-full flex justify-around  pt-10">
-          <SurveryInfoInput
-            updateSurveyDetail={updateSurveyDetail}
-            survey={survey}
-            endDate={endDate}
-            setEndDate={setEndDate}
-            checked={checked}
-            setChecked={setChecked}
-            publicAccess={publicAccess}
-            setPublicAccess={setPublicAccess}
-          />
-          <DisplayQuestions survey={survey} />
+          {/* Survey information component created */}
+          <div className="flex-col pl-10 pt-10">
+            <SurveryInfoInput
+              updateSurveyDetail={updateSurveyDetail}
+              survey={survey}
+              endDate={endDate}
+              setEndDate={setEndDate}
+              checked={checked}
+              setChecked={setChecked}
+              publicAccess={publicAccess}
+              setPublicAccess={setPublicAccess}
+            />
+            <DisplayQuestions survey={survey} />
+          </div>
 
           <form className="w-2/6">
             <label
@@ -172,22 +176,10 @@ function NewSurvey({ theme }) {
               Question Type
             </label>
 
-            <select
-              name="questionType"
-              id="questionType"
-              className="text-white bg-green-600 hover:bg-[#41a28c] focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center  dark:bg-[#51D1B4] dark:hover:bg-[#41a28c]  dark:focus:ring-green-600"
-              onChange={(e) => {
-                handleChange(e);
-              }}
-              value={questionArray.questionType}
-            >
-              <option id="Short Answer" value="Short Answer">
-                Short Answer
-              </option>
-              <option value="Long Feedback">Long Feedback</option>
-              <option value="MC">Multiple Choice</option>
-              <option value="Check Box">Check Box</option>
-            </select>
+            <QuestionTypeSelect
+              handleChange={handleChange}
+              questionArray={questionArray.questionType}
+            />
             <br />
 
             {questionArray.questionType === "Short Answer" ||
@@ -204,12 +196,6 @@ function NewSurvey({ theme }) {
             )}
 
             <br />
-            <button
-              className="bg-sky-300 p-1  ml-3 rounded-full h-10 "
-              onClick={() => handleChange()}
-            >
-              Add Question
-            </button>
           </form>
         </div>
       </div>

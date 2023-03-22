@@ -11,7 +11,7 @@ const SurveryInfoInput = ({
   setPublicAccess,
 }) => {
   return (
-    <form className="w-2/6">
+    <form className="w-100vh">
       <div className="mb-6">
         <label
           htmlFor="surveyName"
