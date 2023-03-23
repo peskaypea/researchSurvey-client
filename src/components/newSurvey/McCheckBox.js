@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const McCheckBox = ({ questionArray, handleChange }) => {
   const [numOptions, setNumOptions] = useState(1);
-  const [options, setOptions] = useState([]);
   const questionCardDispaly = [];
   const handleAddOptions = () => {
     setNumOptions(numOptions + 1);
@@ -20,7 +19,6 @@ const McCheckBox = ({ questionArray, handleChange }) => {
           name={`options ${i}`}
           placeholder={`Enter Options ${i}`}
           onChange={(e) => {
-            console.log(e);
             handleChange(e);
           }}
         />
@@ -30,6 +28,7 @@ const McCheckBox = ({ questionArray, handleChange }) => {
 
   return (
     <div className="py-4 h-fit  dark:bg-[#142641]">
+      {console.log(questionArray)}
       <label
         htmlFor="question"
         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

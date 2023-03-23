@@ -1,8 +1,8 @@
-import McCheckBox from "components/newSurvey/McCheckBox";
-import ShortLongAnswer from "components/newSurvey/ShortLongAnswer";
 import React, { useState } from "react";
 import DashNav from "components/DashNav";
+import McCheckBox from "components/newSurvey/McCheckBox";
 import DisplayQuestions from "../components/DisplayQuestions";
+import ShortLongAnswer from "components/newSurvey/ShortLongAnswer";
 import SurveryInfoInput from "components/newSurvey/SurveryInfoInput";
 import QuestionTypeSelect from "components/newSurvey/QuestionTypeSelect";
 
@@ -147,6 +147,19 @@ function NewSurvey({ theme }) {
     });
   };
 
+  const addNewQuestion = () => {
+    survey.questions.push(questionArray);
+    setQuestionArray({
+      questionType: "Short Answer",
+      question: "",
+      options: [],
+      correctOption: null,
+      imgURL: [],
+      imgDesc: [],
+      _id: "",
+    });
+  };
+
   return (
     <>
       <DashNav theme={theme} />
@@ -196,6 +209,13 @@ function NewSurvey({ theme }) {
             )}
 
             <br />
+            <button
+              type="button"
+              className="bg-green-500 text-white px-3 py-2 rounded-lg"
+              onClick={addNewQuestion}
+            >
+              Add Question
+            </button>
           </form>
         </div>
       </div>
