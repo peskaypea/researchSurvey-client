@@ -148,6 +148,17 @@ function NewSurvey({ theme }) {
   };
 
   const addNewQuestion = () => {
+    if (
+      questionArray.questionType === "MC" ||
+      questionArray.questionType === "Check Box"
+    ) {
+      for (const key in questionArray) {
+        if (key.startsWith("options ")) {
+          const optionNumber = parseInt(key.split(" ")[1]);
+          questionArray.options[optionNumber - 1] = questionArray[key];
+        }
+      }
+    }
     survey.questions.push(questionArray);
     setQuestionArray({
       questionType: "Short Answer",
