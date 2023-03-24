@@ -64,68 +64,6 @@ function NewSurvey({ theme }) {
         imgDesc: [],
         _id: { $oid: "63f793344766c42fd9416a3b" },
       },
-      {
-        questionType: "MC",
-        question: "How innovative is the product?",
-        options: [
-          "Extremely innovative",
-          "Very innovative",
-          "Somewhat innovative",
-          "Not so innovative",
-          "Not at all innovative",
-        ],
-        correctOption: null,
-        imgURL: [],
-        imgDesc: [],
-        _id: { $oid: "63f793344766c42fd9416a3c" },
-      },
-      {
-        questionType: "MC",
-        question:
-          "When you think about the product, do you think of it as something you need or don't need?",
-        options: [
-          "Definitely need",
-          "Probably need",
-          "Neutral",
-          "Probably don't need",
-          "Definitely don't need",
-        ],
-        correctOption: null,
-        imgURL: [],
-        imgDesc: [],
-        _id: "63f793344766c42fd9416a3d",
-      },
-      {
-        questionType: "MC",
-        question: "How would you rate the value for money of the product?",
-        options: [
-          "Excellent",
-          "Above average",
-          "Average",
-          "Below average",
-          "Poor",
-        ],
-        correctOption: null,
-        imgURL: [],
-        imgDesc: [],
-        _id: "63f793344766c42fd9416a3e",
-      },
-      {
-        questionType: "MC",
-        question:
-          "If the product were available today, how likely would you be buying the product?",
-        options: [
-          "Extremely likely",
-          "Very likely",
-          "Somewhat likely",
-          "Not so likely",
-          "Not at all likely",
-        ],
-        correctOption: null,
-        imgURL: [],
-        imgDesc: [],
-        _id: "63f793344766c42fd9416a3f",
-      },
     ],
   });
 
@@ -157,6 +95,13 @@ function NewSurvey({ theme }) {
           const optionNumber = parseInt(key.split(" ")[1]);
           questionArray.options[optionNumber - 1] = questionArray[key];
         }
+        if (key.startsWith("correctOption ")) {
+          const correctOptionNumber = parseInt(key.split(" ")[1]);
+          questionArray.correctOption = questionArray.options.slice(
+            correctOptionNumber - 1,
+            correctOptionNumber
+          );
+        }
       }
     }
     survey.questions.push(questionArray);
@@ -174,11 +119,11 @@ function NewSurvey({ theme }) {
   return (
     <>
       <DashNav theme={theme} />
-
+      {console.log(questionArray)}
       <div className="h-100vh flex dark:bg-[#142641] ">
         <div className=" w-full flex justify-around  pt-10">
           {/* Survey information component created */}
-          <div className="flex-col pl-10 pt-10">
+          <div className="flex-col pl-10 pt-10 pb-5">
             <SurveryInfoInput
               updateSurveyDetail={updateSurveyDetail}
               survey={survey}
