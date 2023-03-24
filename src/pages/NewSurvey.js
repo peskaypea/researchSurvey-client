@@ -94,6 +94,7 @@ function NewSurvey({ theme }) {
         if (key.startsWith("options ")) {
           const optionNumber = parseInt(key.split(" ")[1]);
           questionArray.options[optionNumber - 1] = questionArray[key];
+          delete questionArray[key];
         }
         if (key.startsWith("correctOption ")) {
           const correctOptionNumber = parseInt(key.split(" ")[1]);
@@ -101,6 +102,7 @@ function NewSurvey({ theme }) {
             correctOptionNumber - 1,
             correctOptionNumber
           );
+          delete questionArray[key];
         }
       }
     }
