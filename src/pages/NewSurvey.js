@@ -117,6 +117,13 @@ function NewSurvey({ theme }) {
       _id: "",
     });
   };
+  console.log(survey.questions);
+  const deleteQuestion = (questionIndex) => {
+    const newQuestions = [...survey.questions];
+    newQuestions.splice(questionIndex, 1);
+
+    setSurvey((prevState) => ({ ...prevState, questions: newQuestions }));
+  };
 
   return (
     <>
@@ -136,7 +143,7 @@ function NewSurvey({ theme }) {
               publicAccess={publicAccess}
               setPublicAccess={setPublicAccess}
             />
-            <DisplayQuestions survey={survey} />
+            <DisplayQuestions survey={survey} deleteQuestion={deleteQuestion} />
           </div>
 
           <form className="w-2/6">
