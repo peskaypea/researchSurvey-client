@@ -71,7 +71,7 @@ function NewSurvey({ theme }) {
     setSurvey((oldData) => {
       return {
         ...oldData,
-        [e.target.name]: e.target.value.trim(),
+        [e.target.name]: e.target.value,
       };
     });
   };
@@ -92,8 +92,7 @@ function NewSurvey({ theme }) {
     ) {
       for (const key in questionArray) {
         if (key.startsWith("options ")) {
-          const optionNumber = parseInt(key.split(" ")[1]);
-          questionArray.options[optionNumber - 1] = questionArray[key];
+          questionArray.options.push(questionArray[key]);
           delete questionArray[key];
         }
         if (key.startsWith("correctOption ")) {
@@ -117,7 +116,7 @@ function NewSurvey({ theme }) {
       _id: "",
     });
   };
-  console.log(survey.questions);
+  console.log(survey);
   const deleteQuestion = (questionIndex) => {
     const newQuestions = [...survey.questions];
     newQuestions.splice(questionIndex, 1);
